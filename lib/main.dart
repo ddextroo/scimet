@@ -1,20 +1,53 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:scimet/view/choose_language.dart';
+import 'package:scimet/view/splash.dart';
+import 'package:shadcn_ui/shadcn_ui.dart';
 
-import 'src/app.dart';
-import 'src/settings/settings_controller.dart';
-import 'src/settings/settings_service.dart';
+import 'firebase_options.dart';
 
 void main() async {
-  // Set up the SettingsController, which will glue user settings to multiple
-  // Flutter Widgets.
-  final settingsController = SettingsController(SettingsService());
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
-  // Load the user's preferred theme while the splash screen is displayed.
-  // This prevents a sudden theme change when the app is first displayed.
-  await settingsController.loadSettings();
+  runApp(MyApp());
+}
 
-  // Run the app and pass in the SettingsController. The app listens to the
-  // SettingsController for changes, then passes it further down to the
-  // SettingsView.
-  runApp(MyApp(settingsController: settingsController));
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ShadApp(
+      debugShowCheckedModeBanner: false,
+      theme: ShadThemeData(
+        colorScheme: const ShadGreenColorScheme.light(
+          background: Color(0xFFFEFEFE),
+        ),
+        brightness: Brightness.light,
+        primaryButtonTheme: const ShadButtonTheme(
+          backgroundColor: Color(0xFF005A17),
+        ),
+        textTheme: ShadTextTheme(
+          family: "Poppins",
+          colorScheme: const ShadGreenColorScheme.light(),
+        ),
+      ),
+      home: FutureBuilder(
+        future: Firebase.initializeApp(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            return const SplashScreen();
+          }
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        },
+      ),
+      routes: {
+        '/splash': (context) => const SplashScreen(),
+        '/language': (context) => const ChooseLanguageScreen(),
+      },
+    );
+  }
 }
