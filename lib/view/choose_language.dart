@@ -1,5 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:async';
 
 class ChooseLanguageScreen extends StatefulWidget {
   const ChooseLanguageScreen({super.key});
@@ -9,65 +13,78 @@ class ChooseLanguageScreen extends StatefulWidget {
 }
 
 class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
-  static const frameworks = {
-    'next': 'Next.js',
-    'react': 'React',
-    'astro': 'Astro',
-    'nuxt': 'Nuxt.js',
-  };
+  @override
+  void initState() {
+    super.initState();
+    _firstTime();
+  }
+
+  Future<void> _firstTime() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? isFirstTime = prefs.getString("language") ?? "";
+
+    if (isFirstTime != "") {
+      Navigator.popAndPushNamed(context, "/home");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(MediaQuery.of(context).padding.top),
-          child: SizedBox(
-            height: MediaQuery.of(context).padding.top,
+        appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(Icons.chevron_left),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+          title: const Text(
+            "Choose your language",
+            style: TextStyle(fontSize: 14),
           ),
         ),
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            ShadCard(
-              width: 350,
-              title: Text('Create project', style: TextStyle(fontWeight: FontWeight.bold),),
-              description: const Text('Deploy your new project in one-click.'),
-              footer: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ShadButton.outline(
-                    text: const Text('Cancel'),
-                    onPressed: () {},
-                  ),
-                  ShadButton(
-                    text: const Text('Deploy'),
-                    onPressed: () {},
-                  ),
-                ],
-              ),
-              content: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    const Text('Name'),
-                    const ShadInput(placeholder: Text('Name of your project')),
-                    const SizedBox(height: 6),
-                    const Text('Framework'),
-                    ShadSelect<String>(
-                      placeholder: const Text('Select'),
-                      options: frameworks.entries
-                          .map((e) =>
-                              ShadOption(value: e.key, child: Text(e.value)))
-                          .toList(),
-                      selectedOptionBuilder: (context, value) {
-                        return Text(frameworks[value]!);
-                      },
-                      onChanged: (value) {},
-                    ),
-                  ],
+            Flexible(
+              flex: 1,
+              child: Padding(
+                padding: const EdgeInsets.all(30.0),
+                child: SvgPicture.asset(
+                  "assets/images/language.svg",
                 ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(30.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ShadButton(
+                    text: const Text("Tagalog"),
+                    width: double.infinity,
+                    onPressed: () async {
+                      final SharedPreferences prefs =
+                          await SharedPreferences.getInstance();
+
+                      await prefs.setString("language", "Tagalog");
+
+                      Navigator.popAndPushNamed(context, "/home");
+                    },
+                  ),
+                  ShadButton.outline(
+                    text: Text("Cebuano"),
+                    width: double.infinity,
+                    onPressed: () async {
+                      final SharedPreferences prefs =
+                          await SharedPreferences.getInstance();
+
+                      await prefs.setString("language", "Cebuano");
+
+                      Navigator.popAndPushNamed(context, "/home");
+                    },
+                  )
+                ],
               ),
             )
           ],
