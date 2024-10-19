@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../controller/units_controller.dart';
+import '../model/units.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -9,37 +12,78 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final List<String> items = List<String>.generate(100, (i) => "Item $i");
+  final List<Units> units = UnitsController().getUnits();
+
+  String? _selectedLanguage;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _loadLanguagePreferences();
+  }
+
+  Future<void> _loadLanguagePreferences() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _selectedLanguage = prefs.getString("language");
+    });
+  }
+
+  Future<void> _setLanguagePreferences(String language) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString("language", language);
+    setState(() {
+      _selectedLanguage = language;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(
-              Icons.menu,
-              size: 20,
-            ),
-            onPressed: () {},
-          ),
+          // leading: IconButton(
+          //   icon: const Icon(
+          //     Icons.menu,
+          //     size: 20,
+          //   ),
+          //   onPressed: () {},
+          // ),
           actions: [
             IconButton(
                 onPressed: () {
                   showShadDialog(
                     context: context,
                     builder: (context) => ShadDialog(
-                      title: const Text(
+                      radius: BorderRadius.circular(10.0),
+                      title: Text(
                         'Select language',
                         style: TextStyle(fontWeight: FontWeight.w500),
                       ),
+                      description: ShadRadioGroup<String>(
+                        onChanged: (String? value) {
+                          if (value != null) {
+                            _setLanguagePreferences(value);
+                          }
+                        },
+                        initialValue: _selectedLanguage,
+                        items: [
+                          ShadRadio(
+                            label: Text('Tagalog'),
+                            value: 'Tagalog',
+                          ),
+                          ShadRadio(
+                            label: Text('Cebuano'),
+                            value: 'Cebuano',
+                          ),
+                        ],
+                      ),
                       actions: [
-                        ShadButton.outline(
-                          text: const Text('Cebuano'),
-                          onPressed: () => Navigator.of(context).pop(false),
-                        ),
                         ShadButton(
-                          text: const Text('Tagalog'),
-                          onPressed: () => Navigator.of(context).pop(true),
+                          text: Text('Save Changes'),
+                          onPressed: () async {
+                            Navigator.of(context).pop(false);
+                          },
                         ),
                       ],
                     ),
@@ -103,64 +147,69 @@ class _HomeState extends State<Home> {
                 ],
               ),
               Expanded(
-                child: ListView.builder(itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10.0),
-                    child: InkWell(
-                      onTap: () {
-                        print("testttt");
-                      },
-                      child: ShadCard(
-                        width: MediaQuery.of(context).size.width,
-                        content: Row(
-                          children: [
-                            Flexible(
-                              flex: 1,
-                              child: Container(
-                                width: MediaQuery.of(context).size.width,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Biology",
-                                      textAlign: TextAlign.left,
+                child: ListView.builder(
+                    itemCount: units.length,
+                    itemBuilder: (context, index) {
+                      final unit = units[index];
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10.0),
+                        child: InkWell(
+                          onTap: () {
+                            print("testttt");
+                          },
+                          child: ShadCard(
+                            width: MediaQuery.of(context).size.width,
+                            content: Row(
+                              children: [
+                                Flexible(
+                                  flex: 1,
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          unit.title,
+                                          textAlign: TextAlign.left,
+                                        ),
+                                        const SizedBox(
+                                          height: 5.0,
+                                        ),
+                                        Text(
+                                          "${unit.modules} module(s)",
+                                          style: TextStyle(
+                                              color: Color(0xFF6b7280),
+                                              fontSize: 12),
+                                        )
+                                      ],
                                     ),
-                                    const SizedBox(
-                                      height: 5.0,
-                                    ),
-                                    Text(
-                                      "2 module(s)",
-                                      style: TextStyle(
-                                          color: Color(0xFF6b7280),
-                                          fontSize: 12),
-                                    )
-                                  ],
+                                  ),
                                 ),
-                              ),
+                                Container(
+                                  width: 40,
+                                  height: 40,
+                                  // color: Color(0xFF005A17),
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Color(0xFF005A17),
+                                  ),
+                                  child: IconButton(
+                                    onPressed: () {},
+                                    icon: Icon(
+                                      Icons.chevron_right,
+                                      color: Color(0xFFFEFEFE),
+                                    ),
+                                  ),
+                                )
+                              ],
                             ),
-                            Container(
-                              width: 40,
-                              height: 40,
-                              // color: Color(0xFF005A17),
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Color(0xFF005A17),
-                              ),
-                              child: IconButton(
-                                onPressed: () {},
-                                icon: Icon(
-                                  Icons.chevron_right,
-                                  color: Color(0xFFFEFEFE),
-                                ),
-                              ),
-                            )
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                  );
-                }),
+                      );
+                    }),
               )
             ],
           ),
