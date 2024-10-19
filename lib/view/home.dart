@@ -3,6 +3,7 @@ import 'package:shadcn_ui/shadcn_ui.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../controller/units_controller.dart';
 import '../model/units.dart';
+import 'package:page_flip/page_flip.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -18,7 +19,6 @@ class _HomeState extends State<Home> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _loadLanguagePreferences();
   }
@@ -42,13 +42,6 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          // leading: IconButton(
-          //   icon: const Icon(
-          //     Icons.menu,
-          //     size: 20,
-          //   ),
-          //   onPressed: () {},
-          // ),
           actions: [
             IconButton(
                 onPressed: () {
@@ -56,7 +49,8 @@ class _HomeState extends State<Home> {
                     context: context,
                     builder: (context) => ShadDialog(
                       radius: BorderRadius.circular(10.0),
-                      title: Text(
+                      removeBorderRadiusWhenTiny: false,
+                      title: const Text(
                         'Select language',
                         style: TextStyle(fontWeight: FontWeight.w500),
                       ),
@@ -67,7 +61,7 @@ class _HomeState extends State<Home> {
                           }
                         },
                         initialValue: _selectedLanguage,
-                        items: [
+                        items: const [
                           ShadRadio(
                             label: Text('Tagalog'),
                             value: 'Tagalog',
@@ -80,7 +74,7 @@ class _HomeState extends State<Home> {
                       ),
                       actions: [
                         ShadButton(
-                          text: Text('Save Changes'),
+                          text: Text('Done'),
                           onPressed: () async {
                             Navigator.of(context).pop(false);
                           },
@@ -155,7 +149,10 @@ class _HomeState extends State<Home> {
                         padding: const EdgeInsets.symmetric(vertical: 10.0),
                         child: InkWell(
                           onTap: () {
-                            print("testttt");
+                            Navigator.pushNamed(context, "/module", arguments: {
+                              'modules': unit.modulesList,
+                              'title': unit.title
+                            });
                           },
                           child: ShadCard(
                             width: MediaQuery.of(context).size.width,

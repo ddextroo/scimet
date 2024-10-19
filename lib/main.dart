@@ -1,7 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:scimet/view/choose_language.dart';
+import 'package:scimet/view/content.dart';
 import 'package:scimet/view/home.dart';
+import 'package:scimet/view/module.dart';
 import 'package:scimet/view/splash.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
@@ -29,9 +31,8 @@ class MyApp extends StatelessWidget {
         primaryButtonTheme: const ShadButtonTheme(
           backgroundColor: Color(0xFF005A17),
         ),
-        outlineButtonTheme: const ShadButtonTheme(
-          foregroundColor: Color(0xFF171717)
-        ),
+        outlineButtonTheme:
+            const ShadButtonTheme(foregroundColor: Color(0xFF171717)),
         textTheme: ShadTextTheme(
           family: "Poppins",
           colorScheme: const ShadGreenColorScheme.light(),
@@ -52,6 +53,8 @@ class MyApp extends StatelessWidget {
         '/splash': (context) => const SplashScreen(),
         '/language': (context) => const ChooseLanguageScreen(),
         '/home': (context) => const Home(),
+        '/module': (context) => const Module(),
+        '/content': (context) => const Content(),
       },
     );
   }
