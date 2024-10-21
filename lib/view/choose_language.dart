@@ -61,13 +61,13 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ShadButton(
-                    text: const Text("Tagalog"),
+                    text: const Text("Filipino"),
                     width: double.infinity,
                     onPressed: () async {
                       final SharedPreferences prefs =
                           await SharedPreferences.getInstance();
 
-                      await prefs.setString("language", "Tagalog");
+                      await prefs.setString("language", "Filipino");
 
                       Navigator.popAndPushNamed(context, "/home");
                     },

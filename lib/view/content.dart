@@ -7,6 +7,7 @@ import '../controller/units_controller.dart';
 import '../model/book.dart';
 import '../model/units.dart';
 import 'package:page_flip/page_flip.dart';
+import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
 class Content extends StatefulWidget {
   const Content({super.key});
@@ -78,8 +79,8 @@ class _ContentState extends State<Content> {
                       initialValue: _selectedLanguage,
                       items: const [
                         ShadRadio(
-                          label: Text('Tagalog'),
-                          value: 'Tagalog',
+                          label: Text('Filipino'),
+                          value: 'Filipino',
                         ),
                         ShadRadio(
                           label: Text('Cebuano'),
@@ -122,12 +123,12 @@ class _ContentState extends State<Content> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: const SizedBox(
+                          const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: SizedBox(
                               height: 2,
                               width: 70,
-                              child: const ColoredBox(color: Colors.black38),
+                              child: ColoredBox(color: Colors.black38),
                             ),
                           ),
                           Text(
@@ -136,19 +137,19 @@ class _ContentState extends State<Content> {
                                 fontSize: 12, fontWeight: FontWeight.w500),
                             textAlign: TextAlign.center,
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: const SizedBox(
+                          const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: SizedBox(
                               height: 2,
                               width: 70,
-                              child: const ColoredBox(color: Colors.black38),
+                              child: ColoredBox(color: Colors.black38),
                             ),
                           ),
                         ],
                       ),
                       const SizedBox(height: 10),
                       _buildPageContent(
-                          context, page, _selectedLanguage ?? 'Tagalog'),
+                          context, page, _selectedLanguage ?? 'Filipino'),
                     ],
                   ),
                 );
@@ -162,9 +163,9 @@ class _ContentState extends State<Content> {
       BuildContext context, Book page, String selectedLanguage) {
     List<TextSpan> contentSpans = [];
 
-    String content = page.content[selectedLanguage] ?? page.content['Tagalog']!;
+    String content = page.content[selectedLanguage] ?? page.content['Filipino']!;
     List<String> highlightedWords =
-        page.highlightedWords[selectedLanguage] ?? page.highlightedWords['Tagalog']!;
+        page.highlightedWords[selectedLanguage] ?? page.highlightedWords['Filipino']!;
 
     List<String> words = content.split(' ');
 

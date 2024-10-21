@@ -63,8 +63,8 @@ class _HomeState extends State<Home> {
                         initialValue: _selectedLanguage,
                         items: const [
                           ShadRadio(
-                            label: Text('Tagalog'),
-                            value: 'Tagalog',
+                            label: Text('Filipino'),
+                            value: 'Filipino',
                           ),
                           ShadRadio(
                             label: Text('Cebuano'),

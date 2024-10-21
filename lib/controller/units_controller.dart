@@ -11,22 +11,22 @@ class UnitsController {
       ], bookContent: [
         Book(
           content: {
-            'Tagalog': 'Ito ang unang pahina ng eBook. Mga salita tulad ng Flutter at Dart.',
+            'Filipino': 'Ito ang unang pahina ng eBook. Mga salita tulad ng Flutter at Dart.',
             'Cebuano': 'Kini ang una nga panid sa eBook. Mga pulong sama sa Flutter ug Dart.',
           },
           highlightedWords: {
-            'Tagalog': ['Flutter', 'Dart'],
+            'Filipino': ['Flutter', 'Dart'],
             'Cebuano': ['Flutter', 'Dart'],
           },
           moduleName: "Introduction to Biology",
         ),
         Book(
           content: {
-            'Tagalog': 'Ito ang pangalawang pahina ng eBook. Mga salita tulad ng Javascript at Java.',
+            'Filipino': 'Ito ang pangalawang pahina ng eBook. Mga salita tulad ng Javascript at Java.',
             'Cebuano': 'Kini ang ikaduha nga panid sa eBook. Mga pulong sama sa Javascript ug Java.',
           },
           highlightedWords: {
-            'Tagalog': ['Java', 'Javascript'],
+            'Filipino': ['Java', 'Javascript'],
             'Cebuano': ['Javascript', 'Java'],
           },
           moduleName: "Introduction to Biology",
@@ -37,11 +37,11 @@ class UnitsController {
       ], bookContent: [
         Book(
           content: {
-            'Tagalog': 'Ito ang ikalawang pahina. Mga salita tulad ng Widgets at StatelessWidget.',
+            'Filipino': 'Ito ang ikalawang pahina. Mga salita tulad ng Widgets at StatelessWidget.',
             'Cebuano': 'Kini ang ikaduhang panid. Mga pulong sama sa Widgets ug StatelessWidget.',
           },
           highlightedWords: {
-            'Tagalog': ['Widgets', 'StatelessWidget'],
+            'Filipino': ['Widgets', 'StatelessWidget'],
             'Cebuano': ['Widgets', 'StatelessWidget'],
           },
           moduleName: "Introduction to Astronomy",

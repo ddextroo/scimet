@@ -74,8 +74,8 @@ class _ModuleState extends State<Module> {
                       initialValue: _selectedLanguage,
                       items: [
                         ShadRadio(
-                          label: Text('Tagalog'),
-                          value: 'Tagalog',
+                          label: Text('Filipino'),
+                          value: 'Filipino',
                         ),
                         ShadRadio(
                           label: Text('Cebuano'),

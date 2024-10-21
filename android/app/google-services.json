@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:264825109099:android:d1e6ea39f9ef54953a0f2e",
+        "mobilesdk_app_id": "1:264825109099:android:9f27fc75e55c57793a0f2e",
         "android_client_info": {
-          "package_name": "com.example.scimet"
+          "package_name": "com.ddev.scimet"
         }
       },
       "oauth_client": [],
