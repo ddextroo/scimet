@@ -6,8 +6,8 @@ import '../model/units.dart';
 class UnitsController {
   List<Units> getUnits() {
     return [
-      Units(title: "Biology", modules: 3, modulesList: [
-        Modules(moduleName: "Introduction to Biology", pages: 10),
+      Units(title: "Systems in plants and animals", modules: 3, modulesList: [
+        Modules(moduleName: "Module 1"),
       ], bookContent: [
         Book(
           content: {
@@ -32,8 +32,53 @@ class UnitsController {
           moduleName: "Introduction to Biology",
         )
       ]),
-      Units(title: "Astronomy", modules: 5, modulesList: [
-        Modules(moduleName: "Introduction to Astronomy", pages: 21),
+      Units(title: "Plants and animals and their habitats", modules: 1, modulesList: [
+        Modules(moduleName: "Module 1"),
+      ], bookContent: [
+        Book(
+          content: {
+            'Filipino': 'Ito ang ikalawang pahina. Mga salita tulad ng Widgets at StatelessWidget.',
+            'Cebuano': 'Kini ang ikaduhang panid. Mga pulong sama sa Widgets ug StatelessWidget.',
+          },
+          highlightedWords: {
+            'Filipino': ['Widgets', 'StatelessWidget'],
+            'Cebuano': ['Widgets', 'StatelessWidget'],
+          },
+          moduleName: "Introduction to Astronomy",
+        )
+      ]),
+      Units(title: "Life Cycles of Animals", modules: 1, modulesList: [
+        Modules(moduleName: "Module 1"),
+      ], bookContent: [
+        Book(
+          content: {
+            'Filipino': 'Ito ang ikalawang pahina. Mga salita tulad ng Widgets at StatelessWidget.',
+            'Cebuano': 'Kini ang ikaduhang panid. Mga pulong sama sa Widgets ug StatelessWidget.',
+          },
+          highlightedWords: {
+            'Filipino': ['Widgets', 'StatelessWidget'],
+            'Cebuano': ['Widgets', 'StatelessWidget'],
+          },
+          moduleName: "Introduction to Astronomy",
+        )
+      ]),
+      Units(title: "Animals and the food they eat", modules: 1, modulesList: [
+        Modules(moduleName: "Module 1"),
+      ], bookContent: [
+        Book(
+          content: {
+            'Filipino': 'Ito ang ikalawang pahina. Mga salita tulad ng Widgets at StatelessWidget.',
+            'Cebuano': 'Kini ang ikaduhang panid. Mga pulong sama sa Widgets ug StatelessWidget.',
+          },
+          highlightedWords: {
+            'Filipino': ['Widgets', 'StatelessWidget'],
+            'Cebuano': ['Widgets', 'StatelessWidget'],
+          },
+          moduleName: "Introduction to Astronomy",
+        )
+      ]),
+      Units(title: "Food Chains", modules: 1, modulesList: [
+        Modules(moduleName: "Module 1"),
       ], bookContent: [
         Book(
           content: {

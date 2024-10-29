@@ -24,6 +24,7 @@ dependencies:
   change_app_package_name: ^1.4.0
   flutter_launcher_icons: ^0.13.1
   tutorial_coach_mark: ^1.2.11
+  pdfrx: ^0.4.54
 
 dev_dependencies:
   flutter_test:
@@ -46,6 +47,7 @@ flutter:
   assets:
     # Add assets from the images directory to the application.
     - assets/images/
+    - assets/contents/
   fonts:
     - family: Poppins
       fonts:

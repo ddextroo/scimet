@@ -124,23 +124,9 @@ class _ModuleState extends State<Module> {
                                 flex: 1,
                                 child: Container(
                                   width: MediaQuery.of(context).size.width,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        module.moduleName,
-                                        textAlign: TextAlign.left,
-                                      ),
-                                      const SizedBox(
-                                        height: 5.0,
-                                      ),
-                                      Text(
-                                        "${module.pages} page(s)",
-                                        style: TextStyle(
-                                            color: Color(0xFF6b7280), fontSize: 12),
-                                      )
-                                    ],
+                                  child: Text(
+                                    module.moduleName,
+                                    textAlign: TextAlign.left,
                                   ),
                                 ),
                               ),

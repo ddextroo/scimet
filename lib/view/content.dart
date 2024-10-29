@@ -7,6 +7,7 @@ import '../controller/units_controller.dart';
 import '../model/book.dart';
 import '../model/units.dart';
 import 'package:page_flip/page_flip.dart';
+import 'package:pdfrx/pdfrx.dart';
 import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
 class Content extends StatefulWidget {
@@ -116,84 +117,11 @@ class _ContentState extends State<Content> {
                 final page = contents[index];
                 return Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: SizedBox(
-                              height: 2,
-                              width: 70,
-                              child: ColoredBox(color: Colors.black38),
-                            ),
-                          ),
-                          Text(
-                            'Page ${index + 1} of ${contents.length}',
-                            style: const TextStyle(
-                                fontSize: 12, fontWeight: FontWeight.w500),
-                            textAlign: TextAlign.center,
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: SizedBox(
-                              height: 2,
-                              width: 70,
-                              child: ColoredBox(color: Colors.black38),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      _buildPageContent(
-                          context, page, _selectedLanguage ?? 'Filipino'),
-                    ],
-                  ),
+                  child: PdfViewer.asset("assets/contents/mod1.pdf",),
                 );
               },
             ),
           ]),
-    );
-  }
-
-  Widget _buildPageContent(
-      BuildContext context, Book page, String selectedLanguage) {
-    List<TextSpan> contentSpans = [];
-
-    String content = page.content[selectedLanguage] ?? page.content['Filipino']!;
-    List<String> highlightedWords =
-        page.highlightedWords[selectedLanguage] ?? page.highlightedWords['Filipino']!;
-
-    List<String> words = content.split(' ');
-
-    for (String word in words) {
-      String cleanWord = word.replaceAll(RegExp(r'[^\w\s]'), '');
-
-      if (highlightedWords.contains(cleanWord)) {
-        contentSpans.add(
-          TextSpan(
-            text: word + ' ',
-            style: const TextStyle(
-                color: Color(0xFF5CD96A), fontWeight: FontWeight.bold),
-            recognizer: TapGestureRecognizer()
-              ..onTap = () {
-                print('Highlighted word clicked: $cleanWord');
-              },
-          ),
-        );
-      } else {
-        contentSpans.add(TextSpan(text: word + ' '));
-      }
-    }
-
-    return RichText(
-      text: TextSpan(
-        style: TextStyle(color: Colors.black, fontSize: 16),
-        children: contentSpans,
-      ),
     );
   }
 
