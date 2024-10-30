@@ -2,13 +2,13 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../controller/units_controller.dart';
-import '../model/book.dart';
 import '../model/units.dart';
 import 'package:page_flip/page_flip.dart';
 import 'package:pdfrx/pdfrx.dart';
 import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
+
+import '../widgets/translation_sheet.dart';
 
 class Content extends StatefulWidget {
   const Content({super.key});
@@ -50,79 +50,82 @@ class _ContentState extends State<Content> {
         <List, dynamic>{}) as Map;
     final String moduleName = arguments['moduleName'];
     final List<Units> units = book.getUnits();
-    final List<Book> contents = units
+    final List<String> contents = units
         .expand((unit) => unit.bookContent)
-        .where((book) => book.moduleName.contains(moduleName))
+        .where((book) => book.moduleName.contains("Module 2"))
+        .map((book) => book.content)
         .toList();
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(moduleName,
-            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 14)),
-        actions: [
-          IconButton(
-              onPressed: () {
-                showShadDialog(
-                  context: context,
-                  builder: (context) => ShadDialog(
-                    removeBorderRadiusWhenTiny: false,
-                    radius: BorderRadius.circular(10.0),
-                    title: const Text(
-                      "Select language",
-                      style: TextStyle(fontWeight: FontWeight.w500),
-                    ),
-                    description: ShadRadioGroup<String>(
-                      onChanged: (String? value) {
-                        if (value != null) {
-                          _setLanguagePreferences(value);
-                        }
-                      },
-                      initialValue: _selectedLanguage,
-                      items: const [
-                        ShadRadio(
-                          label: Text('Filipino'),
-                          value: 'Filipino',
-                        ),
-                        ShadRadio(
-                          label: Text('Cebuano'),
-                          value: 'Cebuano',
+        appBar: AppBar(
+          title: Text(moduleName,
+              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 14)),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  showShadDialog(
+                    context: context,
+                    builder: (context) => ShadDialog(
+                      removeBorderRadiusWhenTiny: false,
+                      radius: BorderRadius.circular(10.0),
+                      title: const Text(
+                        "Select language",
+                        style: TextStyle(fontWeight: FontWeight.w500),
+                      ),
+                      description: ShadRadioGroup<String>(
+                        onChanged: (String? value) {
+                          if (value != null) {
+                            _setLanguagePreferences(value);
+                          }
+                        },
+                        initialValue: _selectedLanguage,
+                        items: const [
+                          ShadRadio(
+                            label: Text('Filipino'),
+                            value: 'Filipino',
+                          ),
+                          ShadRadio(
+                            label: Text('Cebuano'),
+                            value: 'Cebuano',
+                          ),
+                        ],
+                      ),
+                      actions: [
+                        ShadButton(
+                          child: const Text('Done'),
+                          onPressed: () async {
+                            Navigator.of(context).pop(false);
+                          },
                         ),
                       ],
                     ),
-                    actions: [
-                      ShadButton(
-                        text: const Text('Done'),
-                        onPressed: () async {
-                          Navigator.of(context).pop(false);
-                        },
-                      ),
-                    ],
-                  ),
+                  );
+                },
+                icon: const Icon(
+                  Icons.translate,
+                  size: 20,
+                ))
+          ],
+        ),
+        body: PdfViewer.asset(
+          "assets/contents/life_c.pdf",
+          params: PdfViewerParams(
+            linkHandlerParams: PdfLinkHandlerParams(
+              onLinkTap: (link) {
+                showShadSheet(
+                  side: ShadSheetSide.bottom,
+                  context: context,
+                  builder: (context) =>
+                  TranslationSheet(word: link.url.toString())
                 );
-              },
-              icon: const Icon(
-                Icons.translate,
-                size: 20,
-              ))
-        ],
-      ),
-      body: PageFlipWidget(
-          key: _controller,
-          backgroundColor: Colors.white,
-          children: <Widget>[
-            PageView.builder(
-              itemCount: contents.length, // Number of pages
-              itemBuilder: (context, index) {
-                // For each page, build the content
-                final page = contents[index];
-                return Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: PdfViewer.asset("assets/contents/mod1.pdf",),
-                );
+                // if (link.url != null) {
+                //   navigateToUrl(link.url!);
+                // } else if (link.dest != null) {
+                //   controller.goToDest(link.dest);
+                // }
               },
             ),
-          ]),
-    );
+          ),
+        ));
   }
-
 }

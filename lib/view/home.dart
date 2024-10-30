@@ -74,7 +74,7 @@ class _HomeState extends State<Home> {
                       ),
                       actions: [
                         ShadButton(
-                          text: Text('Done'),
+                          child: Text('Done'),
                           onPressed: () async {
                             Navigator.of(context).pop(false);
                           },
@@ -95,7 +95,7 @@ class _HomeState extends State<Home> {
             children: [
               ShadCard(
                 width: MediaQuery.of(context).size.width,
-                content: Row(
+                child: Row(
                   children: [
                     Image.asset(
                       "assets/images/home_welcome.png",
@@ -156,7 +156,7 @@ class _HomeState extends State<Home> {
                           },
                           child: ShadCard(
                             width: MediaQuery.of(context).size.width,
-                            content: Row(
+                            child: Row(
                               children: [
                                 Flexible(
                                   flex: 1,

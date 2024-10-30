@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
             const ShadButtonTheme(foregroundColor: Color(0xFF171717)),
         textTheme: ShadTextTheme(
           family: "Poppins",
-          colorScheme: const ShadGreenColorScheme.light(),
+          // colorScheme: const ShadGreenColorScheme.light(),
         ),
       ),
       home: FutureBuilder(

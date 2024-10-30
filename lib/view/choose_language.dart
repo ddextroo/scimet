@@ -61,7 +61,7 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ShadButton(
-                    text: const Text("Filipino"),
+                    child: const Text("Filipino"),
                     width: double.infinity,
                     onPressed: () async {
                       final SharedPreferences prefs =
@@ -73,7 +73,7 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
                     },
                   ),
                   ShadButton.outline(
-                    text: Text("Cebuano"),
+                    child: Text("Cebuano"),
                     width: double.infinity,
                     onPressed: () async {
                       final SharedPreferences prefs =

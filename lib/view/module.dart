@@ -85,7 +85,7 @@ class _ModuleState extends State<Module> {
                     ),
                     actions: [
                       ShadButton(
-                        text: Text('Done'),
+                        child: Text('Done'),
                         onPressed: () async {
                           Navigator.of(context).pop(false);
                         },
@@ -118,7 +118,7 @@ class _ModuleState extends State<Module> {
                         },
                         child: ShadCard(
                           width: MediaQuery.of(context).size.width,
-                          content: Row(
+                          child: Row(
                             children: [
                               Flexible(
                                 flex: 1,
