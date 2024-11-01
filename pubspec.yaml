@@ -25,6 +25,7 @@ dependencies:
   tutorial_coach_mark: ^1.2.11
   pdfrx: ^1.0.84
   shadcn_ui: ^0.14.1
+  google_fonts: ^6.2.1
 
 dev_dependencies:
   flutter_test:

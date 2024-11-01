@@ -52,7 +52,7 @@ class _ContentState extends State<Content> {
     final List<Units> units = book.getUnits();
     final List<String> contents = units
         .expand((unit) => unit.bookContent)
-        .where((book) => book.moduleName.contains("Module 2"))
+        .where((book) => book.moduleName.contains(moduleName))
         .map((book) => book.content)
         .toList();
 
@@ -108,7 +108,7 @@ class _ContentState extends State<Content> {
           ],
         ),
         body: PdfViewer.asset(
-          "assets/contents/life_c.pdf",
+          "assets/contents/${contents[0]}",
           params: PdfViewerParams(
             linkHandlerParams: PdfLinkHandlerParams(
               onLinkTap: (link) {

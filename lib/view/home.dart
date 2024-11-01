@@ -27,6 +27,7 @@ class _HomeState extends State<Home> {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       _selectedLanguage = prefs.getString("language");
+      print(_selectedLanguage);
     });
   }
 
@@ -186,18 +187,20 @@ class _HomeState extends State<Home> {
                                   ),
                                 ),
                                 Container(
-                                  width: 40,
-                                  height: 40,
-                                  // color: Color(0xFF005A17),
+                                  width: 30,
+                                  height: 30,
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                     color: Color(0xFF005A17),
                                   ),
-                                  child: IconButton(
-                                    onPressed: () {},
-                                    icon: Icon(
-                                      Icons.chevron_right,
-                                      color: Color(0xFFFEFEFE),
+                                  child: Center(
+                                    child: IconButton(
+                                      padding: EdgeInsets.zero, // Remove default padding
+                                      onPressed: () {},
+                                      icon: Icon(
+                                        Icons.chevron_right,
+                                        color: Color(0xFFFEFEFE),
+                                      ),
                                     ),
                                   ),
                                 )

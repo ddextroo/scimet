@@ -6,6 +6,7 @@ import 'package:scimet/view/home.dart';
 import 'package:scimet/view/module.dart';
 import 'package:scimet/view/splash.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'firebase_options.dart';
 
@@ -21,7 +22,7 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ShadApp(
+    return ShadApp.material(
       debugShowCheckedModeBanner: false,
       theme: ShadThemeData(
         colorScheme: const ShadGreenColorScheme.light(
@@ -32,9 +33,9 @@ class MyApp extends StatelessWidget {
           backgroundColor: Color(0xFF005A17),
         ),
         outlineButtonTheme:
-            const ShadButtonTheme(foregroundColor: Color(0xFF171717)),
-        textTheme: ShadTextTheme(
-          family: "Poppins",
+        const ShadButtonTheme(foregroundColor: Color(0xFF171717)),
+        textTheme: ShadTextTheme.fromGoogleFont(
+          GoogleFonts.poppins,
           // colorScheme: const ShadGreenColorScheme.light(),
         ),
       ),
