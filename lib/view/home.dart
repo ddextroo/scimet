@@ -27,7 +27,6 @@ class _HomeState extends State<Home> {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       _selectedLanguage = prefs.getString("language");
-      print(_selectedLanguage);
     });
   }
 
