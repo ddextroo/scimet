@@ -110,7 +110,9 @@ class _ContentState extends State<Content> {
         body: PdfViewer.asset(
           "assets/contents/${contents[0]}",
           params: PdfViewerParams(
+            backgroundColor: Colors.white,
             linkHandlerParams: PdfLinkHandlerParams(
+              linkColor: const Color(0x00000000),
               onLinkTap: (link) {
                 showShadSheet(
                   side: ShadSheetSide.bottom,
