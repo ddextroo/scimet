@@ -44,6 +44,18 @@ class _ContentState extends State<Content> {
     });
   }
 
+  void _checkAndUnlockNextModule(String currentModuleName) async {
+    final isCompleted = await UnitsController().isModuleCompleted(currentModuleName);
+
+    if (isCompleted) {
+      setState(() {
+        print("ueu");
+        // Unlock the next module logic here.
+        // e.g., update a flag or UI to enable the next module.
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final arguments = (ModalRoute.of(context)?.settings.arguments ??
@@ -55,6 +67,7 @@ class _ContentState extends State<Content> {
         .where((book) => book.moduleName.contains(moduleName))
         .map((book) => book.content)
         .toList();
+    _checkAndUnlockNextModule(moduleName);
 
     return Scaffold(
         appBar: AppBar(

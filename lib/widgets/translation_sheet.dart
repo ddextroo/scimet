@@ -90,6 +90,16 @@ class _TranslationSheetState extends State<TranslationSheet> {
     );
   }
 
+  Future<void> _markWordAsTranslated(String moduleName, String word) async {
+    final prefs = await SharedPreferences.getInstance();
+    final translatedWords = prefs.getStringList(moduleName) ?? [];
+
+    if (!translatedWords.contains(word)) {
+      translatedWords.add(word);
+      await prefs.setStringList(moduleName, translatedWords);
+    }
+  }
+
   Map<String, String>? _getTranslation(List<Units> units, String searchWord) {
     if (_selectedLanguage == null) {
       return null;
@@ -101,6 +111,7 @@ class _TranslationSheetState extends State<TranslationSheet> {
         var translations = book.translations[searchWord];
         if (translations != null && translations.containsKey(_selectedLanguage)) {
           final translation = translations[_selectedLanguage]!;
+          _markWordAsTranslated(book.moduleName, searchWord);
           return {
             'word': translation.word,
             'definition': translation.definition,
