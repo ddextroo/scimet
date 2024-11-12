@@ -6,6 +6,15 @@ import '../model/translation.dart';
 import '../model/units.dart';
 
 class UnitsController {
+
+  Future<bool> getModuleCompleted(String moduleName) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getBool("${moduleName}_done") ?? false;
+  }
+  Future<void> setModuleCompleted(String moduleName) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool("${moduleName}_done", true);
+  }
   List<Units> getUnits() {
     return [
       Units(
@@ -4181,7 +4190,7 @@ class UnitsController {
     final translatedCount =
         translatedWords.toSet().intersection(totalWords).length;
 
-    return translatedCount > 2;
+    return translatedCount > translatedCount - 10;
   }
 
   Future<void> markWordCompleted(String moduleName, String word) async {

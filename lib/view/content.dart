@@ -45,11 +45,13 @@ class _ContentState extends State<Content> {
   }
 
   void _checkAndUnlockNextModule(String currentModuleName) async {
-    final isCompleted = await UnitsController().isModuleCompleted(currentModuleName);
+    final isCompleted =
+        await UnitsController().isModuleCompleted(currentModuleName);
 
     if (isCompleted) {
+      await UnitsController().setModuleCompleted(currentModuleName);
       setState(() {
-        print("ueu");
+        // print("ueu");
         // Unlock the next module logic here.
         // e.g., update a flag or UI to enable the next module.
       });
