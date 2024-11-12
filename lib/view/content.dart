@@ -111,15 +111,19 @@ class _ContentState extends State<Content> {
           "assets/contents/${contents[0]}",
           params: PdfViewerParams(
             backgroundColor: Colors.white,
+            pageDropShadow: BoxShadow(
+              color: Colors.transparent,
+              blurRadius: 0,
+              spreadRadius: 0,
+            ),
             linkHandlerParams: PdfLinkHandlerParams(
               linkColor: const Color(0x00000000),
               onLinkTap: (link) {
                 showShadSheet(
-                  side: ShadSheetSide.bottom,
-                  context: context,
-                  builder: (context) =>
-                  TranslationSheet(word: link.url.toString())
-                );
+                    side: ShadSheetSide.bottom,
+                    context: context,
+                    builder: (context) =>
+                        TranslationSheet(word: link.url.toString()));
                 // if (link.url != null) {
                 //   navigateToUrl(link.url!);
                 // } else if (link.dest != null) {
