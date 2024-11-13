@@ -25,6 +25,7 @@ class _HomeState extends State<Home> {
 
   Future<void> _loadLanguagePreferences() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
+    // await prefs.clear();
     setState(() {
       _selectedLanguage = prefs.getString("language");
     });

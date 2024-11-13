@@ -7,9 +7,10 @@ import '../model/units.dart';
 import '../utils/url_prefix_remove.dart';
 
 class TranslationSheet extends StatefulWidget {
-  const TranslationSheet({super.key, required this.word});
+  const TranslationSheet({super.key, required this.word, required this.nextModule});
 
   final String word;
+  final String nextModule;
 
   @override
   _TranslationSheetState createState() => _TranslationSheetState();
@@ -90,6 +91,7 @@ class _TranslationSheetState extends State<TranslationSheet> {
     );
   }
 
+
   Future<void> _markWordAsTranslated(String moduleName, String word) async {
     final prefs = await SharedPreferences.getInstance();
     final translatedWords = prefs.getStringList(moduleName) ?? [];
@@ -97,8 +99,40 @@ class _TranslationSheetState extends State<TranslationSheet> {
     if (!translatedWords.contains(word)) {
       translatedWords.add(word);
       await prefs.setStringList(moduleName, translatedWords);
+
+      // Check if the module is now completed and unlock the next module
+      final isCompleted = await unitsController.isModuleCompleted(moduleName);
+      if (isCompleted) {
+        final nextModuleName = widget.nextModule;
+        if (nextModuleName != null) {
+          await unitsController.setModuleCompleted(nextModuleName);
+          print("Next module unlocked: $nextModuleName");
+
+          if (context.mounted) {
+            showShadDialog(
+              context: context,
+              builder: (context) => ShadDialog(
+                title: Text(
+                  'Next module unlocked',
+                  style: TextStyle(fontWeight: FontWeight.w500),
+                ),
+                description: Text('You can now access $nextModuleName.'),
+                actions: [
+                  ShadButton(
+                    child: Text('OK'),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              ),
+            );
+          }
+        }
+      }
     }
   }
+
 
   Map<String, String>? _getTranslation(List<Units> units, String searchWord) {
     if (_selectedLanguage == null) {

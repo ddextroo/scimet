@@ -68,7 +68,7 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
                           await SharedPreferences.getInstance();
 
                       await prefs.setString("language", "Filipino");
-
+                      await prefs.setBool("Root and Shoot System_done", true);
                       Navigator.popAndPushNamed(context, "/home");
                     },
                   ),
@@ -80,6 +80,7 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
                           await SharedPreferences.getInstance();
 
                       await prefs.setString("language", "Cebuano");
+                      await prefs.setBool("Root and Shoot System_done", true);
 
                       Navigator.popAndPushNamed(context, "/home");
                     },

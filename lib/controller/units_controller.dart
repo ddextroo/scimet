@@ -4190,7 +4190,7 @@ class UnitsController {
     final translatedCount =
         translatedWords.toSet().intersection(totalWords).length;
 
-    return translatedCount > translatedCount - 10;
+    return translatedCount >= (book.translations.length ~/ 2);
   }
 
   Future<void> markWordCompleted(String moduleName, String word) async {
