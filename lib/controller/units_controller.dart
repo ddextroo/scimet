@@ -15,6 +15,24 @@ class UnitsController {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setBool("${moduleName}_done", true);
   }
+
+  Map<String, dynamic>? getNextUnitAndFirstModule(int currentUnitIndex) {
+    List<Units> units = getUnits();
+
+    if (currentUnitIndex + 1 < units.length) {
+      Units nextUnit = units[currentUnitIndex + 1];
+      Modules firstModule = nextUnit.modulesList.isNotEmpty ? nextUnit.modulesList[0] : Modules(moduleName: "No modules available");
+
+      return {
+        'unit': nextUnit,
+        'firstModule': firstModule,
+      };
+    } else {
+      print("No more units available.");
+      return null;
+    }
+  }
+
   List<Units> getUnits() {
     return [
       Units(
@@ -4189,8 +4207,7 @@ class UnitsController {
     final totalWords = book.translations.keys.toSet();
     final translatedCount =
         translatedWords.toSet().intersection(totalWords).length;
-
-    return translatedCount >= (book.translations.length ~/ 2);
+    return translatedCount >= (totalWords.length ~/ 3);
   }
 
   Future<void> markWordCompleted(String moduleName, String word) async {

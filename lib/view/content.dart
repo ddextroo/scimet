@@ -44,7 +44,6 @@ class _ContentState extends State<Content> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     final arguments = (ModalRoute.of(context)?.settings.arguments ??
@@ -56,6 +55,7 @@ class _ContentState extends State<Content> {
         .where((book) => book.moduleName.contains(moduleName))
         .map((book) => book.content)
         .toList();
+    final int currentIndex = arguments['index'];
 
     return Scaffold(
         appBar: AppBar(
@@ -123,8 +123,10 @@ class _ContentState extends State<Content> {
                 showShadSheet(
                     side: ShadSheetSide.bottom,
                     context: context,
-                    builder: (context) =>
-                        TranslationSheet(word: link.url.toString(), nextModule: arguments['nextModule']));
+                    builder: (context) => TranslationSheet(
+                        word: link.url.toString(),
+                        nextModule: arguments['nextModule'],
+                        currentIndex: currentIndex));
                 // if (link.url != null) {
                 //   navigateToUrl(link.url!);
                 // } else if (link.dest != null) {

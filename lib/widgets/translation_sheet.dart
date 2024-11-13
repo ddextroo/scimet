@@ -3,14 +3,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:scimet/controller/units_controller.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
+import '../model/modules.dart';
 import '../model/units.dart';
 import '../utils/url_prefix_remove.dart';
 
 class TranslationSheet extends StatefulWidget {
-  const TranslationSheet({super.key, required this.word, required this.nextModule});
+  const TranslationSheet({super.key, required this.word, this.nextModule, required this.currentIndex});
 
   final String word;
-  final String nextModule;
+  final int currentIndex;
+  final String? nextModule;
 
   @override
   _TranslationSheetState createState() => _TranslationSheetState();
@@ -100,38 +102,50 @@ class _TranslationSheetState extends State<TranslationSheet> {
       translatedWords.add(word);
       await prefs.setStringList(moduleName, translatedWords);
 
-      // Check if the module is now completed and unlock the next module
+      // Check if the module is now completed
       final isCompleted = await unitsController.isModuleCompleted(moduleName);
       if (isCompleted) {
-        final nextModuleName = widget.nextModule;
-        if (nextModuleName != null) {
-          await unitsController.setModuleCompleted(nextModuleName);
-          print("Next module unlocked: $nextModuleName");
-
-          if (context.mounted) {
-            showShadDialog(
-              context: context,
-              builder: (context) => ShadDialog(
-                title: Text(
-                  'Next module unlocked',
-                  style: TextStyle(fontWeight: FontWeight.w500),
-                ),
-                description: Text('You can now access $nextModuleName.'),
-                actions: [
-                  ShadButton(
-                    child: Text('OK'),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                ],
-              ),
-            );
+        if (widget.nextModule != null) {
+          // Unlock the next module
+          await unitsController.setModuleCompleted(widget.nextModule!);
+          _showUnlockDialog("Next module unlocked", "You can now access ${widget.nextModule}.");
+        } else {
+          // Unlock the next unit and its first module
+          final nextUnitAndModule = unitsController.getNextUnitAndFirstModule(widget.currentIndex);
+          if (nextUnitAndModule != null) {
+            final nextUnit = nextUnitAndModule['unit'] as Units;
+            final firstModule = nextUnitAndModule['firstModule'] as Modules;
+            await unitsController.setModuleCompleted(firstModule.moduleName);
+            _showUnlockDialog("Next unit unlocked", "You can now access the unit: ${nextUnit.title} - ${firstModule.moduleName}.");
           }
         }
       }
     }
   }
+
+  void _showUnlockDialog(String title, String message) {
+    if (context.mounted) {
+      showShadDialog(
+        context: context,
+        builder: (context) => ShadDialog(
+          title: Text(
+            title,
+            style: TextStyle(fontWeight: FontWeight.w500),
+          ),
+          description: Text(message),
+          actions: [
+            ShadButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        ),
+      );
+    }
+  }
+
 
 
   Map<String, String>? _getTranslation(List<Units> units, String searchWord) {

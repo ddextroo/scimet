@@ -41,6 +41,7 @@ class _ModuleState extends State<Module> {
     final arguments = (ModalRoute.of(context)?.settings.arguments ?? <List, dynamic>{}) as Map;
     final List<Modules> modules = arguments['modules'];
     final String title = arguments['title'];
+    final int currentIndex = arguments['index'];
 
     return Scaffold(
       appBar: AppBar(
@@ -124,6 +125,7 @@ class _ModuleState extends State<Module> {
                                   'nextModule': (index < modules.length - 1)
                                       ? modules[index + 1].moduleName
                                       : null,
+                                  'index': currentIndex,
                                 },
                               );
                             } else {

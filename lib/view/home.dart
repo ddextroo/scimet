@@ -25,7 +25,7 @@ class _HomeState extends State<Home> {
 
   Future<void> _loadLanguagePreferences() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    // await prefs.clear();
+     // await prefs.clear();
     setState(() {
       _selectedLanguage = prefs.getString("language");
     });
@@ -152,7 +152,8 @@ class _HomeState extends State<Home> {
                           onTap: () {
                             Navigator.pushNamed(context, "/module", arguments: {
                               'modules': unit.modulesList,
-                              'title': unit.title
+                              'title': unit.title,
+                              'index': index
                             });
                           },
                           child: ShadCard(
