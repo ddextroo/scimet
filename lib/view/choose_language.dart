@@ -4,6 +4,7 @@ import 'package:shadcn_ui/shadcn_ui.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
+import 'package:uuid/uuid.dart';
 
 class ChooseLanguageScreen extends StatefulWidget {
   const ChooseLanguageScreen({super.key});
@@ -69,6 +70,7 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
 
                       await prefs.setString("language", "Filipino");
                       await prefs.setBool("Root and Shoot System_done", true);
+                      await prefs.setString("user_id", const Uuid().v4());
                       Navigator.popAndPushNamed(context, "/home");
                     },
                   ),
@@ -82,6 +84,7 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
                       await prefs.setString("language", "Cebuano");
                       await prefs.setBool("Root and Shoot System_done", true);
 
+                      await prefs.setString("user_id", const Uuid().v4());
                       Navigator.popAndPushNamed(context, "/home");
                     },
                   )

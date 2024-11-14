@@ -3,12 +3,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:scimet/controller/units_controller.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
+import '../controller/analytics_controller.dart';
 import '../model/modules.dart';
 import '../model/units.dart';
 import '../utils/url_prefix_remove.dart';
 
 class TranslationSheet extends StatefulWidget {
-  const TranslationSheet({super.key, required this.word, this.nextModule, required this.currentIndex});
+  const TranslationSheet(
+      {super.key,
+      required this.word,
+      this.nextModule,
+      required this.currentIndex});
 
   final String word;
   final int currentIndex;
@@ -19,6 +24,8 @@ class TranslationSheet extends StatefulWidget {
 }
 
 class _TranslationSheetState extends State<TranslationSheet> {
+  final AnalyticsController _analyticsController = AnalyticsController();
+
   String? _selectedLanguage;
   late UnitsController unitsController;
 
@@ -32,14 +39,16 @@ class _TranslationSheetState extends State<TranslationSheet> {
   Future<void> _loadLanguagePreferences() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      _selectedLanguage = prefs.getString("language") ?? 'Filipino'; // Default to 'Filipino'
+      _selectedLanguage =
+          prefs.getString("language") ?? 'Filipino'; // Default to 'Filipino'
     });
   }
 
   @override
   Widget build(BuildContext context) {
     final theme = ShadTheme.of(context);
-    final translationData = _getTranslation(unitsController.getUnits(), widget.word);
+    final translationData =
+        _getTranslation(unitsController.getUnits(), widget.word);
 
     if (translationData == null) {
       return Center(
@@ -93,14 +102,15 @@ class _TranslationSheetState extends State<TranslationSheet> {
     );
   }
 
-
   Future<void> _markWordAsTranslated(String moduleName, String word) async {
     final prefs = await SharedPreferences.getInstance();
     final translatedWords = prefs.getStringList(moduleName) ?? [];
+    final userId = prefs.getString("user_id")!;
 
     if (!translatedWords.contains(word)) {
       translatedWords.add(word);
       await prefs.setStringList(moduleName, translatedWords);
+      await _analyticsController.updateWordCount(userId, word);
 
       // Check if the module is now completed
       final isCompleted = await unitsController.isModuleCompleted(moduleName);
@@ -108,15 +118,18 @@ class _TranslationSheetState extends State<TranslationSheet> {
         if (widget.nextModule != null) {
           // Unlock the next module
           await unitsController.setModuleCompleted(widget.nextModule!);
-          _showUnlockDialog("Next module unlocked", "You can now access ${widget.nextModule}.");
+          _showUnlockDialog("Next module unlocked",
+              "You can now access ${widget.nextModule}.");
         } else {
           // Unlock the next unit and its first module
-          final nextUnitAndModule = unitsController.getNextUnitAndFirstModule(widget.currentIndex);
+          final nextUnitAndModule =
+              unitsController.getNextUnitAndFirstModule(widget.currentIndex);
           if (nextUnitAndModule != null) {
             final nextUnit = nextUnitAndModule['unit'] as Units;
             final firstModule = nextUnitAndModule['firstModule'] as Modules;
             await unitsController.setModuleCompleted(firstModule.moduleName);
-            _showUnlockDialog("Next unit unlocked", "You can now access the unit: ${nextUnit.title} - ${firstModule.moduleName}.");
+            _showUnlockDialog("Next unit unlocked",
+                "You can now access the unit: ${nextUnit.title} - ${firstModule.moduleName}.");
           }
         }
       }
@@ -146,8 +159,6 @@ class _TranslationSheetState extends State<TranslationSheet> {
     }
   }
 
-
-
   Map<String, String>? _getTranslation(List<Units> units, String searchWord) {
     if (_selectedLanguage == null) {
       return null;
@@ -157,7 +168,8 @@ class _TranslationSheetState extends State<TranslationSheet> {
       for (var book in unit.bookContent) {
         searchWord = cleanUrl(searchWord);
         var translations = book.translations[searchWord];
-        if (translations != null && translations.containsKey(_selectedLanguage)) {
+        if (translations != null &&
+            translations.containsKey(_selectedLanguage)) {
           final translation = translations[_selectedLanguage]!;
           _markWordAsTranslated(book.moduleName, searchWord);
           return {
