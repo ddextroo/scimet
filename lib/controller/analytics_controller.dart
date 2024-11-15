@@ -4,15 +4,20 @@ class AnalyticsController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   Future<void> updateWordCount(String userId, String word) async {
-    final docRef = _firestore
-        .collection('analytics')
-        .doc(userId)
-        .collection('words')
-        .doc(word);
+    final userDocRef = _firestore.collection('analytics').doc(userId);
+    final docRef = userDocRef.collection('words').doc(word);
 
+    // Check if the user document exists
+    final userDoc = await userDocRef.get();
+    if (!userDoc.exists) {
+      // Set the initial field if the document does not exist
+      await userDocRef.set({
+        'test': 'test',
+      });
+    }
+
+    // Check if the word document exists
     final doc = await docRef.get();
-    print(doc);
-
     if (doc.exists) {
       await docRef.update({
         'count': FieldValue.increment(1),
