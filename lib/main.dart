@@ -4,6 +4,7 @@ import 'package:scimet/view/choose_language.dart';
 import 'package:scimet/view/content.dart';
 import 'package:scimet/view/home.dart';
 import 'package:scimet/view/module.dart';
+import 'package:scimet/view/onboarding_screen.dart';
 import 'package:scimet/view/splash.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -52,6 +53,7 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         '/splash': (context) => const SplashScreen(),
+        '/onboarding': (context) => OnboardingScreen(),
         '/language': (context) => const ChooseLanguageScreen(),
         '/home': (context) => const Home(),
         '/module': (context) => const Module(),

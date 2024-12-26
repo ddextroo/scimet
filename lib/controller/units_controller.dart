@@ -6,11 +6,11 @@ import '../model/translation.dart';
 import '../model/units.dart';
 
 class UnitsController {
-
   Future<bool> getModuleCompleted(String moduleName) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getBool("${moduleName}_done") ?? false;
   }
+
   Future<void> setModuleCompleted(String moduleName) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setBool("${moduleName}_done", true);
@@ -21,7 +21,9 @@ class UnitsController {
 
     if (currentUnitIndex + 1 < units.length) {
       Units nextUnit = units[currentUnitIndex + 1];
-      Modules firstModule = nextUnit.modulesList.isNotEmpty ? nextUnit.modulesList[0] : Modules(moduleName: "No modules available");
+      Modules firstModule = nextUnit.modulesList.isNotEmpty
+          ? nextUnit.modulesList[0]
+          : Modules(moduleName: "No modules available");
 
       return {
         'unit': nextUnit,
@@ -50,13 +52,25 @@ class UnitsController {
               'desert': {
                 'Cebuano': Translation(
                   word: 'Desyerto',
-                  definition: 'Isang lugar na napakatuyo at bihira',
-                  imageExample: '',
+                  definition: 'Usa ka lugar nga uga kaayo ug kulang ang ulan.',
+                  imageExample: 'assets/images/module_1/plants/DESERT.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Disyerto',
+                  definition: 'Isang lugar na napakatuyo at bihira',
+                  imageExample: 'assets/images/module_1/plants/DESERT.jpg',
+                ),
+              },
+              'deserts': {
+                'Cebuano': Translation(
+                  word: 'Desyerto',
                   definition: 'Usa ka lugar nga uga kaayo ug kulang ang ulan.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_2/m2_desert.jpeg',
+                ),
+                'Filipino': Translation(
+                  word: 'Disyerto',
+                  definition: 'Isang lugar na napakatuyo at bihira',
+                  imageExample: 'assets/images/module_2/m2_desert.jpeg',
                 ),
               },
               'dry environment': {
@@ -64,13 +78,27 @@ class UnitsController {
                   word: 'Ugang Palibot',
                   definition:
                       'Usa ka lugar nga kulang kaayo ang tubig ug kasagaran init',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/plants/Dry_environment.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Tuyong Kapaligiran',
                   definition:
                       'Isang lugar na may napakakaunting tubig at madalas na mainit.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/plants/Dry_environment.jpg',
+                ),
+              },
+              'dry environments': {
+                'Cebuano': Translation(
+                  word: 'Ugang Palibot',
+                  definition:
+                      'Usa ka lugar nga kulang kaayo ang tubig ug kasagaran init',
+                  imageExample: 'assets/images/module_1/plants/Dry_environment.jpg',
+                ),
+                'Filipino': Translation(
+                  word: 'Tuyong Kapaligiran',
+                  definition:
+                      'Isang lugar na may napakakaunting tubig at madalas na mainit.',
+                  imageExample: 'assets/images/module_1/plants/Dry_environment.jpg',
                 ),
               },
               'living things': {
@@ -78,13 +106,13 @@ class UnitsController {
                   word: 'Buhi nga mga butang',
                   definition:
                       'Bisan unsang organismo o porma sa kinabuhi nga nag pakita nga buhi kini.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/plants/LIVING_ORGANISMS_or_THINGS.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Mga bagay na may buhay',
                   definition:
                       'Anumang organismo o anyo ng buhay na nagtataglay o nagpapakita ng mga katangian ng buhay o pagiging buhay.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/plants/LIVING_ORGANISMS_or_THINGS.jpg',
                 ),
               },
               'living organisms': {
@@ -92,27 +120,41 @@ class UnitsController {
                   word: 'Buhi nga mga butang',
                   definition:
                       'Bisan unsang organismo o porma sa kinabuhi nga nag pakita nga buhi kini.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/plants/LIVING_ORGANISMS_or_THINGS.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Mga bagay na may buhay',
                   definition:
                       'Anumang organismo o anyo ng buhay na nagtataglay o nagpapakita ng mga katangian ng buhay o pagiging buhay.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/plants/LIVING_ORGANISMS_or_THINGS.jpg',
                 ),
               },
               'loose soil': {
                 'Cebuano': Translation(
                   word: 'Luag nga Yuta',
                   definition:
-                      'Yuta nga sayon hukayon ug masudlan sa tubig ug hangin, nga importante sa pagtub',
-                  imageExample: '',
+                      'Yuta nga sayon hukayon ug masudlan sa tubig ug hangin, nga importante sa pagtanum',
+                  imageExample: 'assets/images/module_1/plants/LOOSE_SOIL.webp',
                 ),
                 'Filipino': Translation(
                   word: 'Maluwag na Lupa',
                   definition:
                       'Lupa na madaling huhukayin at pinapasukan ng tubig at hangin, na mahalaga para sa paglaki ng halaman.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/plants/LOOSE_SOIL.webp',
+                ),
+              },
+              'cacti': {
+                'Cebuano': Translation(
+                  word: 'Cacti',
+                  definition:
+                      'Mga tanum nga adunay baga, unod nga mga punoan nga nagtipig ug tubig, nga sagad makit-an sa mga desyerto. Kanunay sila adunay mga tunok imbes mga dahon aron makunhuran ang pagkawala sa tubig.',
+                  imageExample: 'assets/images/module_1/plants/LOOSE_SOIL.webp',
+                ),
+                'Filipino': Translation(
+                  word: 'Cacti',
+                  definition:
+                      'Ay mga halaman na may makapal, mataba na tangkay na nag-iimbak ng tubig, kadalasang matatagpuan sa mga disyerto. Kadalasan mayroon silang mga spines sa halip na mga dahon upang mabawasan ang pagkawala ng tubig.',
+                  imageExample: 'assets/images/module_1/plants/LOOSE_SOIL.webp',
                 ),
               },
               'photosynthesis': {
@@ -120,13 +162,13 @@ class UnitsController {
                   word: 'Photosynthesis',
                   definition:
                       'Ang proseso diin gamiton sa mga tanom ang kahayag sa adlaw aron maghimo ug pagkaon gikan sa tubig ug carbon dioxide.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/plants/PHOTOSYNTHESIS.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Photosynthesis',
                   definition:
                       'Ang proseso kung saan ginagamit ng mga halaman ang liwanag ng araw upang makagawa ng pagkain mula sa tubig at carbon dioxide.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/plants/PHOTOSYNTHESIS.jpg',
                 ),
               },
               'phloem': {
@@ -134,13 +176,13 @@ class UnitsController {
                   word: 'Phloem',
                   definition:
                       'Mga tubo sa sulod sa tanom nga nagdala sa pagkaon gikan sa mga dahon padulong sa uban nga bahin sa tanom.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/plants/PHLOEM.png',
                 ),
                 'Filipino': Translation(
                   word: 'Phloem',
                   definition:
                       'Mga tubo sa loob ng halaman na nagdadala ng pagkain mula sa mga dahon patungo sa ibang bahagi ng halaman.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/plants/PHLOEM.png',
                 ),
               },
               'stomata': {
@@ -148,13 +190,13 @@ class UnitsController {
                   word: 'Stomata',
                   definition:
                       'Gagmay nga mga lungag sa dahon sa tanom nga nagkontrol sa pagsulod ug pagpagawas sa gas.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/plants/STOMATA.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Stomata',
                   definition:
                       'Maliit na mga butas sa dahon ng halaman na nagkokontrol ng pagpasok at paglabas ng gas.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/plants/STOMATA.jpg',
                 ),
               },
               'sunlight': {
@@ -162,13 +204,13 @@ class UnitsController {
                   word: 'Sidlak sa Adlaw',
                   definition:
                       'Ang kahayag nga gikan sa adlaw nga importante para sa photosynthesis sa mga tanom.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/plants/SUNLIGHT.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Sikat ng Araw',
                   definition:
                       'Ang liwanag na nagmumula sa araw na mahalaga para sa photosynthesis ng mga halaman.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/plants/SUNLIGHT.jpg',
                 ),
               },
               'tissues': {
@@ -176,13 +218,13 @@ class UnitsController {
                   word: 'Mga Tisyu',
                   definition:
                       'Mga grupo sa mga selula sa sulod sa tanom nga adunay parehas nga buluhaton.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/plants/TISSUE.png',
                 ),
                 'Filipino': Translation(
                   word: 'Mga Tisyu',
                   definition:
                       'Mga grupo ng mga selula sa loob ng halaman na may parehong tungkulin.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/plants/TISSUE.png',
                 ),
               },
               'uproot': {
@@ -190,13 +232,13 @@ class UnitsController {
                   word: 'Ibot',
                   definition:
                       'Ang paglihok sa pagkuha sa tanom gikan sa yuta uban sa mga gamot.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/plants/UPROOT.png',
                 ),
                 'Filipino': Translation(
                   word: 'Mabunot',
                   definition:
                       'Ang pagkilos ng pag-alis ng halaman mula sa lupa kasama ang mga ugat.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/plants/UPROOT.png',
                 ),
               },
               'uprooted': {
@@ -204,55 +246,56 @@ class UnitsController {
                   word: 'Ibot',
                   definition:
                       'Ang paglihok sa pagkuha sa tanom gikan sa yuta uban sa mga gamot.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/plants/UPROOT.png',
                 ),
                 'Filipino': Translation(
                   word: 'Mabunot',
                   definition:
                       'Ang pagkilos ng pag-alis ng halaman mula sa lupa kasama ang mga ugat.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/plants/UPROOT.png',
                 ),
               },
               'root': {
                 'Cebuano': Translation(
-                  word: 'Ibot',
+                  word: 'Gamut',
                   definition:
-                      'Ang paglihok sa pagkuha sa tanom gikan sa yuta uban sa mga gamot.',
+                      'Mao ang bahin sa tanom nga motubo ilalom sa yuta, mosuyop sa tubig ug sustansiya, ug mopabilin sa tanom sa lugar.',
                   imageExample: '',
                 ),
                 'Filipino': Translation(
-                  word: 'Mabunot',
+                  word: 'Ugat',
                   definition:
-                      'Ang pagkilos ng pag-alis ng halaman mula sa lupa kasama ang mga ugat.',
+                      'Ay bahagi ng halaman na tumutubo sa ilalim ng lupa, sumisipsip ng tubig at sustansya, at pinapanatili ang halaman sa lugar.',
                   imageExample: '',
                 ),
               },
               'roots': {
                 'Cebuano': Translation(
-                  word: 'Ibot',
+                  word: 'Gamut',
                   definition:
-                      'Ang paglihok sa pagkuha sa tanom gikan sa yuta uban sa mga gamot.',
+                      'Mao ang bahin sa tanom nga motubo ilalom sa yuta, mosuyop sa tubig ug sustansiya, ug mopabilin sa tanom sa lugar.',
                   imageExample: '',
                 ),
                 'Filipino': Translation(
-                  word: 'Mabunot',
+                  word: 'Ugat',
                   definition:
-                      'Ang pagkilos ng pag-alis ng halaman mula sa lupa kasama ang mga ugat.',
+                      'Ay bahagi ng halaman na tumutubo sa ilalim ng lupa, sumisipsip ng tubig at sustansya, at pinapanatili ang halaman sa lugar.',
                   imageExample: '',
                 ),
               },
+
               'xylem': {
                 'Cebuano': Translation(
                   word: 'Xylem',
                   definition:
                       'Mga tubo sa sulod sa tanom nga nagdala sa tubig ug mineral gikan sa mga gamot paingon sa lain-laing bahin sa tanom.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/plants/XYLEM.png',
                 ),
                 'Filipino': Translation(
                   word: 'Xylem',
                   definition:
                       'Mga tubo sa loob ng halaman na nagdadala ng tubig at mineral mula sa mga ugat patungo sa iba’t ibang bahagi ng halaman.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/plants/XYLEM.png',
                 ),
               },
               'gas exchange': {
@@ -260,13 +303,13 @@ class UnitsController {
                   word: 'Pag-ilis sa Gas',
                   definition:
                       'Ang proseso diin mag-ilis ug oxygen ug carbon dioxide ang mga tanom.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/plants/GAS_EXCHANGE.png',
                 ),
                 'Filipino': Translation(
                   word: 'Palitan ng Gas',
                   definition:
                       'Ang proseso kung saan nagpapalitan ng oxygen at carbon dioxide ang mga halaman.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/plants/GAS_EXCHANGE.png',
                 ),
               },
               'pollinators': {
@@ -274,13 +317,13 @@ class UnitsController {
                   word: 'Pollinators',
                   definition:
                       'Mga hayop o insekto nga motabang sa pagbalhin sa polen gikan sa usa ka bulak ngadto sa lain aron makabuhat ug mga bunga ug liso.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/plants/POLLINATORS.png',
                 ),
                 'Filipino': Translation(
                   word: 'Pollinators',
                   definition:
                       'Mga hayop o insekto na tumutulong sa paglipat ng polen mula sa isang bulaklak patungo sa iba upang makabuo ng mga prutas at buto.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/plants/POLLINATORS.png',
                 ),
               },
               'fruit-bearing': {
@@ -288,13 +331,13 @@ class UnitsController {
                   word: 'Namungang Puno',
                   definition:
                       'Mga puno nga namunga ug mga prutas nga mahimo kan-on.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/plants/FRUIT_BEARING.png',
                 ),
                 'Filipino': Translation(
                   word: 'Namumungang Puno',
                   definition:
                       'Mga puno na nagbubunga ng mga prutas na maaaring kainin.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/plants/FRUIT_BEARING.png',
                 ),
               },
               'shelter': {
@@ -302,13 +345,13 @@ class UnitsController {
                   word: 'Silungan',
                   definition:
                       'Usa ka lugar nga naghatag proteksyon gikan sa daotang panahon o katalagman.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/plants/SHELTER.png',
                 ),
                 'Filipino': Translation(
                   word: 'Silungan',
                   definition:
                       'Isang lugar na nagbibigay proteksyon mula sa masamang panahon o panganib.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/plants/SHELTER.png',
                 ),
               },
             },
@@ -321,12 +364,221 @@ class UnitsController {
                 'Cebuano': Translation(
                   word: 'Kalabera',
                   definition: 'Bahin sa kalansay nga nagpanalipod sa utok.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/Skull.png',
                 ),
                 'Filipino': Translation(
                   word: 'Bungo',
                   definition: 'Bahagi ng kalansay na nagpoprotekta sa utak.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/Skull.png',
+                ),
+              },
+              'ribs': {
+                'Cebuano': Translation(
+                  word: 'Gusok',
+                  definition:
+                      'Mga bukog nga nagpanalipod sa kasingkasing ug baga.',
+                  imageExample: 'assets/images/module_1/animals/Ribs.png',
+                ),
+                'Filipino': Translation(
+                  word: 'Tadyang',
+                  definition: 'Mga buto na nagpoprotekta sa puso at baga.',
+                  imageExample: 'assets/images/module_1/animals/Ribs.png',
+                ),
+              },
+              'neurons': {
+                'Cebuano': Translation(
+                  word: 'Neurons',
+                  definition:
+                      'Mga nerve cells nga nagpadala og mensahe ngadto sa lain-laing bahin sa lawas.',
+                  imageExample: 'assets/images/module_1/animals/Neuron.png',
+                ),
+                'Filipino': Translation(
+                  word: 'Neurons',
+                  definition:
+                      "Mga nerve cells na nagpapadala ng mensahe sa iba't ibang parte ng katawan.",
+                  imageExample: 'assets/images/module_1/animals/Neuron.png',
+                ),
+              },
+              'respiration': {
+                'Cebuano': Translation(
+                  word: 'Paghinga',
+                  definition:
+                      'Proseso sa pagkuha sa oxygen ug pagpagawas sa carbon dioxide sa lawas.',
+                  imageExample: 'assets/images/module_1/animals/Respiration.png',
+                ),
+                'Filipino': Translation(
+                  word: 'Pagginhawa',
+                  definition:
+                      'Proseso ng pagkuha ng oxygen at paglabas ng carbon dioxide sa katawan.',
+                  imageExample: 'assets/images/module_1/animals/Respiration.png',
+                ),
+              },
+              'urea': {
+                'Cebuano': Translation(
+                  word: 'urea',
+                  definition:
+                      'Mga yunit sa sulod sa bato (kidney) nga nagpagawas sa urea ug nagsala sa dugo.',
+                  imageExample: 'assets/images/module_1/animals/Urea.png',
+                ),
+                'Filipino': Translation(
+                  word: 'urea',
+                  definition:
+                      'Isang kemikal na produkto ng katawan na tinatanggal ng bato (kidney).',
+                  imageExample: 'assets/images/module_1/animals/Urea.png',
+                ),
+              },
+              'urine': {
+                'Cebuano': Translation(
+                  word: 'Ihi',
+                  definition:
+                      'Likido nga gipagawas sa lawas aron kuhaon ang mga dili kinahangla nga sangkap.',
+                  imageExample: 'assets/images/module_1/animals/Urine.png',
+                ),
+                'Filipino': Translation(
+                  word: 'Ihi',
+                  definition:
+                      'Likido na tinatanggal ng katawan upang alisin ang mga hindi kailanga na sangkap.',
+                  imageExample: 'assets/images/module_1/animals/Urine.png',
+                ),
+              },
+              'urine.': {
+                'Cebuano': Translation(
+                  word: 'Ihi',
+                  definition:
+                      'Likido nga gipagawas sa lawas aron kuhaon ang mga dili kinahangla nga sangkap.',
+                  imageExample: 'assets/images/module_1/animals/Urine.png',
+                ),
+                'Filipino': Translation(
+                  word: 'Ihi',
+                  definition:
+                      'Likido na tinatanggal ng katawan upang alisin ang mga hindi kailanga na sangkap.',
+                  imageExample: 'assets/images/module_1/animals/Urine.png',
+                ),
+              },
+              'nephrons': {
+                'Cebuano': Translation(
+                  word: 'Nephrons',
+                  definition:
+                      'Mga yunit sa loob ng bato (kidney) na naglalabas ng urea at nagsasala ng dugo.',
+                  imageExample: 'assets/images/module_1/animals/Nephrons.png',
+                ),
+                'Filipino': Translation(
+                  word: 'Nephrons',
+                  definition:
+                      'Mga yunit sa loob ng bato (kidney) na naglalabas ng urea at nagsasala ng dugo.',
+                  imageExample: 'assets/images/module_1/animals/Nephrons.png',
+                ),
+              },
+              'rectum': {
+                'Cebuano': Translation(
+                  word: 'Kigol',
+                  definition:
+                      'Kataposang bahin sa tinai diin ginaimbak ang hugaw una ipagawas.',
+                  imageExample: 'assets/images/module_1/animals/Rectum.png',
+                ),
+                'Filipino': Translation(
+                  word: 'Tumbong',
+                  definition:
+                      'Huling bahagi ng bituka kung saan iniimbak ang dumi bago ilabas.',
+                  imageExample: 'assets/images/module_1/animals/Rectum.png',
+                ),
+              },
+              'feces': {
+                'Cebuano': Translation(
+                  word: 'Hugaw',
+                  definition:
+                      'Ang basurang pagkaon nga gipagawas sa lawas nga porma sa hugaw.',
+                  imageExample: 'assets/images/module_1/animals/Feces.png',
+                ),
+                'Filipino': Translation(
+                  word: 'Dumi',
+                  definition:
+                      'Ang basurang pagkain na inilalabas ng katawan sa anyo ng dumi.',
+                  imageExample: 'assets/images/module_1/animals/Feces.png',
+                ),
+              },
+              'villi': {
+                'Cebuano': Translation(
+                  word: 'Villi',
+                  definition:
+                      'Nagtumong sa gagmay, samag-tudlo nga makita diha sa hapin sa tinai nga makatabang sa mas epektibong pagsuyop sa sustansiya gikan sa pagkaon.',
+                  imageExample: 'assets/images/module_1/animals/Villi.png',
+                ),
+                'Filipino': Translation(
+                  word: 'Villi',
+                  definition:
+                      'Tumutukoy sa maliliit, tulad ng daliri  na mga pag-bilog na matatagpuan sa lining ng bituka na tumutulong upang mas epektibong ma-absorb ang mga nutrients mula sa pagkain.',
+                  imageExample: 'assets/images/module_1/animals/Villi.png',
+                ),
+              },
+              'digestive juices': {
+                'Cebuano': Translation(
+                  word: 'Katas ng Panunaw',
+                  definition:
+                      'Ang mga likido nga motabang sa pagtunaw sa pagkaon.',
+                  imageExample: 'assets/images/module_1/animals/DigestiveJuice.png',
+                ),
+                'Filipino': Translation(
+                  word: 'Katas ng Panunaw',
+                  definition:
+                      'Ang mga likido na tumutulong sa pagtunaw ng pagkain.',
+                  imageExample: 'assets/images/module_1/animals/DigestiveJuice.png',
+                ),
+              },
+              'digestive juice': {
+                'Cebuano': Translation(
+                  word: 'Katas ng Panunaw',
+                  definition:
+                      'Ang mga likido nga motabang sa pagtunaw sa pagkaon.',
+                  imageExample: 'assets/images/module_1/animals/DigestiveJuice.png',
+                ),
+                'Filipino': Translation(
+                  word: 'Katas ng Panunaw',
+                  definition:
+                      'Ang mga likido na tumutulong sa pagtunaw ng pagkain.',
+                  imageExample: 'assets/images/module_1/animals/DigestiveJuice.png',
+                ),
+              },
+              'enzymes': {
+                'Cebuano': Translation(
+                  word: 'enzymes',
+                  definition:
+                      'Mga protina nga mapadali ang kemikal nga reaksyon sa lawas.',
+                  imageExample: 'assets/images/module_1/animals/Enzymes.png',
+                ),
+                'Filipino': Translation(
+                  word: 'enzymes',
+                  definition:
+                      'Mga protina na nagpapabilis ng kemikal na reaksyon sa katawan.',
+                  imageExample: 'assets/images/module_1/animals/Enzymes.png',
+                ),
+              },
+              'saliva': {
+                'Cebuano': Translation(
+                  word: 'Laway',
+                  definition:
+                      'Likido sa baba nga motabang sa pagtunaw sa pagkaon.',
+                  imageExample: 'assets/images/module_1/animals/Saliva.png',
+                ),
+                'Filipino': Translation(
+                  word: 'Laway',
+                  definition:
+                      'Likido sa bibig na tumutulong sa pagtunaw ng pagkain.',
+                  imageExample: 'assets/images/module_1/animals/Saliva.png',
+                ),
+              },
+              'pelvic bone': {
+                'Cebuano': Translation(
+                  word: 'Bukog sa Balakang/Pelvis',
+                  definition:
+                      'Bahin sa balakang nga nagsuporta sa ibabaw nga bahin sa lawas.',
+                  imageExample: 'assets/images/module_1/animals/PelvicBone.png',
+                ),
+                'Filipino': Translation(
+                  word: 'Buto ng Balakang/Pelvis',
+                  definition:
+                      'Bahagi ng balakang na sumusuporta sa itaas na bahagi ng katawan.',
+                  imageExample: 'assets/images/module_1/animals/PelvicBone.png',
                 ),
               },
               'joint': {
@@ -334,13 +586,27 @@ class UnitsController {
                   word: 'Kasukasuan',
                   definition:
                       'Ang lugar diin nagtagbo ang duha o labaw pa ka mga bukog, nga nagtugot sa paglihok.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/Joint.png',
                 ),
                 'Filipino': Translation(
                   word: 'Kasukasuan',
                   definition:
                       'Ang lugar kung saan nagtatagpo ang dalawa o higit pang buto, na nagpapahintulot ng paggalaw.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/Joint.png',
+                ),
+              },
+              'joints': {
+                'Cebuano': Translation(
+                  word: 'Kasukasuan',
+                  definition:
+                      'Ang lugar diin nagtagbo ang duha o labaw pa ka mga bukog, nga nagtugot sa paglihok.',
+                  imageExample: 'assets/images/module_1/animals/Joint.png',
+                ),
+                'Filipino': Translation(
+                  word: 'Kasukasuan',
+                  definition:
+                      'Ang lugar kung saan nagtatagpo ang dalawa o higit pang buto, na nagpapahintulot ng paggalaw.',
+                  imageExample: 'assets/images/module_1/animals/Joint.png',
                 ),
               },
               'tendons': {
@@ -348,13 +614,13 @@ class UnitsController {
                   word: 'Ugat',
                   definition:
                       'Ang mga hilo nga nagdugtong sa mga kaunoran sa mga bukog.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/Tendons.png',
                 ),
                 'Filipino': Translation(
                   word: 'Litid',
                   definition:
                       'Ang mga hibla na nagdurugtong sa mga kalamnan sa mga buto.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/Tendons.png',
                 ),
               },
               'muscle': {
@@ -362,13 +628,27 @@ class UnitsController {
                   word: 'Kaunoran',
                   definition:
                       'Mga parte sa lawas nga motabang sa paglihok ug suporta.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/Muscles.png',
                 ),
                 'Filipino': Translation(
                   word: 'Kalamnan',
                   definition:
                       'Mga parte ng katawan na tumutulong sa paggalaw at suporta.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/Muscles.png',
+                ),
+              },
+              'muscles': {
+                'Cebuano': Translation(
+                  word: 'Kaunoran',
+                  definition:
+                      'Mga parte sa lawas nga motabang sa paglihok ug suporta.',
+                  imageExample: 'assets/images/module_1/animals/Muscles.png',
+                ),
+                'Filipino': Translation(
+                  word: 'Kalamnan',
+                  definition:
+                      'Mga parte ng katawan na tumutulong sa paggalaw at suporta.',
+                  imageExample: 'assets/images/module_1/animals/Muscles.png',
                 ),
               },
               'pulse rate': {
@@ -376,13 +656,13 @@ class UnitsController {
                   word: 'Kusog sa Pulso',
                   definition:
                       'Ang gidaghanon sa pagtibok sa kasingkasing sulod sa usa ka minuto.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/PulseRate.png',
                 ),
                 'Filipino': Translation(
                   word: 'Bilis ng Pulso',
                   definition:
                       'Ang bilang ng tibok ng puso sa loob ng isang minuto.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/PulseRate.png',
                 ),
               },
               'abdominal': {
@@ -390,13 +670,13 @@ class UnitsController {
                   word: 'Tiyan',
                   definition:
                       'Ang tiyan mao ang bahin sa lawas sa ubos sa dughan.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/Abdomen.png',
                 ),
                 'Filipino': Translation(
                   word: 'Tiyan',
                   definition:
                       'Ang tiyan ay bahagi ng katawan sa ibabang bahagi ng dibdib.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/Abdomen.png',
                 ),
               },
               'air sacs': {
@@ -404,13 +684,13 @@ class UnitsController {
                   word: 'Air Sac',
                   definition:
                       'Air Sac mao ang gagmay nga yunit sa sulod sa baga diin mahitabo ang pag-ilis sa oxygen ug carbon dioxide.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/AirSacs.png',
                 ),
                 'Filipino': Translation(
                   word: 'Air Sac',
                   definition:
                       'Air Sac ay mga maliliit na yunit sa loob ng baga kung saan nagaganap ang palitan ng oxygen at carbon dioxide.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/AirSacs.png',
                 ),
               },
               'anus': {
@@ -418,13 +698,13 @@ class UnitsController {
                   word: 'Lubot',
                   definition:
                       'Lubot - mao ang lungag sa tumoy sa tinai diin mogawas ang hugaw sa lawas.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/Anus.png',
                 ),
                 'Filipino': Translation(
                   word: 'Puwit',
                   definition:
                       'Ang puwit ay ang butas sa dulo ng bituka kung saan lumalabas ang dumi ng katawan.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/Anus.png',
                 ),
               },
               'backbones': {
@@ -432,13 +712,13 @@ class UnitsController {
                   word: 'Bukog sa likod',
                   definition:
                       'Mao ang mga bukog nga naglangkob sa unod-unod nga naghatag suporta sa lawas.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/Backbone.png',
                 ),
                 'Filipino': Translation(
                   word: 'Buto sa likod',
                   definition:
                       'Ang mga butong bumubuo sa gulugod na nagbibigay suporta sa katawan.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/Backbone.png',
                 ),
               },
               'blood': {
@@ -446,13 +726,13 @@ class UnitsController {
                   word: 'Dugo',
                   definition:
                       'Mao ang likido nga nagdagan sa mga ugat ug nagdala sa oxygen ug nutrisyon ngadto sa lain-laing bahin sa lawas.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/Blood.png',
                 ),
                 'Filipino': Translation(
                   word: 'Dugo',
                   definition:
                       "Ang likido na dumadaloy sa mga ugat at nagdadala ng oxygen at nutrisyon sa iba't ibang bahagi ng katawan.",
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/Blood.png',
                 ),
               },
               'blood cells': {
@@ -460,16 +740,30 @@ class UnitsController {
                   word: 'Selula sa dugo',
                   definition:
                       'Mao ang gagmay nga yunit sa dugo nga adunay lain-laing mga buluhaton sama sa pagdala sa oxygen, pakig-away sa impeksyon, ug pagtabang sa pag-umol sa dugo.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/BloodCells.png',
                 ),
                 'Filipino': Translation(
                   word: 'Selula ng dugo',
                   definition:
                       "Mga maliliit na yunit sa dugo na may iba't ibang tungkulin tulad ng pagdadala ng oxygen, labanan ang impeksyon, at pagtulong sa pamumuo ng dugo.",
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/BloodCells.png',
                 ),
               },
               'blood stream': {
+                'Cebuano': Translation(
+                  word: 'Daloy sa dugo',
+                  definition:
+                      'Mao ang pagdagan sa dugo sa sulod sa mga ugat sa lawas.',
+                  imageExample: 'assets/images/module_1/animals/BloodStream.png',
+                ),
+                'Filipino': Translation(
+                  word: 'Daloy ng dugo',
+                  definition:
+                      'Ang pagdaloy ng dugo sa loob ng mga ugat sa katawan.',
+                  imageExample: 'assets/images/module_1/animals/BloodStream.png',
+                ),
+              },
+              'bloodstream': {
                 'Cebuano': Translation(
                   word: 'Daloy sa dugo',
                   definition:
@@ -488,13 +782,27 @@ class UnitsController {
                   word: 'Bukog',
                   definition:
                       'Mao ang lig-on nga bahin sa lawas nga naglangkob sa kalansay ug naghatag suporta ug proteksyon sa lawas.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/Bone.png',
                 ),
                 'Filipino': Translation(
                   word: 'Buto',
                   definition:
                       'Buto ay matitigas na bahagi ng katawan na bumubuo sa kalansay at nagbibigay suporta at proteksyon sa katawan.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/Bone.png',
+                ),
+              },
+              'bones': {
+                'Cebuano': Translation(
+                  word: 'Bukog',
+                  definition:
+                      'Mao ang lig-on nga bahin sa lawas nga naglangkob sa kalansay ug naghatag suporta ug proteksyon sa lawas.',
+                  imageExample: 'assets/images/module_1/animals/Bone.png',
+                ),
+                'Filipino': Translation(
+                  word: 'Buto',
+                  definition:
+                      'Buto ay matitigas na bahagi ng katawan na bumubuo sa kalansay at nagbibigay suporta at proteksyon sa katawan.',
+                  imageExample: 'assets/images/module_1/animals/Bone.png',
                 ),
               },
               'bone marrow': {
@@ -502,13 +810,13 @@ class UnitsController {
                   word: 'Uyok',
                   definition:
                       'Ang uyok mao ang malumo nga bahin sa sulod sa bukog diin gihimo ang mga selula sa dugo.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/BoneMarrow.png',
                 ),
                 'Filipino': Translation(
                   word: 'Utak ng buto',
                   definition:
                       'Ang utak ng buto ay ang malambot na bahagi sa loob ng buto kung saan ginagawa ang mga selula ng dugo.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/BoneMarrow.png',
                 ),
               },
               'calcium': {
@@ -516,13 +824,13 @@ class UnitsController {
                   word: 'Kalsiyum',
                   definition:
                       'Usa ka mineral nga importante alang sa kusog sa bukog ug ngipon.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/Calcium.png',
                 ),
                 'Filipino': Translation(
                   word: 'Kaltsyum',
                   definition:
                       'Isang mineral na mahalaga para sa kalakasan ng buto at ngipin.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/Calcium.png',
                 ),
               },
               'carbon dioxide': {
@@ -530,13 +838,13 @@ class UnitsController {
                   word: 'Carbon Dioxide',
                   definition:
                       'Usa ka gas nga gipagawas sa lawas ingon nga byproduct sa pagginhawa.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/CarbonDioxide.png',
                 ),
                 'Filipino': Translation(
                   word: 'Carbon Dioxide',
                   definition:
                       'Isang gas na inilalabas ng katawan bilang byproduct ng paghinga.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/CarbonDioxide.png',
                 ),
               },
               'cardiac muscles': {
@@ -544,12 +852,12 @@ class UnitsController {
                   word: 'Kaunoran sa Kasingkasing',
                   definition:
                       'Espesyal nga klase sa kaunoran nga naglangkob sa kasingkasing.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/CardiacMuscle.png',
                 ),
                 'Filipino': Translation(
                   word: 'Kalamnan ng Puso',
                   definition: 'Espesyal na uri ng kalamnan na bumubuo sa puso.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/CardiacMuscle.png',
                 ),
               },
               'chew': {
@@ -557,25 +865,25 @@ class UnitsController {
                   word: 'Usapon',
                   definition:
                       'Ang paglihok sa pagdugmok sa pagkaon gamit ang ngipon.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/Chew.png',
                 ),
                 'Filipino': Translation(
                   word: 'Ngumuya',
                   definition:
                       'Ang pagkilos ng pagdurog ng pagkain gamit ang ngipin.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/Chew.png',
                 ),
               },
               'chyme': {
                 'Cebuano': Translation(
                   word: 'Chyme',
                   definition: 'Ang likido sa pagkaon human madugmok sa tiyan.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/Chyme.png',
                 ),
                 'Filipino': Translation(
                   word: 'Chyme',
                   definition: 'Ang likido ng pagkain matapos durugin sa tiyan.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/Chyme.png',
                 ),
               },
               'digest': {
@@ -583,16 +891,30 @@ class UnitsController {
                   word: 'Tunawon',
                   definition:
                       'Ang proseso sa pagtunaw sa pagkaon aron magamit sa lawas.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/Digest.png',
                 ),
                 'Filipino': Translation(
                   word: 'Tunawin',
                   definition:
                       'Ang proseso ng pagtunaw ng pagkain upang magamit ng katawan.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/Digest.png',
                 ),
               },
               'digestive system': {
+                'Cebuano': Translation(
+                  word: 'Sistema sa Pagtunaw',
+                  definition:
+                      'Ang sistema nga naglakip sa tanan nga mga organo nga nagtabang sa pagtunaw sa pagkaon.',
+                  imageExample: '',
+                ),
+                'Filipino': Translation(
+                  word: 'Sistema ng Pagtunaw',
+                  definition:
+                      'Ang sistemang kinabibilangan ng lahat ng mga organ na tumutulong sa pagtunaw ng pagkain.',
+                  imageExample: '',
+                ),
+              },
+              'digestive systems': {
                 'Cebuano': Translation(
                   word: 'Sistema sa Pagtunaw',
                   definition:
@@ -611,13 +933,13 @@ class UnitsController {
                   word: 'Esophagus',
                   definition:
                       'Ang tubo nga nagdala sa pagkaon gikan sa baba ngadto sa tiyan.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/Esophagus.png',
                 ),
                 'Filipino': Translation(
                   word: 'Esophagus',
                   definition:
                       'Ang tubo na nagdadala ng pagkain mula sa bibig patungo sa tiyan.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/Esophagus.png',
                 ),
               },
               'exhale': {
@@ -720,13 +1042,13 @@ class UnitsController {
                   word: 'Hormones',
                   definition:
                       'Mga kemikal nga nagkontrol sa daghang mga proseso sa lawas.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/Hormones.png',
                 ),
                 'Filipino': Translation(
                   word: 'Hormones',
                   definition:
                       'Mga kemikal na kumokontrol sa maraming proseso sa katawan.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/Hormones.png',
                 ),
               },
               'immune system': {
@@ -760,13 +1082,27 @@ class UnitsController {
                   word: 'Tinai',
                   definition:
                       'Ang bahin sa sistema sa pagtunaw nga nagproseso sa pagkaon human ma-digest.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/Intestines.png',
                 ),
                 'Filipino': Translation(
                   word: 'Bituka',
                   definition:
                       'Ang bahagi ng sistema ng pagtunaw na nagpoproseso ng pagkain pagkatapos ma-digest.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/Intestines.png',
+                ),
+              },
+              'intestines': {
+                'Cebuano': Translation(
+                  word: 'Tinai',
+                  definition:
+                      'Ang bahin sa sistema sa pagtunaw nga nagproseso sa pagkaon human ma-digest.',
+                  imageExample: 'assets/images/module_1/animals/Intestines.png',
+                ),
+                'Filipino': Translation(
+                  word: 'Bituka',
+                  definition:
+                      'Ang bahagi ng sistema ng pagtunaw na nagpoproseso ng pagkain pagkatapos ma-digest.',
+                  imageExample: 'assets/images/module_1/animals/Intestines.png',
                 ),
               },
               'kidney': {
@@ -954,13 +1290,13 @@ class UnitsController {
                   word: 'Tiyan',
                   definition:
                       'Ang organo nga nagdawat sa pagkaon ug nagtabang sa pag-digest niini.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/Stomach.png',
                 ),
                 'Filipino': Translation(
                   word: 'Tiyan',
                   definition:
                       'Ang organ na tumatanggap ng pagkain at tumutulong sa pagtunaw nito.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_1/animals/Stomach.png',
                 ),
               },
               'tissue': {
@@ -1052,11 +1388,21 @@ class UnitsController {
                 "Cebuano": Translation(
                     word: "Puy-anan",
                     definition: "Lugar diin nagpuyo ang usa ka organismo.",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_4/habitat.jpg'),
                 "Filipino": Translation(
                     word: "Tirahan",
                     definition: "Lugar kung saan nakatira ang isang organismo.",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_4/habitat.jpg')
+              },
+              "habitats": {
+                "Cebuano": Translation(
+                    word: "Puy-anan",
+                    definition: "Lugar diin nagpuyo ang usa ka organismo.",
+                    imageExample: 'assets/images/module_4/habitat.jpg'),
+                "Filipino": Translation(
+                    word: "Tirahan",
+                    definition: "Lugar kung saan nakatira ang isang organismo.",
+                    imageExample: 'assets/images/module_4/habitat.jpg')
               },
               "survive": {
                 "Cebuano": Translation(
@@ -1195,6 +1541,17 @@ class UnitsController {
                     definition: "Ang lawak o sakop ng isang bagay.",
                     imageExample: '')
               },
+              "diverse range": {
+                "Cebuano": Translation(
+                    word: "Sakup",
+                    definition:
+                        "Ang gilapdon sa kalapad o sakop sa usa ka butang.",
+                    imageExample: ''),
+                "Filipino": Translation(
+                    word: "Saklaw",
+                    definition: "Ang lawak o sakop ng isang bagay.",
+                    imageExample: '')
+              },
               "adaptations": {
                 "Cebuano": Translation(
                     word: "Mga pag-uyon",
@@ -1233,9 +1590,9 @@ class UnitsController {
               },
               "airborne": {
                 "Cebuano": Translation(
-                    word: "Gisuyop sa hangin",
+                    word: "Gidala sa hangin",
                     definition:
-                        "Ang mga butang o organismo nga nagpabilin sa hangin o gipakalat pinaagi sa hangin.",
+                        "Usa ka butang gidala o gipakatag pinaagi sa hangin, sama sa mga sakit, abog, o mga butang nga nagalupad.",
                     imageExample: ''),
                 "Filipino": Translation(
                     word: "Nasa himpapawid",
@@ -1315,6 +1672,18 @@ class UnitsController {
                         "Ang matagumpay na paglaki o pag-unlad ng isang organismo sa kanyang kapaligiran.",
                     imageExample: '')
               },
+              "thrives": {
+                "Cebuano": Translation(
+                    word: "Molambo",
+                    definition:
+                        "Ang malampusong pagtubo o pag-uswag sa usa ka organismo sa iyang palibot.",
+                    imageExample: ''),
+                "Filipino": Translation(
+                    word: "Umusbong",
+                    definition:
+                        "Ang matagumpay na paglaki o pag-unlad ng isang organismo sa kanyang kapaligiran.",
+                    imageExample: '')
+              },
               "adapted": {
                 "Cebuano": Translation(
                     word: "Nagpahiangay",
@@ -1339,7 +1708,43 @@ class UnitsController {
                         "Isang bagay na kakaiba, natatangi, o walang katulad.",
                     imageExample: '')
               },
+              "unique characteristics": {
+                "Cebuano": Translation(
+                    word: "Talagsaon",
+                    definition:
+                        "Usa ka butang nga lahi sa uban, talagsaon, o dili maparehas.",
+                    imageExample: ''),
+                "Filipino": Translation(
+                    word: "Natatangi",
+                    definition:
+                        "Isang bagay na kakaiba, natatangi, o walang katulad.",
+                    imageExample: '')
+              },
+              "uniquely adapted": {
+                "Cebuano": Translation(
+                    word: "Nagpahiangay",
+                    definition:
+                    "Nakapahiangay o nakamatud-an sa bag-ong kahimtang o palibot.",
+                    imageExample: ''),
+                "Filipino": Translation(
+                    word: "Nag-aangkop",
+                    definition:
+                    "Nakakapag-adjust o nagiging angkop sa bagong sitwasyon o kapaligiran.",
+                    imageExample: '')
+              },
               "dense forests": {
+                "Cebuano": Translation(
+                    word: "Siksik",
+                    definition:
+                        "Bug-at ug puno kaayo sa mga butang, puno ug duol ang mga kahoy o tanom.",
+                    imageExample: ''),
+                "Filipino": Translation(
+                    word: "Siksik",
+                    definition:
+                        "Punô ng mga bagay, masinsin o maraming kahoy o halaman sa isang lugar.",
+                    imageExample: '')
+              },
+              "dense": {
                 "Cebuano": Translation(
                     word: "Siksik",
                     definition:
@@ -1356,12 +1761,12 @@ class UnitsController {
                     word: "Kalasangan",
                     definition:
                         "Usa ka dako nga dapit nga puno sa mga kahoy ug tanom.",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_2/m2_forest.jpeg'),
                 "Filipino": Translation(
                     word: "Kagubatan",
                     definition:
                         "Isang malaking lugar na maraming puno at halaman.",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_2/m2_forest.jpeg')
               },
               "forests": {
                 "Cebuano": Translation(
@@ -1380,12 +1785,12 @@ class UnitsController {
                     word: "Kahoyanan",
                     definition:
                         "Usa ka lugar nga adunay daghang kahoy nga gitubo, pero dili kasingdako ug kalasangan.",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_2/m2_woodland.jpg'),
                 "Filipino": Translation(
                     word: "Gubat",
                     definition:
                         "Isang lugar na puno ng mga puno ngunit hindi kasing laki ng kagubatan.",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_2/m2_woodland.jpg')
               },
               "roams": {
                 "Cebuano": Translation(
@@ -1416,24 +1821,24 @@ class UnitsController {
                     word: "Kalasangang tropikal",
                     definition:
                         "Usa ka tipo sa kalasangan nga permi mabasa ug daghan ug ulan, daghan usab ug tanom.",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_2/m2_rainforest.jpeg'),
                 "Filipino": Translation(
                     word: "Tropikal na kagubatan",
                     definition:
                         "Isang uri ng kagubatan na madalas umulan at maraming halaman.",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_2/m2_rainforest.jpeg')
               },
               "rainforests": {
                 "Cebuano": Translation(
                     word: "Kalasangang tropikal",
                     definition:
                         "Usa ka tipo sa kalasangan nga permi mabasa ug daghan ug ulan, daghan usab ug tanom.",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_2/m2_rainforest.jpeg'),
                 "Filipino": Translation(
                     word: "Tropikal na kagubatan",
                     definition:
                         "Isang uri ng kagubatan na madalas umulan at maraming halaman.",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_2/m2_rainforest.jpeg')
               },
               "dwells": {
                 "Cebuano": Translation(
@@ -1451,12 +1856,12 @@ class UnitsController {
                     word: "Tab-ang nga tubig",
                     definition:
                         "Tubig nga walay daghang asin, gikan sa sapa, suba, o lanaw.",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_2/m2_freshwater.jpeg'),
                 "Filipino": Translation(
                     word: "Tabang na tubig",
                     definition:
                         "Tubig na hindi maalat, karaniwang mula sa ilog, sapa, o lawa.",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_2/m2_freshwater.jpeg')
               },
               "rivers": {
                 "Cebuano": Translation(
@@ -1511,12 +1916,12 @@ class UnitsController {
                     word: "Bakawan",
                     definition:
                         "Mga tanom nga motubo sa tubig-dagat nga dapit, labi na sa mga estero ug baybayon.",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_2/m2_mangrove.jpeg'),
                 "Filipino": Translation(
                     word: "Bakawan",
                     definition:
                         "Mga puno o halaman na tumutubo sa baybaying tubig-alat, karaniwan sa mga estero.",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_2/m2_mangrove.jpeg')
               },
               "canopies": {
                 "Cebuano": Translation(
@@ -1553,6 +1958,18 @@ class UnitsController {
                         "Lugar na mababa ang lokasyon at patag, kadalasang malapit sa tubig.",
                     imageExample: '')
               },
+              "lowlands": {
+                "Cebuano": Translation(
+                    word: "Kapatagan",
+                    definition:
+                        "Lugar nga naay ubos nga altitude, kasagaran lapad ug patag.",
+                    imageExample: ''),
+                "Filipino": Translation(
+                    word: "Kapatagan",
+                    definition:
+                        "Lugar na mababa ang lokasyon at patag, kadalasang malapit sa tubig.",
+                    imageExample: '')
+              },
               "mountainous": {
                 "Cebuano": Translation(
                     word: "Bukirong dapit",
@@ -1566,6 +1983,18 @@ class UnitsController {
                     imageExample: '')
               },
               "inhabits": {
+                "Cebuano": Translation(
+                    word: "Nagpuyo",
+                    definition:
+                        "Pagpabilin o pag-istar sa usa ka lugar ingon nga puy-anan.",
+                    imageExample: ''),
+                "Filipino": Translation(
+                    word: "Naninirahan",
+                    definition:
+                        "Pag-occupy o pagtira sa isang lugar bilang tahanan.",
+                    imageExample: '')
+              },
+              "inhabit": {
                 "Cebuano": Translation(
                     word: "Nagpuyo",
                     definition:
@@ -1694,6 +2123,18 @@ class UnitsController {
                     imageExample: '')
               },
               "tropical": {
+                "Cebuano": Translation(
+                    word: "Tropikal",
+                    definition:
+                        "Dapit nga init ug mabugnaw ug kasagaran ubos sa ekwador.",
+                    imageExample: ''),
+                "Filipino": Translation(
+                    word: "Tropikal",
+                    definition:
+                        "Lugar na may mainit at mahalumigmig na klima, kadalasang sa rehiyon ng ekwador.",
+                    imageExample: '')
+              },
+              "tropical forests": {
                 "Cebuano": Translation(
                     word: "Tropikal",
                     definition:
@@ -2130,6 +2571,18 @@ class UnitsController {
                         "Ang partikular na sitwasyon o kalagayan na nakakaapekto sa isang proseso o organismo.",
                     imageExample: '')
               },
+              "conditions": {
+                "Cebuano": Translation(
+                    word: "Kahimtang",
+                    definition:
+                        "Ang piho nga sitwasyon o kahimtang nga nakaapekto sa usa ka proseso o organismo.",
+                    imageExample: ''),
+                "Filipino": Translation(
+                    word: "Kundisyon",
+                    definition:
+                        "Ang partikular na sitwasyon o kalagayan na nakakaapekto sa isang proseso o organismo.",
+                    imageExample: '')
+              },
               "water temperature": {
                 "Cebuano": Translation(
                     word: "Temperatura sa tubig",
@@ -2190,7 +2643,19 @@ class UnitsController {
                         "Ang proseso ng pagbabago o pag-iba depende sa kondisyon o pwersa na nakakaapekto.",
                     imageExample: '')
               },
-              "salt tolerant": {
+              "salt-tolerant": {
+                "Cebuano": Translation(
+                    word: "Maka-agwanta sa asin",
+                    definition:
+                        "Kakayahan sa mga organismo nga magpabilin nga buhi bisan sa taas nga lebel sa asin.",
+                    imageExample: ''),
+                "Filipino": Translation(
+                    word: "Matibay sa alat",
+                    definition:
+                        "Kakayahan ng mga organismo na mabuhay kahit sa mataas na konsentrasyon ng asin.",
+                    imageExample: '')
+              },
+              "salt concentration": {
                 "Cebuano": Translation(
                     word: "Maka-agwanta sa asin",
                     definition:
@@ -2203,6 +2668,18 @@ class UnitsController {
                     imageExample: '')
               },
               "intertidal zone": {
+                "Cebuano": Translation(
+                    word: "Intertidal nga dapit",
+                    definition:
+                        "Lugar nga naa taliwala sa taas ug ubos nga tide, diin ang tubig molabay ug moubos.",
+                    imageExample: ''),
+                "Filipino": Translation(
+                    word: "Bahaging intertidal",
+                    definition:
+                        "Lugar na nasa pagitan ng mataas at mababang alon, kung saan ang tubig ay umaabot at bumababa.",
+                    imageExample: '')
+              },
+              "intertidal zones": {
                 "Cebuano": Translation(
                     word: "Intertidal nga dapit",
                     definition:
@@ -2387,24 +2864,26 @@ class UnitsController {
                     word: "Disyerto",
                     definition:
                         "Usa ka lugar nga walay daghang ulan ug mas lisod ang pagpuyo alang sa mga tanom ug mananap.",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_2/m2_desert.jpeg'),
                 "Filipino": Translation(
                     word: "Disyerto",
                     definition:
                         "Isang lugar na halos walang ulan at mahirap ang pamumuhay para sa mga halaman at hayop.",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_2/m2_desert.jpeg')
               },
               "lakes and ponds": {
                 "Cebuano": Translation(
                     word: "Mga linaw ug mga pond",
                     definition:
                         "Mga lawom nga dapit sa tab-ang nga tubig nga napalibutan sa yuta, diin ang mga linaw mas dako kay sa mga pond.",
-                    imageExample: ''),
+                    imageExample:
+                        'assets/images/module_2/m2_lakes_and_ponds.jpeg'),
                 "Filipino": Translation(
                     word: "Mga lawa at mga pond",
                     definition:
                         "Mga anyo ng tabang na tubig na napapalibutan ng lupa, kung saan ang lawa ay mas malaki kaysa sa mga pond.",
-                    imageExample: '')
+                    imageExample:
+                        'assets/images/module_2/m2_lakes_and_ponds.jpeg')
               },
               "rivers and streams": {
                 "Cebuano": Translation(
@@ -2423,24 +2902,40 @@ class UnitsController {
                     word: "Mga langob",
                     definition:
                         "Natural nga lungag sa ilawom sa yuta nga igo para musulod ang mga tawo o mananap.",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_2/m2_caves.jpeg'),
                 "Filipino": Translation(
                     word: "Mga kuweba",
                     definition:
                         "Isang natural na butas sa ilalim ng lupa na sapat na para pasukin ng mga tao o hayop.",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_2/m2_caves.jpeg')
               },
               "mountain cliffs": {
                 "Cebuano": Translation(
                     word: "Mga pangpang sa bukid",
                     definition:
                         "Matay-og ug batoon nga nawong sa mga bukid o ubang dagkong porma sa yuta.",
-                    imageExample: ''),
+                    imageExample:
+                        'assets/images/module_2/m2_mountain_cliffs.jpeg'),
                 "Filipino": Translation(
                     word: "Mga bangin ng bundok",
                     definition:
                         "Matatarik at mabatong bahagi ng bundok o ibang malalaking anyong lupa.",
-                    imageExample: '')
+                    imageExample:
+                        'assets/images/module_2/m2_mountain_cliffs.jpeg')
+              },
+              "mountain peaks and cliffs provide": {
+                "Cebuano": Translation(
+                    word: "Mga pangpang sa bukid",
+                    definition:
+                        "Matay-og ug batoon nga nawong sa mga bukid o ubang dagkong porma sa yuta.",
+                    imageExample:
+                        'assets/images/module_2/m2_mountain_cliffs.jpeg'),
+                "Filipino": Translation(
+                    word: "Mga bangin ng bundok",
+                    definition:
+                        "Matatarik at mabatong bahagi ng bundok o ibang malalaking anyong lupa.",
+                    imageExample:
+                        'assets/images/module_2/m2_mountain_cliffs.jpeg')
               }
             },
           ),
@@ -2461,12 +2956,12 @@ class UnitsController {
                 'Cebuano': Translation(
                   word: 'Organismo',
                   definition: 'Usa ka komon nga buhing mananap o tanom.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_5/Organisms_.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Organismo',
                   definition: 'Isang karaniwang buhay na hayop o halaman.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_5/Organisms_.jpg',
                 ),
               },
               'living things': {
@@ -2474,13 +2969,13 @@ class UnitsController {
                   word: 'Buhi nga mga butang',
                   definition:
                       'Bisan unsang organismo o porma sa kinabuhi nga nagpagkita nga buhi kini.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Living_things_animals.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Mga bagay na may buhay',
                   definition:
                       'Anumang organismo o anyo ng buhay na nagtataglay o nagpapakita ng mga katangian ng buhay o pagiging buhay.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Living_things_animals.jpg',
                 ),
               },
               'life cycle': {
@@ -2488,13 +2983,13 @@ class UnitsController {
                   word: 'Siklo sa kinabuhi',
                   definition:
                       'Ang serye sa mga kausaban sa kinabuhi sa usa ka organismo.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Life_Cycle.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Siklo ng buhay',
                   definition:
                       'Ang serye ng mga pagbabago sa buhay ng isang organismo.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Life_Cycle.jpg',
                 ),
               },
               'metamorphosis': {
@@ -2502,13 +2997,13 @@ class UnitsController {
                   word: 'Metamorposis',
                   definition:
                       'Mao ang biyolohikal nga proseso diin ang usa ka organismo moagi ug sunodsunod nga lahi ug kasagarang mahinuklugong kausaban sa porma o istruktura niini atol sa iyang siklo sa kinabuhi.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Metamorphosis.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Banyuhay',
                   definition:
                       'Ay ang biyolohikal na proseso kung saan ang isang organismo ay sumasailalim sa isang serye ng mga natatanging at madalas na mga dramatikong pagbabago sa anyo o istraktura nito sa panahon ng siklo ng buhay nito.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Metamorphosis.jpg',
                 ),
               },
               'animals': {
@@ -2516,13 +3011,13 @@ class UnitsController {
                   word: 'Mananap',
                   definition:
                       'Usa ka buhing butang nga makalihok, makakaon, ug makatubag sa palibot niini.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Living_things_animals.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Hayop',
                   definition:
                       'Ay isang buhay na bagay na maaaring gumalaw, kumain, at tumugon sa kapaligiran nito.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Living_things_animals.jpg',
                 ),
               },
               'insects': {
@@ -2530,13 +3025,13 @@ class UnitsController {
                   word: 'Insekto',
                   definition:
                       'Usa ka gamay nga mananap nga adunay unom ka mga tiil ug kasagaran usa o duha ka parisan sa mga pako.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Insects_Adult_Butterfly.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Insekto',
                   definition:
                       'Ay isang maliit na hayop na may anim na paa at karaniwang isa o dalawang pares ng mga pakpak.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Insects_Adult_Butterfly.jpg',
                 ),
               },
               'habitat': {
@@ -2544,13 +3039,27 @@ class UnitsController {
                   word: 'Puy-anan',
                   definition:
                       'Natural nga palibot diin ang tanom, mananap, o uban pang organismo nagpuyo ug mitubo.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Habitat.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Tirahan',
                   definition:
                       'Likas na kapaligiran kung saan nabubuhay at lumalaki ang isang halaman, hayop, o iba pang organismo.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Habitat.jpg',
+                ),
+              },
+              'habitats': {
+                'Cebuano': Translation(
+                  word: 'Puy-anan',
+                  definition:
+                      'Natural nga palibot diin ang tanom, mananap, o uban pang organismo nagpuyo ug mitubo.',
+                  imageExample: 'assets/images/module_3/Habitat.jpg',
+                ),
+                'Filipino': Translation(
+                  word: 'Tirahan',
+                  definition:
+                      'Likas na kapaligiran kung saan nabubuhay at lumalaki ang isang halaman, hayop, o iba pang organismo.',
+                  imageExample: 'assets/images/module_3/Habitat.jpg',
                 ),
               },
               'egg': {
@@ -2558,13 +3067,13 @@ class UnitsController {
                   word: 'Itlog',
                   definition:
                       'Mao ang usa ka oval o lingin nga butang nga gipagawas sa usa ka baye nga langgam, reptilya, isda, o invertebrate, kasagaran adunay usa ka nagtubo nga embryo.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Egg.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Itlog',
                   definition:
                       'Ay isang hugis-itlog o bilog na bagay na inilatag ng isang babaeng ibon, reptilya, isda, o invertebrate, kadalasang naglalaman ng nabubuong embryo.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Egg.jpg',
                 ),
               },
               'larva': {
@@ -2572,13 +3081,13 @@ class UnitsController {
                   word: 'Larva',
                   definition:
                       'Usa ka yugto sa pagtubo sa pipila ka mga insekto, diin sila walay pako ug susama sa ulod human mapusa gikan sa ilang mga itlog.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/larva_caterpillar.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Larba',
                   definition:
                       'Isang yugto ng paglaki para sa ilang mga insekto, kung saan sila ay walang pakpak at kahawig ng isang uod pagkatapos mapisa mula sa kanilang mga itlog.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/larva_caterpillar.jpg',
                 ),
               },
               'pupa': {
@@ -2586,13 +3095,13 @@ class UnitsController {
                   word: 'Pupa',
                   definition:
                       'Kini nagasunod sa yugto sa larva ug kasagaran gipakita sa usa ka hilom nga yugto, diin ang insekto kasagaran nakapaloob sa usa ka protektadong panit.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Pupa_Cocoon.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Pupa',
                   definition:
                       'Ang yugtong ito ay sumusunod sa yugto ng larva at karaniwang nailalarawan na kung saan ang insekto ay kadalasang nakapaloob sa isang protektadong balat.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Pupa_Cocoon.jpg',
                 ),
               },
               'caterpillar': {
@@ -2628,13 +3137,13 @@ class UnitsController {
                   word: 'Alibangbang',
                   definition:
                       'Usa ka insekto nga mokaon ug nektar nga adunay duha ka parisan nga dagko, kasagarang hayag nga kolor nga mga pako nga gitabonan sa mikroskopikong mga himbis.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Butterfly.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Paruparo',
                   definition:
                       'Ay isang insektong kumakain ng nektar na may dalawang pares ng malalaking pakpak na karaniwang may maliwanag na kulay na natatakpan ng mga mikroskopikong kaliskis.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Butterfly.jpg',
                 ),
               },
               'grasshopper': {
@@ -2642,13 +3151,27 @@ class UnitsController {
                   word: 'Apan-apan',
                   definition:
                       'Usa ka gamay nga insekto nga adunay tag-as nga pangulahiang mga bitiis para sa paglukso, kasagaran makita sa mga sagbot nga dapit.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/grasshopper.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Tipaklong',
                   definition:
                       'Ay isang maliit na insekto na may mahabang hulihan na mga binti para sa paglukso, kadalasang matatagpuan sa mga lugar na madamo.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/grasshopper.jpg',
+                ),
+              },
+              'grasshoppers': {
+                'Cebuano': Translation(
+                  word: 'Apan-apan',
+                  definition:
+                      'Usa ka gamay nga insekto nga adunay tag-as nga pangulahiang mga bitiis para sa paglukso, kasagaran makita sa mga sagbot nga dapit.',
+                  imageExample: 'assets/images/module_3/grasshopper.jpg',
+                ),
+                'Filipino': Translation(
+                  word: 'Tipaklong',
+                  definition:
+                      'Ay isang maliit na insekto na may mahabang hulihan na mga binti para sa paglukso, kadalasang matatagpuan sa mga lugar na madamo.',
+                  imageExample: 'assets/images/module_3/grasshopper.jpg',
                 ),
               },
               'cockroaches': {
@@ -2656,13 +3179,27 @@ class UnitsController {
                   word: 'Uk-ok',
                   definition:
                       'Kay usa ka insekto nga mangtas-on nga susama sa bakukang, nga adunay tag-as nga antennae ug mga bitiis ug kasagarang lapad, patag nga lawas.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/cockroach_adult.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Ipis',
                   definition:
                       'Ay isang scavenging insect na kahawig ng isang salagubang, na may mahabang antennae at mga binti at karaniwang malawak at patag na katawan.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/cockroach_adult.jpg',
+                ),
+              },
+              'cockroach': {
+                'Cebuano': Translation(
+                  word: 'Uk-ok',
+                  definition:
+                      'Kay usa ka insekto nga mangtas-on nga susama sa bakukang, nga adunay tag-as nga antennae ug mga bitiis ug kasagarang lapad, patag nga lawas.',
+                  imageExample: 'assets/images/module_3/cockroach_adult.jpg',
+                ),
+                'Filipino': Translation(
+                  word: 'Ipis',
+                  definition:
+                      'Ay isang scavenging insect na kahawig ng isang salagubang, na may mahabang antennae at mga binti at karaniwang malawak at patag na katawan.',
+                  imageExample: 'assets/images/module_3/cockroach_adult.jpg',
                 ),
               },
               'nymph': {
@@ -2670,13 +3207,13 @@ class UnitsController {
                   word: 'Nymph',
                   definition:
                       'Usa ka larva sa usa ka insekto nga adunay dili kompleto nga metamorphosis.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Nymph.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Nymph',
                   definition:
                       'Isang larva ng isang insekto na may hindi ganap na metamorphosis.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Nymph.jpg',
                 ),
               },
               'adult': {
@@ -2696,37 +3233,37 @@ class UnitsController {
                   word: 'Pako',
                   definition:
                       'Makit-an sa mga lawas sa daghang mga hayop, labi na ang mga insekto ug mga langgam, nga nagtugot kanila nga makalupad.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/wings.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Pakpak',
                   definition:
                       'Matatagpuan sa katawan ng maraming hayop, partikular na ang mga insekto at ibon, na nagpapahintulot sa kanila na lumipad.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/wings.jpg',
                 ),
               },
               'skin': {
                 'Cebuano': Translation(
                   word: 'Panit',
                   definition: 'Natural nga proteksyon sa lawas.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/skin.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Balat',
                   definition: 'Isang natural na proteksiyon sa katawan.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/skin.jpg',
                 ),
               },
               'egg mass': {
                 'Cebuano': Translation(
                   word: 'Egg mass',
                   definition: 'Kay usa ka pungpong o grupo sa mga itlog.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Egg_mass.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Egg mass',
                   definition: 'Ay isang kumpol o grupo ng mga itlog.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Egg_mass.jpg',
                 ),
               },
               'tadpole': {
@@ -2734,13 +3271,13 @@ class UnitsController {
                   word: 'Pitopito',
                   definition:
                       'Larval stage ng palaka, nga gihulagway pinaagi sa usa ka gamay, hugis-itlog nga lawas, taas nga ikog, ug walay mga bitiis.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Tadpole.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Butete',
                   definition:
                       'Larval stage ng palaka o palaka, na nailalarawan sa pamamagitan ng isang maliit, hugis-itlog na katawan, mahabang buntot, at walang mga binti.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Tadpole.jpg',
                 ),
               },
               'froglet': {
@@ -2748,13 +3285,13 @@ class UnitsController {
                   word: 'Gamay nga baki',
                   definition:
                       'Naugmad ang mga bitiis ug wala nay ikog, apan gamay pa ug wala pa hingpit nga mitubo nga usa ka hamtong nga baki.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Froglet.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Munting Palaka',
                   definition:
                       'Ay may nabuong mga binti at nawala ang kanyang buntot, ngunit ito ay maliit pa rin at hindi pa ganap na lumaki upang maging isang adult na palaka.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Froglet.jpg',
                 ),
               },
               'adult frog': {
@@ -2762,13 +3299,13 @@ class UnitsController {
                   word: 'Baki',
                   definition:
                       'Gihulagway pinaagi sa usa ka hamis, basa nga panit, taas nga pangulahiang mga bitiis alang sa paglukso, ug naay abilidad sa pagpuyo sa tubig ug sa yuta.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Adult_frog.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Palaka',
                   definition:
                       'Ay nailalarawan sa pamamagitan ng isang makinis, basa-basa na balat, mahabang hulihan na mga binti para sa paglukso, at ang kakayahang mabuhay sa tubig at sa lupa.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Adult_frog.jpg',
                 ),
               },
               'tail': {
@@ -2776,13 +3313,13 @@ class UnitsController {
                   word: 'Ikog',
                   definition:
                       'Mao ang taas og malihok-lihok nga bahin sa lawas sa mananap nga gikan sa likod nga tumoy niini.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Tail.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Buntot',
                   definition:
                       'Ay ang pahabang, nababaluktot na bahagi ng katawan ng hayop na umaabot mula sa likurang dulo nito.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Tail.jpg',
                 ),
               },
               'water': {
@@ -2790,13 +3327,13 @@ class UnitsController {
                   word: 'Tubig',
                   definition:
                       'Usa ka tin-aw, walay kolor, ug walay lami nga likido nga gikinahanglan sa tanang matang sa kinabuhi.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/water.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Tubig',
                   definition:
                       'Ay isang malinaw, walang kulay, at walang lasa na likido na mahalaga para sa lahat ng anyo ng buhay.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/water.jpg',
                 ),
               },
               'land': {
@@ -2804,13 +3341,13 @@ class UnitsController {
                   word: 'Yuta',
                   definition:
                       'Mao ang solidong bahin sa nawong sa atong kalibutan, nga wala matabonan sa tubig.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Land.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Lupa',
                   definition:
                       'Ay ang solidong bahagi ng ibabaw ng ating mundo, na hindi natatakpan ng tubig.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Land.jpg',
                 ),
               },
               'embryo': {
@@ -2818,13 +3355,13 @@ class UnitsController {
                   word: 'Embryo',
                   definition:
                       'Mao kini ang unang yugto sa paglambo sa piso sulod sa itlog sa manok, sa dili pa kini mapusa.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Embryo.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Embriyo',
                   definition:
                       'Ito ang maagang yugto ng pag-unlad ng sisiw sa loob ng itlog ng manok, bago ito mapisa.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Embryo.jpg',
                 ),
               },
               'yolk': {
@@ -2832,13 +3369,13 @@ class UnitsController {
                   word: 'Pughak',
                   definition:
                       'Mao ang dalag nga bahin sa itlog nga puno sa sustansya.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/yolk.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Apyak',
                   definition:
                       'Ay ang dilaw na bahagi ng itlog na mayaman sa nutrients.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/yolk.jpg',
                 ),
               },
               'chick': {
@@ -2846,13 +3383,13 @@ class UnitsController {
                   word: 'Piso',
                   definition:
                       'Usa ka bata nga manok nga bag-o lang napusa gikan sa usa ka itlog.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Chick.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Sisiw',
                   definition:
                       'Ay isang bata o sanggol na manok na napisa lamang mula sa isang itlog.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Chick.jpg',
                 ),
               },
               'beak': {
@@ -2860,13 +3397,13 @@ class UnitsController {
                   word: 'Sungo',
                   definition:
                       'Mao ang gahi, talinis nga baba sa mga mananap nga gigamit sa pagkaon, pag-ayo, ug pagmaniobra sa mga butang.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/beak.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Tuka',
                   definition:
                       'Ay ang matigas at matulis na bibig ng mga hayop gaya ng ibon, na ginagamit para sa pagkain, pag-aayos, at pagmamanipula ng mga bagay.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/beak.jpg',
                 ),
               },
               'feathers': {
@@ -2874,37 +3411,37 @@ class UnitsController {
                   word: 'Balhibo',
                   definition:
                       'Mao ang nipis, patag nga mga istruktura nga motubo gikan sa panit sa mga langgam.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Feather.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Balahibo',
                   definition:
                       'Ay ang manipis at patag na mga istraktura na tumutubo mula sa balat ng mga ibon.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Feather.jpg',
                 ),
               },
               'rooster': {
                 'Cebuano': Translation(
                   word: 'Sunoy',
                   definition: 'Usa ka hamtong nga laki nga manok.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/rooster.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Tandang',
                   definition: 'Ay isang pang-adultong lalaking manok.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/rooster.jpg',
                 ),
               },
               'hen': {
                 'Cebuano': Translation(
                   word: 'Himungaan',
                   definition: 'Usa ka hamtong nga baye nga manok.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/hen.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Inahin',
                   definition: 'Ay isang pang-adultong babaeng manok.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/hen.jpg',
                 ),
               },
               'birth': {
@@ -2912,13 +3449,13 @@ class UnitsController {
                   word: 'Pagpanganak',
                   definition:
                       'Kini mao ang panahon nga ang usa ka bata matawo ug magsugod sa kinabuhi sa gawas sa sabakan sa inahan.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/birth.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Kapanganakan',
                   definition:
                       'Ito ay kapag ang isang sanggol ay ipinanganak at nagsimula ng buhay sa labas ng sinapupunan ng ina.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/birth.jpg',
                 ),
               },
               'infancy': {
@@ -2926,13 +3463,13 @@ class UnitsController {
                   word: 'Pagkabata',
                   definition:
                       'Gikan sa pagkahimugso hangtod sa mga 2 ka tuig ang edad. Ang mga bata dali nga motubo, makakat-on sa pag-crawl, paglakaw, ug pagsugod sa pagsulti.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Infancy.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Pagkasanggol',
                   definition:
                       'Mula sa kapanganakan hanggang sa humigit-kumulang 2 taong gulang. Mabilis na lumalaki ang mga sanggol, natututong gumapang, lumakad, at nagsimulang magsalita.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Infancy.jpg',
                 ),
               },
               'childhood': {
@@ -2940,13 +3477,13 @@ class UnitsController {
                   word: 'Pagkabata',
                   definition:
                       'Gikan sa mga 2 hangtod 12 anyos. Ang mga bata nagtubo, nagkat-on og daghang bag-ong kahanas sama sa pagbasa ug pagsulat, ug nahimong mas independente.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/childhood.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Pagkabata',
                   definition:
                       'Mula mga 2 hanggang 12 taong gulang. Ang mga bata ay lumalaki, natututo ng maraming bagong kasanayan tulad ng pagbabasa at pagsusulat, at nagiging mas malaya.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/childhood.jpg',
                 ),
               },
               'adolescence': {
@@ -2954,13 +3491,13 @@ class UnitsController {
                   word: 'Pagkatin-edyer',
                   definition:
                       'Gikan sa mga 13 hangtod 18 ka tuig ang edad. Niini nga yugto, ang lawas moagi sa pagkabatan-on, ug ang emosyonal ug mental nga pagkahamtong molambo.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Adolescence.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Pagbibinata',
                   definition:
                       'Mula sa paligid ng 13 hanggang 18 taong gulang. Sa yugtong ito, ang katawan ay dumaan sa pagdadalaga, at ang emosyonal at mental na kapanahunan ay bubuo.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Adolescence.jpg',
                 ),
               },
               'adulthood': {
@@ -2968,13 +3505,13 @@ class UnitsController {
                   word: 'Pagkahamtong',
                   definition:
                       'Human sa pagkatin-edyer, ang tawo mahimong hingpit nga hamtong, makahimo sa pagpuyo nga independente, pagtrabaho, ug posible nga magsugod sa usa ka pamilya.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Adulthood.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Adulthood',
                   definition:
                       'Ang tao ay nagiging ganap na lumaki, may kakayahang mamuhay nang nakapag-iisa, nagtatrabaho, at posibleng magsimula ng isang pamilya.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Adulthood.jpg',
                 ),
               },
             },
@@ -2996,12 +3533,12 @@ class UnitsController {
                 'Cebuano': Translation(
                   word: 'Distansya',
                   definition: 'Ang gap o layo tali sa duha ka butang.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_4/distance.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Distansya',
                   definition: 'Ang agwat o layo sa pagitan ng dalawang bagay.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_4/distance.jpg',
                 ),
               },
               'digest': {
@@ -3023,11 +3560,215 @@ class UnitsController {
                   word: 'Pag-usap',
                   definition:
                       'Ang pag-usik o pagdaug sa pagkaon nga adunay tunog.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_4/munching.webp',
                 ),
                 'Filipino': Translation(
                   word: 'Nguy-ngoy',
                   definition: 'Ang pagkain ng pagkain habang may tunog.',
+                  imageExample: 'assets/images/module_4/munching.webp',
+                ),
+              },
+              'teeth': {
+                'Cebuano': Translation(
+                  word: 'Ngipon',
+                  definition: 'Lisod nga baga nga bahin sa baba nga gigamit sa pagpanguha ug pagpanguya sa pagkaon.',
+                  imageExample: 'assets/images/module_4/teeth.png',
+                ),
+                'Filipino': Translation(
+                  word: 'Ngipin',
+                  definition: 'Matitigas at butong bahagi sa bibig na ginagamit sa pagkagat at pagnguya ng pagkain.',
+                  imageExample: 'assets/images/module_4/teeth.png',
+                ),
+              },
+              'digestive systems': {
+                'Cebuano': Translation(
+                  word: 'Sistemang pangtunaw',
+                  definition: 'Ang sistema sa lawas nga nagatabang sa pagbungkag sa pagkaon ug pagsuyop sa mga sustansya.',
+                  imageExample: '',
+                ),
+                'Filipino': Translation(
+                  word: 'Sistemang panunaw',
+                  definition: 'Ang bahagi ng katawan na responsable sa pagproseso ng pagkain at pagsipsip ng sustansya.',
+                  imageExample: '',
+                ),
+              },
+              'breakdown cellulose': {
+                'Cebuano': Translation(
+                  word: 'Pagbungkag sa selulusa',
+                  definition: 'Ang proseso sa pagbungkag sa selulusa, usa ka komplikado nga klase sa karbohaydreyt nga makita sa pader sa selula sa tanum.',
+                  imageExample: '',
+                ),
+                'Filipino': Translation(
+                  word: 'Pagbuwag ng selulosa',
+                  definition: 'Ang proseso ng paghahati sa selulosa, isang komplikadong uri ng carbohydrate na matatagpuan sa pader ng mga selula ng halaman.',
+                  imageExample: '',
+                ),
+              },
+              'consume': {
+                'Cebuano': Translation(
+                  word: 'Pagkaon',
+                  definition: 'Pagkaon o pagkuha og pagkaon sa lawas.',
+                  imageExample: '',
+                ),
+                'Filipino': Translation(
+                  word: 'Kumain',
+                  definition: 'Ang pagkonsumo o pagkain ng anumang bagay para sa sustansya.',
+                  imageExample: '',
+                ),
+              },
+              'fruits': {
+                'Cebuano': Translation(
+                  word: 'Prutas',
+                  definition: 'Matam-is ug lamian nga produkto sa tanum nga adunay mga liso.',
+                  imageExample: '',
+                ),
+                'Filipino': Translation(
+                  word: 'Prutas',
+                  definition: 'Matamis at makatas na bunga ng halaman na karaniwang may buto.',
+                  imageExample: '',
+                ),
+              },
+              'molars': {
+                'Cebuano': Translation(
+                  word: 'Bag-ang',
+                  definition: 'Lapad nga ngipon sa likod sa baba nga gigamit sa pagdugmok sa pagkaon.',
+                  imageExample: '',
+                ),
+                'Filipino': Translation(
+                  word: 'Bagang',
+                  definition: 'Malalapad na ngipin sa likod ng bibig na ginagamit sa pagdurog ng pagkain.',
+                  imageExample: '',
+                ),
+              },
+              'trunks': {
+                'Cebuano': Translation(
+                  word: 'Trunko',
+                  definition: 'Ang nag-unang punoan sa kahoy o ang lungag nga ilong sa elepante.',
+                  imageExample: 'assets/images/module_4/trunk.jpg',
+                ),
+                'Filipino': Translation(
+                  word: 'Puno',
+                  definition: 'Ang pangunahing katawan ng isang puno o ang mahabang ilong ng elepante.',
+                  imageExample: 'assets/images/module_4/trunk.jpg',
+                ),
+              },
+              'digestion': {
+                'Cebuano': Translation(
+                  word: 'Pagtunaw',
+                  definition: 'Ang proseso sa pagbungkag sa pagkaon ngadto sa mas gagmay nga bahin aron masuyop kini sa lawas.',
+                  imageExample: '',
+                ),
+                'Filipino': Translation(
+                  word: 'Pagtunaw',
+                  definition: 'Ang proseso ng pagbabago ng pagkain upang magamit ito ng katawan.',
+                  imageExample: '',
+                ),
+              },
+              'sharp teeth': {
+                'Cebuano': Translation(
+                  word: 'Hait nga ngipon',
+                  definition: 'Ngipon nga hait ang tumoy, nga gigamit sa pagputol o pagpangisi sa pagkaon.',
+                  imageExample: '',
+                ),
+                'Filipino': Translation(
+                  word: 'Matutulis na ngipin',
+                  definition: 'Mga ngipin na may matutulis na gilid para sa pagputol o pagsira ng pagkain.',
+                  imageExample: '',
+                ),
+              },
+              'shorter digestive tracts': {
+                'Cebuano': Translation(
+                  word: 'Mas mubo nga sistemang pangtunaw',
+                  definition: 'Mas mubo nga sistema sa lawas nga angay alang sa partikular nga pagkaon sama sa karne.',
+                  imageExample: '',
+                ),
+                'Filipino': Translation(
+                  word: 'Mas maikling sistema ng panunaw',
+                  definition: 'Mas maikling sistema ng panunaw na angkop sa partikular na pagkain tulad ng karne.',
+                  imageExample: '',
+                ),
+              },
+              'break down meat': {
+                'Cebuano': Translation(
+                  word: 'Pagbungkag sa karne',
+                  definition: 'Ang proseso sa pagbungkag o pagproseso sa karne aron mahimong masustansya.',
+                  imageExample: '',
+                ),
+                'Filipino': Translation(
+                  word: 'Pagbuwag ng karne',
+                  definition: 'Ang proseso ng paghimay o pagproseso ng karne upang maging masustansya.',
+                  imageExample: '',
+                ),
+              },
+              'lions': {
+                'Cebuano': Translation(
+                  word: 'Leon',
+                  definition: 'Dagko ug mabangis nga pusa nga makit-an sa kagubatan ug nailhan nga mga nanguna nga manunukob.',
+                  imageExample: '',
+                ),
+                'Filipino': Translation(
+                  word: 'Leon',
+                  definition: 'Malalaking mabangis na pusa na matatagpuan sa kagubatan at kilala bilang mga pangunahing mandaragit.',
+                  imageExample: '',
+                ),
+              },
+              'zebras': {
+                'Cebuano': Translation(
+                  word: 'Zebra',
+                  definition: 'Mga herbivore nga hayop nga adunay talagsaong itom ug puti nga linya sa ilang panit.',
+                  imageExample: '',
+                ),
+                'Filipino': Translation(
+                  word: 'Zebra',
+                  definition: 'Mga hayop na herbivore na may kakaibang itim at puting guhit sa kanilang balat.',
+                  imageExample: '',
+                ),
+              },
+              'flat teeth': {
+                'Cebuano': Translation(
+                  word: 'Patag nga ngipon',
+                  definition: 'Ngipon nga patag ang ibabaw ug gigamit sa pagnguya o pagdugmok sa pagkaon nga gikan sa tanum.',
+                  imageExample: '',
+                ),
+                'Filipino': Translation(
+                  word: 'Panturong ngipin',
+                  definition: 'Mga ngipin na malapad ang ibabaw at ginagamit sa pagnguya o pagdurog ng pagkain mula sa halaman.',
+                  imageExample: '',
+                ),
+              },
+              'mixed diet': {
+                'Cebuano': Translation(
+                  word: 'Hinalo nga pagkaon',
+                  definition: 'Pagkaon nga naglangkob sa pagkaon gikan sa tanum ug hayop.',
+                  imageExample: '',
+                ),
+                'Filipino': Translation(
+                  word: 'Halu-halong diyeta',
+                  definition: 'Diyeta na binubuo ng pagkain mula sa halaman at hayop.',
+                  imageExample: '',
+                ),
+              },
+              'plant-based': {
+                'Cebuano': Translation(
+                  word: 'Base sa tanum',
+                  definition: 'Nagpasabot sa pagkaon nga gikan sa tanum.',
+                  imageExample: '',
+                ),
+                'Filipino': Translation(
+                  word: 'Halaman ang basehan',
+                  definition: 'Tumutukoy sa pagkain na nagmumula sa mga halaman.',
+                  imageExample: '',
+                ),
+              },
+              'environments': {
+                'Cebuano': Translation(
+                  word: 'Kapalibotan',
+                  definition: 'Ang natural nga lugar o kahimtang diin nagapuyo ang mga tawo, hayop, o tanum.',
+                  imageExample: '',
+                ),
+                'Filipino': Translation(
+                  word: 'Kapaligiran',
+                  definition: 'Ang natural na lugar o kondisyon kung saan nabubuhay ang tao, hayop, o halaman.',
                   imageExample: '',
                 ),
               },
@@ -3086,25 +3827,25 @@ class UnitsController {
                   word: 'Mga kuko',
                   definition:
                       'Mga panggikid sa mga hayop nga nagtabang sa paghawid o pagdakop.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_4/claws.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Mga kuko',
                   definition:
                       'Mga pangil ng mga hayop na tumutulong sa paghawak o pagdakip.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_4/claws.jpg',
                 ),
               },
               'jaws': {
                 'Cebuano': Translation(
                   word: 'Mga pangil',
                   definition: 'Ang bahin sa ulo nga naglalaman sa mga ngipon.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_4/jaws.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Mga panga',
                   definition: 'Bahagi ng ulo na naglalaman ng mga ngipin.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_4/jaws.jpg',
                 ),
               },
               'neck': {
@@ -3126,13 +3867,13 @@ class UnitsController {
                   word: 'Buhi nga butang',
                   definition:
                       'Mga butang nga adunay kinabuhi, sama sa mga hayop, tanom, ug microorganism.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Living_things_animals.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Mga nabubuhay na bagay',
                   definition:
                       'Mga bagay na may buhay, tulad ng mga hayop, halaman, at mikrobyo.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Living_things_animals.jpg',
                 ),
               },
               'survive': {
@@ -3168,13 +3909,27 @@ class UnitsController {
                   word: 'Puy-anan',
                   definition:
                       'Ang natural nga palibot diin ang usa ka organismo nagpuyo.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Habitat.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Tirahan',
                   definition:
                       'Ang natural na kapaligiran kung saan nakatira ang isang organismo.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Habitat.jpg',
+                ),
+              },
+              'habitats': {
+                'Cebuano': Translation(
+                  word: 'Puy-anan',
+                  definition:
+                      'Ang natural nga palibot diin ang usa ka organismo nagpuyo.',
+                  imageExample: 'assets/images/module_3/Habitat.jpg',
+                ),
+                'Filipino': Translation(
+                  word: 'Tirahan',
+                  definition:
+                      'Ang natural na kapaligiran kung saan nakatira ang isang organismo.',
+                  imageExample: 'assets/images/module_3/Habitat.jpg',
                 ),
               },
               'survival needs': {
@@ -3236,12 +3991,12 @@ class UnitsController {
                 'Cebuano': Translation(
                   word: 'Mga herbiboro',
                   definition: 'Mga hayop nga nagakaon lamang sa mga tanom.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_4/herbivores.png',
                 ),
                 'Filipino': Translation(
                   word: 'Mga halamang pagkain',
                   definition: 'Mga hayop na kumakain lamang ng mga halaman.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_4/herbivores.png',
                 ),
               },
               'omnivores': {
@@ -3261,12 +4016,12 @@ class UnitsController {
                 'Cebuano': Translation(
                   word: 'Mga karniboro',
                   definition: 'Mga hayop nga nagakaon sa karne.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_4/carnivores.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Mga karniboro',
                   definition: 'Mga hayop na kumakain ng karne.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_4/carnivores.jpg',
                 ),
               },
               'grinding': {
@@ -3311,18 +4066,32 @@ class UnitsController {
                   imageExample: '',
                 ),
               },
+              'break down cellulose': {
+                'Cebuano': Translation(
+                  word: 'Pagbungkag sa selulusa',
+                  definition:
+                      'Ang proseso sa pagbungkag sa selulusa, usa ka komplikado nga klase sa karbohaydreyt nga makita sa pader sa selula sa tanum.',
+                  imageExample: '',
+                ),
+                'Filipino': Translation(
+                  word: 'Pagbabasag',
+                  definition:
+                      'Ang proseso ng paghahati-hati ng mga bagay sa mas maliliit na bahagi.',
+                  imageExample: '',
+                ),
+              },
               'vegetation': {
                 'Cebuano': Translation(
                   word: 'Tanom',
                   definition:
                       'Ang tanan nga mga tanom nga nagatubo sa usa ka dapit.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_4/vegetables.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Vegetasyon',
                   definition:
                       'Lahat ng mga halaman na tumutubo sa isang lugar.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_4/vegetables.jpg',
                 ),
               },
               'prey': {
@@ -3343,13 +4112,13 @@ class UnitsController {
                   word: 'Elepante',
                   definition:
                       'Dagkong mga herbiboro nga hayop nga may dagkong mga pangil.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_4/elephant_trunk.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Elepante',
                   definition:
                       'Malalaki at mga herbivorous na hayop na may malalaking pangil.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_4/elephant_trunk.jpg',
                 ),
               },
               'molar': {
@@ -3369,13 +4138,13 @@ class UnitsController {
                 'Cebuano': Translation(
                   word: 'Prutas',
                   definition: 'Ang bunga sa mga tanom nga sagad gikaon.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_4/fruits.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Prutas',
                   definition:
                       'Ang bunga ng mga halaman na karaniwang kinakain.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_4/fruits.jpg',
                 ),
               },
               'leaves': {
@@ -3409,12 +4178,12 @@ class UnitsController {
                 'Cebuano': Translation(
                   word: 'Puno',
                   definition: 'Ang lawas sa kahoy nga nagdala sa mga sanga.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_4/trunk.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Puno',
                   definition: 'Ang katawan ng puno na nagdadala ng mga sanga.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_4/trunk.jpg',
                 ),
               },
               'giraffes': {
@@ -3422,13 +4191,13 @@ class UnitsController {
                   word: 'Girafa',
                   definition:
                       'Usa ka taas nga hayop nga may taas nga liog ug nagakaon sa mga dahon sa mga kahoy.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_4/giraffe.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Girafa',
                   definition:
                       'Isang mataas na hayop na may mahabang leeg at kumakain ng mga dahon sa mga puno.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_4/giraffe.jpg',
                 ),
               },
               'branches': {
@@ -3448,12 +4217,12 @@ class UnitsController {
                 'Cebuano': Translation(
                   word: 'Baka',
                   definition: 'Usa ka dako nga hayop nga nagahatag og gatas.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_4/cows.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Baka',
                   definition: 'Isang malaking hayop na nagbibigay ng gatas.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_4/cows.jpg',
                 ),
               },
               'digestive system': {
@@ -3508,20 +4277,6 @@ class UnitsController {
                   word: 'Matulis',
                   definition:
                       'Ang katangian ng pagiging mahusay sa pagputol o pagdurog.',
-                  imageExample: '',
-                ),
-              },
-              'teeth': {
-                'Cebuano': Translation(
-                  word: 'Ngipon',
-                  definition:
-                      'Ang mga bahin sa baba nga gigamit sa pag-ayo sa pagkaon.',
-                  imageExample: '',
-                ),
-                'Filipino': Translation(
-                  word: 'Ngipin',
-                  definition:
-                      'Mga bahagi ng bibig na ginagamit sa pagdurog ng pagkain.',
                   imageExample: '',
                 ),
               },
@@ -3583,13 +4338,13 @@ class UnitsController {
                   word: 'Leon',
                   definition:
                       'Usa ka dagkong karniboro nga hayop, kasagaran giisip nga hari sa mga hayop.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_4/lions.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Leon',
                   definition:
                       'Isang malaking karnivor na hayop, karaniwang itinuturing na hari ng mga hayop.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_4/lions.jpg',
                 ),
               },
               'apex predators': {
@@ -3609,13 +4364,13 @@ class UnitsController {
                   word: 'Kadena sa pagkaon',
                   definition:
                       'Ang pag-ugmad sa mga relasyon sa pagkaon tali sa mga organismo.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_4/foodchain.png',
                 ),
                 'Filipino': Translation(
                   word: 'Kadena ng pagkain',
                   definition:
                       'Ang pagbuo ng mga ugnayan sa pagkain sa pagitan ng mga organismo.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_4/foodchain.png',
                 ),
               },
               'zebra': {
@@ -3623,24 +4378,24 @@ class UnitsController {
                   word: 'Zebra',
                   definition:
                       'Usa ka hayop nga may mga puti ug itom nga guhit.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_4/zebras.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Zebra',
                   definition: 'Isang hayop na may puti at itim na guhit.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_4/zebras.jpg',
                 ),
               },
               'antelopes': {
                 'Cebuano': Translation(
                   word: 'Antelope',
                   definition: 'Usa ka klase sa mga herbiboro nga hayop.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_4/antelopes.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Antelope',
                   definition: 'Isang uri ng herbivorous na hayop.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_4/antelopes.jpg',
                 ),
               },
               'tigers': {
@@ -3648,26 +4403,26 @@ class UnitsController {
                   word: 'Tigre',
                   definition:
                       'Usa ka dagkong karniboro nga hayop nga nagatubo sa mga gubat.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_4/tigers.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Tigre',
                   definition:
                       'Isang malaking karnivor na hayop na nakatira sa mga gubat.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_4/tigers.jpg',
                 ),
               },
               'hunters': {
                 'Cebuano': Translation(
                   word: 'Mangayam',
                   definition: 'Mga tawo o hayop nga nangayam og mga biktima.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_4/hunters.webp',
                 ),
                 'Filipino': Translation(
                   word: 'Mangangaso',
                   definition:
                       'Mga tao o hayop na nangingisda o nanghuhuli ng mga biktima.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_4/hunters.webp',
                 ),
               },
               'camouflage': {
@@ -3703,13 +4458,13 @@ class UnitsController {
                   word: 'Osong',
                   definition:
                       'Dagkong mga karniboro nga hayop nga kasagaran nagapuyo sa mga gubat.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_4/bear.webp',
                 ),
                 'Filipino': Translation(
                   word: 'Oso',
                   definition:
                       'Malalaking karnivor na hayop na karaniwang nakatira sa mga gubat.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_4/bear.webp',
                 ),
               },
               'mixed-diet': {
@@ -3743,13 +4498,13 @@ class UnitsController {
                   word: 'Baboy',
                   definition:
                       'Usa ka hayop nga kasagaran gi-breed para sa karne.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_4/pigs.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Baboy',
                   definition:
                       'Isang hayop na karaniwang pinaaamo para sa karne.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_4/pigs.jpg',
                 ),
               },
               'insects': {
@@ -3757,13 +4512,13 @@ class UnitsController {
                   word: 'Insekto',
                   definition:
                       'Gamay nga mga hayop nga kasagaran adunay mga pakpak.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Insects_Adult_Butterfly.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Insekto',
                   definition:
                       'Maliit na mga hayop na karaniwang may mga pakpak.',
-                  imageExample: '',
+                  imageExample: 'assets/images/module_3/Insects_Adult_Butterfly.jpg',
                 ),
               },
               'environment': {
@@ -3799,297 +4554,309 @@ class UnitsController {
                 "Cebuano": Translation(
                     word: "Tul-id nga linya",
                     definition: "Tuwid nga linya.",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_5/Linear.png'),
                 "Filipino": Translation(
                     word: "Linear",
                     definition: "Tuwid na linya.",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_5/Linear.png')
               },
               "autotrophs": {
                 "Cebuano": Translation(
                     word: "Autotrophs",
                     definition:
                         "Paghimo og pagkaon pinaagi sa paggamit sa enerhiya sa adlaw.",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_5/Autotrophs.jpg'),
                 "Filipino": Translation(
                     word: "Autotrophs",
                     definition:
                         "Gumawa ng pagkain sa pamamagitan ng paggamit ng enerhiya ng araw.",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_5/Autotrophs.jpg')
               },
               "heterotrophs": {
                 "Cebuano": Translation(
                     word: "Heterotrophs",
                     definition:
                         "Dili makahimo sa ilang kaugalingon nga pagkaon ug kinahanglan nga magsalig sa mga tanum ug hayop aron mabuhi.",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_5/Heterotrophs.jpg'),
                 "Filipino": Translation(
                     word: "Heterotrophs",
                     definition:
                         "Hindi maaaring gumawa ng kanilang sariling pagkain at dapat umasa sa mga halaman at hayop para sa pagkakaroon.",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_5/Heterotrophs.jpg')
               },
               "ecosystem": {
                 "Cebuano": Translation(
                     word: "Ecosystem",
                     definition:
                         "Usa ka komunidad sa mga organismo ug sa ilang pisikal nga palibot nga nag-interact.",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_5/Ecosystem_.jpg'),
                 "Filipino": Translation(
                     word: "Ecosystem",
                     definition:
                         "Isang komunidad ng mga organismo at ang kanilang pisikal na kapaligiran na magkakasamang nakikipag-ugnayan.",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_5/Ecosystem_.jpg')
               },
               "community": {
                 "Cebuano": Translation(
                     word: "Komunidad",
                     definition:
                         "Usa ka interakting nga grupo sa lain-laing mga espisye sa usa ka komon nga lokasyon.",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_5/Community.jpg'),
                 "Filipino": Translation(
                     word: "Komunidad",
                     definition:
                         "Isang nakikipag-ugnayang grupo ng iba't ibang uri ng hayop o halaman sa isang karaniwang lokasyon.",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_5/Community.jpg')
               },
               "food chain": {
                 "Cebuano": Translation(
                     word: "Food Chain",
                     definition:
                         "Ang proseso sa pagpakaon nga nagsugod sa mga prodyuser ug natapos sa pinakadako nga konsumidor.",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_5/Food_Chain.jpg'),
                 "Filipino": Translation(
                     word: "Food Chain",
                     definition:
                         "Ang proseso ng pagpapakain na nagsisimula sa mga producer at nagtatapos sa pinakamalaking consumer.",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_5/Food_Chain.jpg')
               },
               "sun": {
                 "Cebuano": Translation(
                     word: "Adlaw",
                     definition:
                         "Panguna nga tinubdan sa enerhiya sa usa ka komunidad.",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_5/Sun.jpg'),
                 "Filipino": Translation(
                     word: "Araw",
                     definition:
                         "Pangunahing pinagmumulan ng enerhiya sa isang komunidad.",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_5/Sun.jpg')
               },
               "photosynthesis": {
                 "Cebuano": Translation(
                     word: "Photosynthesis",
                     definition:
                         "Ang mga tanom naggamit sa kahayag sa adlaw, carbon dioxide, ug tubig sa pagpatunghag og pagkaon.",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_5/Photosynthesis_.jpg'),
                 "Filipino": Translation(
                     word: "Photosynthesis",
                     definition:
                         "Ang mga halaman ay gumagamit ng sikat ng araw, carbon dioxide, at tubig upang makagawa ng pagkain.",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_5/Photosynthesis_.jpg')
               },
               "producers": {
                 "Cebuano": Translation(
                     word: "Prodyuser",
                     definition:
                         "Ang mga tanom makamugna ug makagama sa ilang kaugalingong enerhiya.",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_5/Producers_.jpg'),
                 "Filipino": Translation(
                     word: "Prodyuser",
                     definition:
                         "Ang mga halaman ay maaaring lumikha at gumawa ng kanilang sariling enerhiya.",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_5/Producers_.jpg')
               },
               "consumers": {
                 "Cebuano": Translation(
                     word: "Konsumidor",
                     definition:
                         "Ang mga mananap nagsalig sa mga tanom ug ubang mga mananap aron mabuhit tungod kay dili sila makahimo sa ilang kaugalingon.",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_5/Consumers.jpg'),
                 "Filipino": Translation(
                     word: "Konsumidor",
                     definition:
                         "Ang mga hayop ay umaasa sa mga halaman at ibang mga hayop para mabuhay dahil hindi sila makakalikha ng kanilang sarili.",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_5/Consumers.jpg')
               },
-              "tropic levels": {
+              "trophic levels": {
                 "Cebuano": Translation(
                     word: "Lebel sa Tropiko",
                     definition:
                         "Lain-laing mga posisyon sa pagpakaon sulod sa food chain o web.",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_5/Trophic_Levels.jpg'),
                 "Filipino": Translation(
                     word: "Antas ng Tropiko",
                     definition:
                         "Sumangguni sa iba't ibang posisyon ng pagpapakain sa loob ng food chain o web.",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_5/Trophic_Levels.jpg')
+              },
+              "trophic levels ": {
+                "Cebuano": Translation(
+                    word: "Lebel sa Tropiko",
+                    definition:
+                        "Lain-laing mga posisyon sa pagpakaon sulod sa food chain o web.",
+                    imageExample: 'assets/images/module_5/Trophic_Levels.jpg'),
+                "Filipino": Translation(
+                    word: "Antas ng Tropiko",
+                    definition:
+                        "Sumangguni sa iba't ibang posisyon ng pagpapakain sa loob ng food chain o web.",
+                    imageExample: 'assets/images/module_5/Trophic_Levels.jpg')
               },
               "food web": {
                 "Cebuano": Translation(
                     word: "Food Web",
                     definition:
                         "Usa ka komplikado nga network sa nagdugtong ug nagsapaw nga mga food chains nga nagpakita sa mga relasyon sa pagpakaon sulod sa usa ka komunidad.",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_5/Food_Web.jpg'),
                 "Filipino": Translation(
                     word: "Food Web",
                     definition:
                         "Isang kumplikadong network ng magkakaugnay at magkakapatong na mga food chains na nagpapakita ng mga relasyon sa pagpapakain sa loob ng isang komunidad.",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_5/Food_Web.jpg')
               },
               "biomass": {
                 "Cebuano": Translation(
                     word: "Biomass",
                     definition:
                         "Gihubitingon ang kinatibuk-ang masa sa mga organismo sa gihatag nga lebel sa trophic.",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_5/Biomass.jpg'),
                 "Filipino": Translation(
                     word: "Biomass",
                     definition:
                         "Tinukoy bilang kabuuang masa ng mga organismo sa isang partikular na antas ng trophic.",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_5/Biomass.jpg')
               },
               "decomposers": {
                 "Cebuano": Translation(
                     word: "Decomposers",
                     definition:
                         "Pagpaubos sa mga elemento nga makita sa patay nga mga binuhat ug basura sa tanan nga lebel sa trophic.",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_5/Decomposers.jpg'),
                 "Filipino": Translation(
                     word: "Decomposers",
                     definition:
                         "Nagpapababa ng mga elemento na matatagpuan sa mga patay na nilalang at basura sa lahat ng antas ng tropiko.",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_5/Decomposers.jpg')
               },
               "detritivores": {
                 "Cebuano": Translation(
                     word: "Dentritivores",
                     definition:
                         "Usa ka hayop nga mokaon sa patay nga organikong materyal.",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_5/Detritivores.jpg'),
                 "Filipino": Translation(
                     word: "Dentritivores",
                     definition:
                         "Isang hayop na kumakain ng patay na organikong materyal.",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_5/Detritivores.jpg')
               },
               "saprotrophs": {
                 "Cebuano": Translation(
                     word: "Saprotrophs",
                     definition:
                         "Ang mga organismo nga nagkuha sa ilang pagkaon gikan sa mga patay nga nagkadunot nga mga hayop o tanum.",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_5/Saprotrophs.jpg'),
                 "Filipino": Translation(
                     word: "Saprotrophs",
                     definition:
                         "Ang mga organismo na kumukuha ng kanilang pagkain mula sa mga patay na nabubulok na hayop o halaman.",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_5/Saprotrophs.jpg')
               },
               "living organisms": {
                 "Cebuano": Translation(
                     word: "Buhi nga mga Organismo",
                     definition: "Bisan unsa nga adunay kinabuhi.",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_5/Living_Organisms_.jpg'),
                 "Filipino": Translation(
                     word: "Mga Buhay na Organismo",
                     definition: "Anumang bagay na may buhay.",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_5/Living_Organisms_.jpg')
               },
               "energy": {
                 "Cebuano": Translation(
                     word: "Kusog",
                     definition:
                         "Nakabig ngadto sa lain-laing mga porma aron mabuhi, motubo, motubag sa stimuli, ug mosanay.",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_5/Energy.jpg'),
                 "Filipino": Translation(
                     word: "Enerhiya",
                     definition:
                         "Na-convert sa iba’t ibang anyo upang mabuhay, lumago, tumugon sa stimuli, at magparami.",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_5/Energy.jpg')
               },
               "grow": {
                 "Cebuano": Translation(
                     word: "Motubo",
                     definition:
                         "Aron madugangan pinaagi sa natural nga pag-uswag, sama sa bisan unsang buhi nga organismo o bahin pinaagi sa asimilasyon sa nutrisyon.",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_5/Grow.jpg'),
                 "Filipino": Translation(
                     word: "Lumaki",
                     definition:
                         "Upang madagdagan sa pamamagitan ng natural na pag-unlad, tulad ng anumang buhay na organismo o bahagi sa pamamagitan ng asimilasyon ng nutrisyon.",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_5/Grow.jpg')
               },
               "breathe": {
                 "Cebuano": Translation(
                     word: "Pagginhawa",
                     definition:
                         "Sa pagkuha sa hangin, oksiheno, ug uban pa, ngadto sa mga baga ug ipagawas kini; inhale ug exhale.",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_5/Carbon_Dioxide_.jpg'),
                 "Filipino": Translation(
                     word: "Huminga",
                     definition:
                         "Upang kumuha ng hangin, oxygen, atbp., sa mga baga at paalisin ito; huminga at huminga.",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_5/Carbon_Dioxide_.jpg')
               },
               "reproduce": {
                 "Cebuano": Translation(
                     word: "Pagdaghan",
                     definition:
                         "Aron makahimo usa ka kopya sa usa ka butang, o aron makopya sa usa ka proseso sa produksiyon.",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_5/Reproduce_.jpg'),
                 "Filipino": Translation(
                     word: "Magparami",
                     definition:
                         "Upang makagawa ng isang kopya ng isang bagay, o upang makopya sa isang proseso ng produksyon.",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_5/Reproduce_.jpg')
               },
               "biosphere": {
                 "Cebuano": Translation(
                     word: "Biosphere",
                     definition:
                         "Ang rehiyon sa yuta nga naglangkob sa tanang buhing organismo: tanom, mananap ug bakterya.",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_5/Biosphere_.jpg'),
                 "Filipino": Translation(
                     word: "Biosphere",
                     definition:
                         "Ang rehiyon ng daigdig na sumasaklaw sa lahat ng nabubuhay na organismo: halaman, hayop at bakterya.",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_5/Biosphere_.jpg')
               },
               "earth": {
                 "Cebuano": Translation(
                     word: "Yuta",
                     definition:
                         "Ang ikatulo nga planeta gikan sa Adlaw, ug ang ikalima nga kinadak-ang planeta. Kini lamang ang dapit nga atong nahibaloan nga gipuy-an sa buhing mga butang.",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_5/Earth.jpg'),
                 "Filipino": Translation(
                     word: "Lupa",
                     definition:
                         "Ang ikatlong planeta mula sa Araw, at ang ikalimang pinakamalaking planeta. Ito ang tanging lugar na alam nating tinitirhan ng mga buhay na bagay.",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_5/Earth.jpg')
               },
               "organisms": {
                 "Cebuano": Translation(
                     word: "Organismo",
                     definition:
                         "Usa ka indibidwal nga mananap, tanom, o single-celled nga porma sa kinabuhi.",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_3/Organisms.jpg'),
                 "Filipino": Translation(
                     word: "Organismo",
                     definition:
                         "Isang indibidwal na hayop, halaman, o single-celled na anyo ng buhay.",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_3/Organisms.jpg')
               },
               "plants": {
                 "Cebuano": Translation(
                     word: "Tanom",
                     definition:
                         "Usa ka buhing butang nga mitubo sa yuta ug adunay tukog, dahon, ug gamot.",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_5/Plants.jpg'),
                 "Filipino": Translation(
                     word: "Halaman",
                     definition:
                         "Isang buhay na bagay na tumutubo sa lupa at may tangkay, dahon, at ugat.",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_5/Plants.jpg')
               },
               "carbon dioxide": {
                 "Cebuano": Translation(
@@ -4108,82 +4875,130 @@ class UnitsController {
                     word: "Tubig",
                     definition:
                         "Ang tin-aw nga likido nga walay kolor, lami, o baho, nga nahulog gikan sa mga panganod ingon nga ulan, nga nagporma sa mga sapa, lanaw, ug dagat, ug kana gigamit sa pag-inom, paghugas, ug uban pa.",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_5/Water.jpg'),
                 "Filipino": Translation(
                     word: "Tubig",
                     definition:
                         "Ang malinaw na likido na walang kulay, lasa, o amoy, na bumabagsak mula sa mga ulap bilang ulan, na bumubuo ng mga batis, lawa, at dagat, at ginagamit sa pag-inom, paglalaba, atbp.",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_5/Water.jpg')
               },
               "absorbs": {
                 "Cebuano": Translation(
                     word: "Mosuhop",
                     definition: "Para masuyop kini o kuhaon.",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_5/Absorb.jpg'),
                 "Filipino": Translation(
                     word: "Sumisipsip",
                     definition: "Upang ibabad ito o kunin ito.",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_5/Absorb.jpg')
               },
               "first-order": {
                 "Cebuano": Translation(
                     word: "Una nga han-ay o panguna",
                     definition:
                         "Kaon sa mga prodyuser sama sa mga tanum, lumot ug bakterya.",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_5/First-order_or_primary.jpg'),
                 "Filipino": Translation(
                     word: "First-order o pangunahin",
                     definition:
                         "Kumain ng mga prodyuser tulad ng mga halaman, algae at bacteria.",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_5/First-order_or_primary.jpg')
+              },
+              "first-order or primary": {
+                "Cebuano": Translation(
+                    word: "Una nga han-ay o panguna",
+                    definition:
+                        "Kaon sa mga prodyuser sama sa mga tanum, lumot ug bakterya.",
+                    imageExample: 'assets/images/module_5/First-order_or_primary.jpg'),
+                "Filipino": Translation(
+                    word: "First-order o pangunahin",
+                    definition:
+                        "Kumain ng mga prodyuser tulad ng mga halaman, algae at bacteria.",
+                    imageExample: 'assets/images/module_5/First-order_or_primary.jpg')
               },
               "second-order": {
                 "Cebuano": Translation(
                     word: "Second-order o sekondarya",
                     definition:
                         "Ang mga organismo nga mokaon sa panguna nga mga konsumedor mao ang mga tigkaon sa karne.",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_5/Second-order_or_Secondary.jpg'),
                 "Filipino": Translation(
                     word: "Pangalawang-order o pangalawa",
                     definition:
                         "Ang mga organismo na kumakain ng pangunahing mamimili ay mga kumakain ng karne.",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_5/Second-order_or_Secondary.jpg')
+              },
+              "second-order or secondary": {
+                "Cebuano": Translation(
+                    word: "Second-order o sekondarya",
+                    definition:
+                        "Ang mga organismo nga mokaon sa panguna nga mga konsumedor mao ang mga tigkaon sa karne.",
+                    imageExample: 'assets/images/module_5/Second-order_or_Secondary.jpg'),
+                "Filipino": Translation(
+                    word: "Pangalawang-order o pangalawa",
+                    definition:
+                        "Ang mga organismo na kumakain ng pangunahing mamimili ay mga kumakain ng karne.",
+                    imageExample: 'assets/images/module_5/Second-order_or_Secondary.jpg')
               },
               "third-order": {
                 "Cebuano": Translation(
                     word: "Third-order o tertiary",
                     definition:
                         "Kadtong mokaon sa sekondaryang mga konsumidor (dagko nga mga manunukob).",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_5/Third-order_or_tertiary.jpg'),
                 "Filipino": Translation(
                     word: "Third-order o tersiyaryo",
                     definition:
                         "Ang mga kumakain ng pangalawang mamimili (malaking mandaragit).",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_5/Third-order_or_tertiary.jpg')
+              },
+              "third-order or tertiary": {
+                "Cebuano": Translation(
+                    word: "Third-order o tertiary",
+                    definition:
+                        "Kadtong mokaon sa sekondaryang mga konsumidor (dagko nga mga manunukob).",
+                    imageExample: 'assets/images/module_5/Third-order_or_tertiary.jpg'),
+                "Filipino": Translation(
+                    word: "Third-order o tersiyaryo",
+                    definition:
+                        "Ang mga kumakain ng pangalawang mamimili (malaking mandaragit).",
+                    imageExample: 'assets/images/module_5/Third-order_or_tertiary.jpg')
               },
               "fourth-order": {
                 "Cebuano": Translation(
                     word: "Fourth-order o quaternary",
                     definition:
                         "Nanguna nga mga manunukob sa sulod sa palibot, ug gikaon nila ang mga tertiary nga mga konsumidor.",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_5/Fourth-order_or_quaternary.jpg'),
                 "Filipino": Translation(
                     word: "Ikaupat nga han-ay o quaternary",
                     definition:
                         "Nangungunang mga mandaragit sa loob ng kapaligiran, at kinakain nila ang mga tertiary consumer.",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_5/Fourth-order_or_quaternary.jpg')
+              },
+              "fourth-order or quaternary": {
+                "Cebuano": Translation(
+                    word: "Fourth-order o quaternary",
+                    definition:
+                        "Nanguna nga mga manunukob sa sulod sa palibot, ug gikaon nila ang mga tertiary nga mga konsumidor.",
+                    imageExample: 'assets/images/module_5/Fourth-order_or_quaternary.jpg'),
+                "Filipino": Translation(
+                    word: "Ikaupat nga han-ay o quaternary",
+                    definition:
+                        "Nangungunang mga mandaragit sa loob ng kapaligiran, at kinakain nila ang mga tertiary consumer.",
+                    imageExample: 'assets/images/module_5/Fourth-order_or_quaternary.jpg')
               },
               "mass": {
                 "Cebuano": Translation(
                     word: "Gidaghanon",
                     definition:
                         "Ang gidaghanon sa butang o substansiya nga naglangkob sa usa ka butang o lawas.",
-                    imageExample: ''),
+                    imageExample: 'assets/images/module_5/Mass.jpg'),
                 "Filipino": Translation(
                     word: "Dami",
                     definition:
                         "Ang dami ng matter o substance na bumubuo sa isang bagay o katawan.",
-                    imageExample: '')
+                    imageExample: 'assets/images/module_5/Mass.jpg')
               }
             },
           ),
@@ -4207,6 +5022,8 @@ class UnitsController {
     final totalWords = book.translations.keys.toSet();
     final translatedCount =
         translatedWords.toSet().intersection(totalWords).length;
+    // return translatedCount >= 2;
+    print(totalWords.length ~/ 3);
     return translatedCount >= (totalWords.length ~/ 3);
   }
 

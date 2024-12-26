@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
       statusBarColor: Color(0xFFFEFEFE), // Transparent status bar
     ));
     Future.delayed(const Duration(milliseconds: 1500), () {
-      Navigator.pushReplacementNamed(context, '/language');
+      Navigator.pushReplacementNamed(context, '/onboarding');
     });
   }
   @override

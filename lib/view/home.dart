@@ -25,7 +25,7 @@ class _HomeState extends State<Home> {
 
   Future<void> _loadLanguagePreferences() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-     // await prefs.clear();
+    // await prefs.clear();
     setState(() {
       _selectedLanguage = prefs.getString("language");
     });
@@ -103,17 +103,17 @@ class _HomeState extends State<Home> {
                       width: 100,
                     ),
                     const SizedBox(width: 10),
-                    const Expanded(
+                    Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             "Welcome to SCI-MET",
                             style: TextStyle(
                                 fontWeight: FontWeight.w500, fontSize: 14),
                           ),
-                          SizedBox(height: 10),
-                          Text(
+                          const SizedBox(height: 10),
+                          const Text(
                             "Explore exciting science topics from plants and animals to weather and species.",
                             softWrap: true,
                             overflow: TextOverflow.visible,
@@ -121,7 +121,81 @@ class _HomeState extends State<Home> {
                                 fontSize: 12,
                                 fontWeight: FontWeight.normal,
                                 color: Color(0xFF6b7280)),
-                          )
+                          ),
+                          const SizedBox(height: 10),
+                          ShadButton(
+                            child: const Text("About us"),
+                            width: double.infinity,
+                            onPressed: () {
+                              showShadDialog(
+                                context: context,
+                                builder: (context) => ShadDialog(
+                                  radius: BorderRadius.circular(10.0),
+                                  expandActionsWhenTiny: true,
+                                  removeBorderRadiusWhenTiny: false,
+                                  title: const Text(
+                                    'About Us',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.w500),
+                                  ),
+                                  description: SingleChildScrollView(
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        const Text(
+                                          'Our App',
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        const SizedBox(height: 8),
+                                        const Text(
+                                          'The Science Multilingual Educational Tool (Sci-MET) is a software designed to enhance reading comprehension in science for grade 4 learners. It offers an extensive array of learning materials, complemented by a robust translation feature that enables students to easily translate scientific terms into Cebuano or Filipino. Beyond mere translation, Sci-MET provides clear and concise definitions for each term, ensuring that students not only grasp the vocabulary but also understand the underlying concepts. This comprehensive approach fosters a deeper engagement with scientific content and supports multilingual learning.',
+                                          textAlign: TextAlign.left,
+                                          style: TextStyle(fontSize: 14),
+                                        ),
+                                        const SizedBox(height: 16),
+                                        const Text(
+                                          'Our Team',
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        const SizedBox(height: 8),
+                                        ...[
+                                          'Acain, Hannah Margaret',
+                                          'Alboroto, Arniel S.',
+                                          'Botilla, Ashley Hope D.',
+                                          'Hisoler, Bea Annelle J.',
+                                          'Rosales, Jhuna Angel P.',
+                                          'Tumulak, Lara May C.'
+                                        ]
+                                            .map((member) => Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          bottom: 8),
+                                                  child: Text(member,
+                                                      style: TextStyle(
+                                                          fontSize: 14)),
+                                                ))
+                                            .toList(),
+                                      ],
+                                    ),
+                                  ),
+                                  actions: [
+                                    ShadButton(
+                                      child: Text('Close'),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          ),
                         ],
                       ),
                     )
@@ -196,7 +270,8 @@ class _HomeState extends State<Home> {
                                   ),
                                   child: Center(
                                     child: IconButton(
-                                      padding: EdgeInsets.zero, // Remove default padding
+                                      padding: EdgeInsets.zero,
+                                      // Remove default padding
                                       onPressed: () {},
                                       icon: Icon(
                                         Icons.chevron_right,

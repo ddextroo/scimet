@@ -7,6 +7,7 @@ import '../controller/analytics_controller.dart';
 import '../model/modules.dart';
 import '../model/units.dart';
 import '../utils/url_prefix_remove.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 
 class TranslationSheet extends StatefulWidget {
   const TranslationSheet(
@@ -110,31 +111,48 @@ class _TranslationSheetState extends State<TranslationSheet> {
     if (!translatedWords.contains(word)) {
       translatedWords.add(word);
       await prefs.setStringList(moduleName, translatedWords);
-      await _analyticsController.updateWordCount(userId, word);
+      final connectivityResult = await Connectivity().checkConnectivity();
+      if (connectivityResult != ConnectivityResult.none) {
+        await _analyticsController.updateWordCount(userId, word);
+      } else {
+        print('No internet connection. Skipping Firebase update.');
+      }
 
       // Check if the module is now completed
       final isCompleted = await unitsController.isModuleCompleted(moduleName);
       if (isCompleted) {
+        // Show next module dialog if it hasn't been shown for this module
         if (widget.nextModule != null) {
-          // Unlock the next module
-          await unitsController.setModuleCompleted(widget.nextModule!);
-          _showUnlockDialog("Next module unlocked",
-              "You can now access ${widget.nextModule}.");
+          final nextModuleKey = 'showNextModuleDialog_${widget.nextModule}';
+          bool hasShownNextModuleDialog = prefs.getBool(nextModuleKey) ?? false;
+          if (!hasShownNextModuleDialog) {
+            await unitsController.setModuleCompleted(widget.nextModule!);
+            _showUnlockDialog("Next module unlocked",
+                "You can now access ${widget.nextModule}.");
+            await prefs.setBool(nextModuleKey, true);
+          }
         } else {
-          // Unlock the next unit and its first module
+          // Show next unit dialog if it hasn't been shown for this unit
           final nextUnitAndModule =
-              unitsController.getNextUnitAndFirstModule(widget.currentIndex);
+          unitsController.getNextUnitAndFirstModule(widget.currentIndex);
           if (nextUnitAndModule != null) {
             final nextUnit = nextUnitAndModule['unit'] as Units;
             final firstModule = nextUnitAndModule['firstModule'] as Modules;
-            await unitsController.setModuleCompleted(firstModule.moduleName);
-            _showUnlockDialog("Next unit unlocked",
-                "You can now access the unit: ${nextUnit.title} - ${firstModule.moduleName}.");
+            final nextUnitKey = 'showNextUnitDialog_${nextUnit.title}';
+            bool hasShownNextUnitDialog = prefs.getBool(nextUnitKey) ?? false;
+
+            if (!hasShownNextUnitDialog) {
+              await unitsController.setModuleCompleted(firstModule.moduleName);
+              _showUnlockDialog("Next unit unlocked",
+                  "You can now access the unit: ${nextUnit.title} - ${firstModule.moduleName}.");
+              await prefs.setBool(nextUnitKey, true);
+            }
           }
         }
       }
     }
   }
+
 
   void _showUnlockDialog(String title, String message) {
     if (context.mounted) {

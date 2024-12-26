@@ -27,6 +27,10 @@ dependencies:
   shadcn_ui: ^0.14.1
   google_fonts: ^6.2.1
   uuid: ^4.5.1
+  onboarding: ^4.0.2
+  introduction_screen: ^3.1.14
+  connectivity_plus: ^6.1.0
+  rename_app: ^1.6.1
 
 dev_dependencies:
   flutter_test:
@@ -48,6 +52,12 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/images/module_1/plants/
+    - assets/images/module_1/animals/
+    - assets/images/module_2/
+    - assets/images/module_3/
+    - assets/images/module_4/
+    - assets/images/module_5/
     - assets/contents/
   fonts:
     - family: Poppins
