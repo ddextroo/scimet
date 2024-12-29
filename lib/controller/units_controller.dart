@@ -57,7 +57,7 @@ class UnitsController {
                 ),
                 'Filipino': Translation(
                   word: 'Disyerto',
-                  definition: 'Isang lugar na napakatuyo at bihira',
+                  definition: 'Isang lugar na napakatuyo at bihira ang ulan',
                   imageExample: 'assets/images/module_1/plants/DESERT.jpg',
                 ),
               },
@@ -69,7 +69,7 @@ class UnitsController {
                 ),
                 'Filipino': Translation(
                   word: 'Disyerto',
-                  definition: 'Isang lugar na napakatuyo at bihira',
+                  definition: 'Isang lugar na napakatuyo at bihira ang ulan',
                   imageExample: 'assets/images/module_2/m2_desert.jpeg',
                 ),
               },
@@ -148,13 +148,13 @@ class UnitsController {
                   word: 'Cacti',
                   definition:
                       'Mga tanum nga adunay baga, unod nga mga punoan nga nagtipig ug tubig, nga sagad makit-an sa mga desyerto. Kanunay sila adunay mga tunok imbes mga dahon aron makunhuran ang pagkawala sa tubig.',
-                  imageExample: 'assets/images/module_1/plants/LOOSE_SOIL.webp',
+                  imageExample: 'assets/images/module_1/plants/Cacti.jpg',
                 ),
                 'Filipino': Translation(
                   word: 'Cacti',
                   definition:
                       'Ay mga halaman na may makapal, mataba na tangkay na nag-iimbak ng tubig, kadalasang matatagpuan sa mga disyerto. Kadalasan mayroon silang mga spines sa halip na mga dahon upang mabawasan ang pagkawala ng tubig.',
-                  imageExample: 'assets/images/module_1/plants/LOOSE_SOIL.webp',
+                  imageExample: 'assets/images/module_1/plants/Cacti.jpg',
                 ),
               },
               'photosynthesis': {
@@ -4892,7 +4892,7 @@ class UnitsController {
                     definition: "Upang ibabad ito o kunin ito.",
                     imageExample: 'assets/images/module_5/Absorb.jpg')
               },
-              "first-order": {
+              "first order": {
                 "Cebuano": Translation(
                     word: "Una nga han-ay o panguna",
                     definition:
@@ -4904,7 +4904,7 @@ class UnitsController {
                         "Kumain ng mga prodyuser tulad ng mga halaman, algae at bacteria.",
                     imageExample: 'assets/images/module_5/First-order_or_primary.jpg')
               },
-              "first-order or primary": {
+              "first order or primary": {
                 "Cebuano": Translation(
                     word: "Una nga han-ay o panguna",
                     definition:
@@ -4916,7 +4916,7 @@ class UnitsController {
                         "Kumain ng mga prodyuser tulad ng mga halaman, algae at bacteria.",
                     imageExample: 'assets/images/module_5/First-order_or_primary.jpg')
               },
-              "second-order": {
+              "second order": {
                 "Cebuano": Translation(
                     word: "Second-order o sekondarya",
                     definition:
@@ -4928,7 +4928,7 @@ class UnitsController {
                         "Ang mga organismo na kumakain ng pangunahing mamimili ay mga kumakain ng karne.",
                     imageExample: 'assets/images/module_5/Second-order_or_Secondary.jpg')
               },
-              "second-order or secondary": {
+              "second order or secondary": {
                 "Cebuano": Translation(
                     word: "Second-order o sekondarya",
                     definition:
@@ -4940,7 +4940,7 @@ class UnitsController {
                         "Ang mga organismo na kumakain ng pangunahing mamimili ay mga kumakain ng karne.",
                     imageExample: 'assets/images/module_5/Second-order_or_Secondary.jpg')
               },
-              "third-order": {
+              "third order": {
                 "Cebuano": Translation(
                     word: "Third-order o tertiary",
                     definition:
@@ -4952,7 +4952,7 @@ class UnitsController {
                         "Ang mga kumakain ng pangalawang mamimili (malaking mandaragit).",
                     imageExample: 'assets/images/module_5/Third-order_or_tertiary.jpg')
               },
-              "third-order or tertiary": {
+              "third order or tertiary": {
                 "Cebuano": Translation(
                     word: "Third-order o tertiary",
                     definition:
@@ -4964,7 +4964,7 @@ class UnitsController {
                         "Ang mga kumakain ng pangalawang mamimili (malaking mandaragit).",
                     imageExample: 'assets/images/module_5/Third-order_or_tertiary.jpg')
               },
-              "fourth-order": {
+              "fourth order": {
                 "Cebuano": Translation(
                     word: "Fourth-order o quaternary",
                     definition:
@@ -4976,7 +4976,7 @@ class UnitsController {
                         "Nangungunang mga mandaragit sa loob ng kapaligiran, at kinakain nila ang mga tertiary consumer.",
                     imageExample: 'assets/images/module_5/Fourth-order_or_quaternary.jpg')
               },
-              "fourth-order or quaternary": {
+              "fourth order or quaternary": {
                 "Cebuano": Translation(
                     word: "Fourth-order o quaternary",
                     definition:
