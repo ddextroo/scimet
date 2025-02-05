@@ -1840,6 +1840,18 @@ class UnitsController {
                         "Isang uri ng kagubatan na madalas umulan at maraming halaman.",
                     imageExample: 'assets/images/module_2/m2_rainforest.jpeg')
               },
+              "tropical rainforests": {
+                "Cebuano": Translation(
+                    word: "Kalasangang tropikal",
+                    definition:
+                    "Usa ka tipo sa kalasangan nga permi mabasa ug daghan ug ulan, daghan usab ug tanom.",
+                    imageExample: 'assets/images/module_2/m2_rainforest.jpeg'),
+                "Filipino": Translation(
+                    word: "Tropikal na kagubatan",
+                    definition:
+                    "Isang uri ng kagubatan na madalas umulan at maraming halaman.",
+                    imageExample: 'assets/images/module_2/m2_rainforest.jpeg')
+              },
               "dwells": {
                 "Cebuano": Translation(
                     word: "Nagpuyo",
@@ -2136,15 +2148,15 @@ class UnitsController {
               },
               "tropical forests": {
                 "Cebuano": Translation(
-                    word: "Tropikal",
+                    word: "Kalasangang tropikal",
                     definition:
-                        "Dapit nga init ug mabugnaw ug kasagaran ubos sa ekwador.",
-                    imageExample: ''),
+                    "Usa ka tipo sa kalasangan nga permi mabasa ug daghan ug ulan, daghan usab ug tanom.",
+                    imageExample: 'assets/images/module_2/m2_rainforest.jpeg'),
                 "Filipino": Translation(
-                    word: "Tropikal",
+                    word: "Tropikal na kagubatan",
                     definition:
-                        "Lugar na may mainit at mahalumigmig na klima, kadalasang sa rehiyon ng ekwador.",
-                    imageExample: '')
+                    "Isang uri ng kagubatan na madalas umulan at maraming halaman.",
+                    imageExample: 'assets/images/module_2/m2_rainforest.jpeg')
               },
               "forage": {
                 "Cebuano": Translation(
@@ -3849,6 +3861,20 @@ class UnitsController {
                 ),
               },
               'neck': {
+                'Cebuano': Translation(
+                  word: 'Liog',
+                  definition:
+                      'Ang bahin sa lawas nga nagdugtong sa ulo ug lawas.',
+                  imageExample: '',
+                ),
+                'Filipino': Translation(
+                  word: 'Leeg',
+                  definition:
+                      'Bahagi ng katawan na nag-uugnay sa ulo at katawan.',
+                  imageExample: '',
+                ),
+              },
+              'necks': {
                 'Cebuano': Translation(
                   word: 'Liog',
                   definition:
