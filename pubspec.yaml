@@ -58,6 +58,11 @@ flutter:
     - assets/images/module_3/
     - assets/images/module_4/
     - assets/images/module_5/
+    - assets/images/quiz/mod2/
+    - assets/images/quiz/mod3/
+    - assets/images/quiz/mod4/
+    - assets/images/quiz/mod5/
+    - assets/images/quiz/mod6/
     - assets/contents/
   fonts:
     - family: Poppins

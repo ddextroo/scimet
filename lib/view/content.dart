@@ -20,11 +20,11 @@ class Content extends StatefulWidget {
 class _ContentState extends State<Content> {
   String? _selectedLanguage;
   final UnitsController book = UnitsController();
-  final _controller = GlobalKey<PageFlipWidgetState>();
+  final PdfViewerController _controller = PdfViewerController();
+  bool _showFab = false; // Track FAB visibility
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _loadLanguagePreferences();
   }
@@ -46,8 +46,7 @@ class _ContentState extends State<Content> {
 
   @override
   Widget build(BuildContext context) {
-    final arguments = (ModalRoute.of(context)?.settings.arguments ??
-        <List, dynamic>{}) as Map;
+    final arguments = (ModalRoute.of(context)?.settings.arguments ?? <List, dynamic>{}) as Map;
     final String moduleName = arguments['moduleName'];
     final List<Units> units = book.getUnits();
     final List<String> contents = units
@@ -58,83 +57,86 @@ class _ContentState extends State<Content> {
     final int currentIndex = arguments['index'];
 
     return Scaffold(
-        appBar: AppBar(
-          title: Text(moduleName,
-              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 14)),
-          actions: [
-            IconButton(
-                onPressed: () {
-                  showShadDialog(
-                    context: context,
-                    builder: (context) => ShadDialog(
-                      removeBorderRadiusWhenTiny: false,
-                      radius: BorderRadius.circular(10.0),
-                      title: const Text(
-                        "Select language",
-                        style: TextStyle(fontWeight: FontWeight.w500),
-                      ),
-                      description: ShadRadioGroup<String>(
-                        onChanged: (String? value) {
-                          if (value != null) {
-                            _setLanguagePreferences(value);
-                          }
-                        },
-                        initialValue: _selectedLanguage,
-                        items: const [
-                          ShadRadio(
-                            label: Text('Filipino'),
-                            value: 'Filipino',
-                          ),
-                          ShadRadio(
-                            label: Text('Cebuano'),
-                            value: 'Cebuano',
-                          ),
-                        ],
-                      ),
-                      actions: [
-                        ShadButton(
-                          child: const Text('Done'),
-                          onPressed: () async {
-                            Navigator.of(context).pop(false);
-                          },
-                        ),
-                      ],
+      appBar: AppBar(
+        title: Text(moduleName, style: TextStyle(fontWeight: FontWeight.w500, fontSize: 14)),
+        actions: [
+          IconButton(
+            onPressed: () {
+              showShadDialog(
+                context: context,
+                builder: (context) => ShadDialog(
+                  removeBorderRadiusWhenTiny: false,
+                  radius: BorderRadius.circular(10.0),
+                  title: const Text("Select language", style: TextStyle(fontWeight: FontWeight.w500)),
+                  description: ShadRadioGroup<String>(
+                    onChanged: (String? value) {
+                      if (value != null) {
+                        _setLanguagePreferences(value);
+                      }
+                    },
+                    initialValue: _selectedLanguage,
+                    items: const [
+                      ShadRadio(label: Text('Filipino'), value: 'Filipino'),
+                      ShadRadio(label: Text('Cebuano'), value: 'Cebuano'),
+                    ],
+                  ),
+                  actions: [
+                    ShadButton(
+                      child: const Text('Done'),
+                      onPressed: () => Navigator.of(context).pop(false),
                     ),
-                  );
-                },
-                icon: const Icon(
-                  Icons.translate,
-                  size: 20,
-                ))
-          ],
-        ),
-        body: PdfViewer.asset(
-          "assets/contents/${contents[0]}",
-          params: PdfViewerParams(
-            backgroundColor: Colors.white,
-            pageDropShadow: BoxShadow(
-              color: Colors.transparent,
-              blurRadius: 0,
-              spreadRadius: 0,
-            ),
-            linkHandlerParams: PdfLinkHandlerParams(
-              linkColor: const Color(0x00000000),
-              onLinkTap: (link) {
-                showShadSheet(
-                    side: ShadSheetSide.bottom,
-                    context: context,
-                    builder: (context) => TranslationSheet(
-                        word: link.url.toString(),
-                        nextModule: arguments['nextModule'],
-                        currentIndex: currentIndex));
-                // if (link.url != null) {
-                //   navigateToUrl(link.url!);
-                // } else if (link.dest != null) {
-                //   controller.goToDest(link.dest);
-                // }
-              },
-            ),
+                  ],
+                ),
+              );
+            },
+            icon: const Icon(Icons.translate, size: 20),
+          )
+        ],
+      ),
+      body: PdfViewer.asset(
+        "assets/contents/${contents[0]}",
+        controller: _controller, // Connect the controller
+        params: PdfViewerParams(
+          backgroundColor: Colors.white,
+          pageDropShadow: const BoxShadow(color: Colors.transparent, blurRadius: 0, spreadRadius: 0),
+          linkHandlerParams: PdfLinkHandlerParams(
+            linkColor: const Color(0x00000000),
+            onLinkTap: (link) {
+              showShadSheet(
+                side: ShadSheetSide.bottom,
+                context: context,
+                builder: (context) => TranslationSheet(
+                  word: link.url.toString(),
+                  nextModule: arguments['nextModule'],
+                  currentIndex: currentIndex,
+                ),
+              );
+            },
           ),
-        ));
+          onPageChanged: (int? page) {
+            if (page != null) {
+              final pageCount = _controller.pageCount;
+              if (pageCount != null && page == pageCount - 1) {
+                setState(() => _showFab = true);
+              } else {
+                setState(() => _showFab = false);
+              }
+            }
+          },
+
+        ),
+      ),
+      floatingActionButton: _showFab
+          ? FloatingActionButton(
+        onPressed: () {
+          // Navigate to the quiz screen with necessary arguments
+          Navigator.pushNamed(context, '/quiz', arguments: {
+            'moduleName': moduleName,
+          });
+        },
+        child: const Icon(Icons.quiz),
+      )
+          : null,
+    );
   }
 }
