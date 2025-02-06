@@ -70,6 +70,8 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
 
                       await prefs.setString("language", "Filipino");
                       await prefs.setBool("Root and Shoot System_done", true);
+                      await prefs.setBool(
+                          "Major Organs of the Human System_done", true);
                       await prefs.setString("user_id", const Uuid().v4());
                       Navigator.popAndPushNamed(context, "/home");
                     },
@@ -83,6 +85,8 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
 
                       await prefs.setString("language", "Cebuano");
                       await prefs.setBool("Root and Shoot System_done", true);
+                      await prefs.setBool(
+                          "Major Organs of the Human System_done", true);
 
                       await prefs.setString("user_id", const Uuid().v4());
                       Navigator.popAndPushNamed(context, "/home");

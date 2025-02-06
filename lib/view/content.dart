@@ -132,6 +132,8 @@ class _ContentState extends State<Content> {
           // Navigate to the quiz screen with necessary arguments
           Navigator.pushNamed(context, '/quiz', arguments: {
             'moduleName': moduleName,
+            'nextModule': arguments['nextModule'],
+            'currentIndex': currentIndex,
           });
         },
         child: const Icon(Icons.quiz),

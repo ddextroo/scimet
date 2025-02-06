@@ -1434,6 +1434,57 @@ class UnitsController {
           },
           correctAnswer: "C",
         ),
+        Quiz(
+          question: "What is the main function of the skeletal system?",
+          choices: {
+            "A": "To digest food",
+            "B": "To pump blood",
+            "C": "To help us breathe",
+            "D": "To support and shape the body",
+          },
+          correctAnswer: "D",
+        ),
+        Quiz(
+          question: "Which organ protects the brain?",
+          choices: {
+            "A": {"text": "Heart", "image": "assets/images/quiz/mod2/heart.png"},
+            "B": {"text": "Lungs", "image": "assets/images/quiz/mod2/lungs.png"},
+            "C": {"text": "Ribs", "image": "assets/images/quiz/mod2/ribs.png"},
+            "D": {"text": "Skull", "image": "assets/images/quiz/mod2/skull.png"},
+          },
+          correctAnswer: "D",
+        ),
+        Quiz(
+          question: "What type of muscles can we control?",
+          choices: {
+            "A": "Cardiac Muscles",
+            "B": "Involuntary Muscles",
+            "C": "Skeletal Muscles",
+            "D": "Smooth Muscles",
+          },
+          correctAnswer: "C",
+        ),
+        Quiz(
+          question: "What is the role of the small intestine in digestion?",
+          choices: {
+            "A": "To mix food with saliva",
+            "B": "To break down food with teeth",
+            "C": "To store waste until it leaves the body",
+            "D": "To absorb nutrients into the bloodstream",
+          },
+          correctAnswer: "D",
+        ),
+        Quiz(
+          question: "What do kidneys do in the urinary system?",
+          questionImage: "assets/images/quiz/mod2/kidney.png",
+          choices: {
+            "A": "Help digest food",
+            "B": "Control muscle movements",
+            "C": "Filter liquid waste from the blood",
+            "D": "Pump blood throughout the body",
+          },
+          correctAnswer: "C",
+        ),
       ]),
       Units(
         title: "Plants and Animals and their Habitats",
@@ -3028,10 +3079,10 @@ class UnitsController {
             Quiz(
               question: "Which of the following is an aerial animal?",
               choices: {
-                "A": "DEER",
-                "B": "EAGLE",
-                "C": "SHARK",
-                "D": "CROCODILE",
+                "A": {"text": "DEER", "image": "assets/images/quiz/mod3/deer.png"},
+                "B": {"text": "EAGLE", "image": "assets/images/quiz/mod3/eagle.png"},
+                "C": {"text": "SHARK", "image": "assets/images/quiz/mod3/shark.png"},
+                "D": {"text": "CROCODILE", "image": "assets/images/quiz/mod3/crocodile.png"},
               },
               correctAnswer: "B",
             ),
@@ -3058,10 +3109,10 @@ class UnitsController {
             Quiz(
               question: "Which of the following is an example of a terrestrial habitat?",
               choices: {
-                "A": "OCEAN",
-                "B": "RIVER",
-                "C": "LAKE",
-                "D": "DESERT",
+                "A": {"text": "OCEAN", "image": "assets/images/quiz/mod3/ocean.png"},
+                "B": {"text": "RIVER", "image": "assets/images/quiz/mod3/river.png"},
+                "C": {"text": "LAKE", "image": "assets/images/quiz/mod3/lake.png"},
+                "D": {"text": "DESERT", "image": "assets/images/quiz/mod3/desert.png"},
               },
               correctAnswer: "D",
             ),

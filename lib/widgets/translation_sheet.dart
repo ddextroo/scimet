@@ -119,37 +119,37 @@ class _TranslationSheetState extends State<TranslationSheet> {
       }
 
       // Check if the module is now completed
-      final isCompleted = await unitsController.isModuleCompleted(moduleName);
-      if (isCompleted) {
-        // Show next module dialog if it hasn't been shown for this module
-        if (widget.nextModule != null) {
-          final nextModuleKey = 'showNextModuleDialog_${widget.nextModule}';
-          bool hasShownNextModuleDialog = prefs.getBool(nextModuleKey) ?? false;
-          if (!hasShownNextModuleDialog) {
-            await unitsController.setModuleCompleted(widget.nextModule!);
-            _showUnlockDialog("Next module unlocked",
-                "You can now access ${widget.nextModule}.");
-            await prefs.setBool(nextModuleKey, true);
-          }
-        } else {
-          // Show next unit dialog if it hasn't been shown for this unit
-          final nextUnitAndModule =
-          unitsController.getNextUnitAndFirstModule(widget.currentIndex);
-          if (nextUnitAndModule != null) {
-            final nextUnit = nextUnitAndModule['unit'] as Units;
-            final firstModule = nextUnitAndModule['firstModule'] as Modules;
-            final nextUnitKey = 'showNextUnitDialog_${nextUnit.title}';
-            bool hasShownNextUnitDialog = prefs.getBool(nextUnitKey) ?? false;
-
-            if (!hasShownNextUnitDialog) {
-              await unitsController.setModuleCompleted(firstModule.moduleName);
-              _showUnlockDialog("Next unit unlocked",
-                  "You can now access the unit: ${nextUnit.title} - ${firstModule.moduleName}.");
-              await prefs.setBool(nextUnitKey, true);
-            }
-          }
-        }
-      }
+      // final isCompleted = await unitsController.isModuleCompleted(moduleName);
+      // if (isCompleted) {
+      //   // Show next module dialog if it hasn't been shown for this module
+      //   if (widget.nextModule != null) {
+      //     final nextModuleKey = 'showNextModuleDialog_${widget.nextModule}';
+      //     bool hasShownNextModuleDialog = prefs.getBool(nextModuleKey) ?? false;
+      //     if (!hasShownNextModuleDialog) {
+      //       await unitsController.setModuleCompleted(widget.nextModule!);
+      //       _showUnlockDialog("Next module unlocked",
+      //           "You can now access ${widget.nextModule}.");
+      //       await prefs.setBool(nextModuleKey, true);
+      //     }
+      //   } else {
+      //     // Show next unit dialog if it hasn't been shown for this unit
+      //     final nextUnitAndModule =
+      //     unitsController.getNextUnitAndFirstModule(widget.currentIndex);
+      //     if (nextUnitAndModule != null) {
+      //       final nextUnit = nextUnitAndModule['unit'] as Units;
+      //       final firstModule = nextUnitAndModule['firstModule'] as Modules;
+      //       final nextUnitKey = 'showNextUnitDialog_${nextUnit.title}';
+      //       bool hasShownNextUnitDialog = prefs.getBool(nextUnitKey) ?? false;
+      //
+      //       if (!hasShownNextUnitDialog) {
+      //         await unitsController.setModuleCompleted(firstModule.moduleName);
+      //         _showUnlockDialog("Next unit unlocked",
+      //             "You can now access the unit: ${nextUnit.title} - ${firstModule.moduleName}.");
+      //         await prefs.setBool(nextUnitKey, true);
+      //       }
+      //     }
+      //   }
+      // }
     }
   }
 
