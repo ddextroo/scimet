@@ -46,10 +46,16 @@ class _QuizCardState extends State<QuizCard> {
 
   void initializeQuizzes() {
     if (moduleName == null) return;
+
     final units = unitsController.getUnits();
     for (final unit in units) {
-      if (unit.modulesList.any((module) => module.moduleName == moduleName)) {
-        quizzes = unit.quizzes;
+      final module = unit.modulesList.firstWhere(
+        (m) => m.moduleName == moduleName,
+        orElse: () => Modules(moduleName: '', quizzes: []),
+      );
+
+      if (module.moduleName.isNotEmpty) {
+        quizzes = module.quizzes;
         break;
       }
     }
@@ -196,46 +202,38 @@ class _QuizCardState extends State<QuizCard> {
 
   Future<void> saveScore() async {
     final prefs = await SharedPreferences.getInstance();
-    final unitTitle = getCurrentUnitTitle();
-    userId = prefs.getString("user_id")!;
-    if (unitTitle != null) {
+    userId = prefs.getString("user_id");
+
+    if (moduleName != null && userId != null) {
       final scorePercentage = (correctAnswers / quizzes.length) * 100;
-      if (userId != null) {
-        // Ensure user is logged in
-        await analyticsController.saveQuizResults(
-          userId: userId!,
-          unitTitle: unitTitle,
-          score: scorePercentage,
-          highestScore: highestScore,
-          quizItems: userQuizResponses,
-        );
+      final currentScore = '$correctAnswers/${quizzes.length}';
+
+      // If there is no highest score yet or the current score is higher, update it
+      if (highestScore < 1 || scorePercentage > highestScore) {
+        highestScore = scorePercentage; // Update highest score
       }
 
-      if (scorePercentage > highestScore) {
-        await prefs.setDouble('${unitTitle}_score', scorePercentage);
-        setState(() {
-          highestScore = scorePercentage;
-        });
+      final highestScoreFormatted = '${(highestScore / 100 * quizzes.length).toInt()}/${quizzes.length}';
+
+      // Save to Firebase with module name
+      await analyticsController.saveQuizResults(
+        userId: userId!,
+        moduleName: moduleName!,
+        score: currentScore,
+        highestScore: highestScoreFormatted,
+        quizItems: userQuizResponses,
+      );
+
+      // Save the highest score locally
+      final unitTitle = getCurrentUnitTitle();
+      if (unitTitle != null) {
+        await prefs.setDouble('${unitTitle}_score', highestScore);
       }
     }
   }
-
-  void showCompletionDialog() async {
-    final prefs = await SharedPreferences.getInstance();
-    final unitTitle = getCurrentUnitTitle();
-    userId = prefs.getString("user_id")!;
+  void showCompletionDialog() {
     final scorePercentage = (correctAnswers / quizzes.length) * 100;
-    if (unitTitle != null) {
-      if (userId != null) {
-        await analyticsController.saveQuizResults(
-          userId: userId!,
-          unitTitle: unitTitle,
-          score: scorePercentage,
-          highestScore: highestScore,
-          quizItems: userQuizResponses,
-        );
-      }
-    }
+
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -276,17 +274,28 @@ class _QuizCardState extends State<QuizCard> {
     final prefs = await SharedPreferences.getInstance();
     final passingScore = (quizzes.length * 0.7).ceil();
     if (correctAnswers >= passingScore) {
-      final nextUnitAndModule =
-          unitsController.getNextUnitAndFirstModule(currentIndex!);
-      if (nextUnitAndModule != null) {
-        final nextUnit = nextUnitAndModule['unit'] as Units;
-        final firstModule = nextUnitAndModule['firstModule'] as Modules;
-        final nextUnitKey = 'showNextUnitDialog_${nextUnit.title}';
-        if (!(prefs.getBool(nextUnitKey) ?? false)) {
-          await unitsController.setModuleCompleted(firstModule.moduleName);
-          _showUnlockDialog("Next unit unlocked",
-              "You can now access the unit: ${nextUnit.title} - ${firstModule.moduleName}.");
-          await prefs.setBool(nextUnitKey, true);
+      if (nextModule != null) {
+        final nextModuleKey = 'showNextModuleDialog_${nextModule}';
+        bool hasShownNextModuleDialog = prefs.getBool(nextModuleKey) ?? false;
+        if (!hasShownNextModuleDialog) {
+          await unitsController.setModuleCompleted(nextModule!);
+          _showUnlockDialog(
+              "Next module unlocked", "You can now access ${nextModule}.");
+          await prefs.setBool(nextModuleKey, true);
+        }
+      } else {
+        final nextUnitAndModule =
+            unitsController.getNextUnitAndFirstModule(currentIndex!);
+        if (nextUnitAndModule != null) {
+          final nextUnit = nextUnitAndModule['unit'] as Units;
+          final firstModule = nextUnitAndModule['firstModule'] as Modules;
+          final nextUnitKey = 'showNextUnitDialog_${nextUnit.title}';
+          if (!(prefs.getBool(nextUnitKey) ?? false)) {
+            await unitsController.setModuleCompleted(firstModule.moduleName);
+            _showUnlockDialog("Next unit unlocked",
+                "You can now access the unit: ${nextUnit.title} - ${firstModule.moduleName}.");
+            await prefs.setBool(nextUnitKey, true);
+          }
         }
       }
     } else {

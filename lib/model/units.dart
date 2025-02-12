@@ -8,12 +8,10 @@ class Units {
   final int modules;
   final List<Modules> modulesList;
   final List<Book> bookContent;
-  final List<Quiz> quizzes;
 
   Units(
       {required this.title,
       required this.modules,
       required this.modulesList,
-      required this.bookContent,
-      required this.quizzes});
+      required this.bookContent});
 }

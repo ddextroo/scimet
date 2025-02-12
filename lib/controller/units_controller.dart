@@ -24,7 +24,7 @@ class UnitsController {
       Units nextUnit = units[currentUnitIndex + 1];
       Modules firstModule = nextUnit.modulesList.isNotEmpty
           ? nextUnit.modulesList[0]
-          : Modules(moduleName: "No modules available");
+          : Modules(moduleName: "No modules available", quizzes: []);
 
       return {
         'unit': nextUnit,
@@ -39,8 +39,125 @@ class UnitsController {
   List<Units> getUnits() {
     return [
       Units(title: "Systems in Plants and Animals", modules: 2, modulesList: [
-        Modules(moduleName: "Root and Shoot System"),
-        Modules(moduleName: "Major Organs of the Human System"),
+        Modules(moduleName: "Root and Shoot System", quizzes: [
+          Quiz(
+            question: "What are the two main systems of plants?",
+            choices: {
+              "A": "Root system and shoot system",
+              "B": "Root system and leaf system",
+              "C": "Leaf system and stem system",
+              "D": "Stem system and flower system",
+            },
+            correctAnswer: "A",
+          ),
+          Quiz(
+            question: "What is the primary function of roots in a plant?",
+            choices: {
+              "A": "To transport nutrients to the leaves",
+              "B": "To absorb water and nutrients from the soil",
+              "C": "To store carbon dioxide for respiration",
+              "D": "To produce food through photosynthesis",
+            },
+            correctAnswer: "B",
+          ),
+          Quiz(
+            question:
+                "What type of root system has many thin, branching roots that spread out horizontally?",
+            choices: {
+              "A": "Adventitious root system",
+              "B": "Taproot system",
+              "C": "Aerial root system",
+              "D": "Fibrous root system",
+            },
+            correctAnswer: "D",
+          ),
+          Quiz(
+            question:
+                "What adaptation helps cacti survive in dry environments?",
+            choices: {
+              "A": "Stems that can store water",
+              "B": "Small leaves",
+              "C": "Deep root systems",
+              "D": "Thick waxy skin",
+            },
+            correctAnswer: "A",
+          ),
+          Quiz(
+            question: "How do secondary roots benefit the plant?",
+            choices: {
+              "A": "They primarily store food for the plant's growth.",
+              "B": "They perform photosynthesis like leaves.",
+              "C": "They help anchor the plant and absorb nutrients.",
+              "D": "They reduce competition with other plants.",
+            },
+            correctAnswer: "C",
+          ),
+        ]),
+        Modules(moduleName: "Major Organs of the Human System", quizzes: [
+          Quiz(
+            question: "What is the main function of the skeletal system?",
+            choices: {
+              "A": "To digest food",
+              "B": "To pump blood",
+              "C": "To help us breathe",
+              "D": "To support and shape the body",
+            },
+            correctAnswer: "D",
+          ),
+          Quiz(
+            question: "Which organ protects the brain?",
+            choices: {
+              "A": {
+                "text": "Heart",
+                "image": "assets/images/quiz/mod2/heart.png"
+              },
+              "B": {
+                "text": "Lungs",
+                "image": "assets/images/quiz/mod2/lungs.png"
+              },
+              "C": {
+                "text": "Ribs",
+                "image": "assets/images/quiz/mod2/ribs.png"
+              },
+              "D": {
+                "text": "Skull",
+                "image": "assets/images/quiz/mod2/skull.png"
+              },
+            },
+            correctAnswer: "D",
+          ),
+          Quiz(
+            question: "What type of muscles can we control?",
+            choices: {
+              "A": "Cardiac Muscles",
+              "B": "Involuntary Muscles",
+              "C": "Skeletal Muscles",
+              "D": "Smooth Muscles",
+            },
+            correctAnswer: "C",
+          ),
+          Quiz(
+            question: "What is the role of the small intestine in digestion?",
+            choices: {
+              "A": "To mix food with saliva",
+              "B": "To break down food with teeth",
+              "C": "To store waste until it leaves the body",
+              "D": "To absorb nutrients into the bloodstream",
+            },
+            correctAnswer: "D",
+          ),
+          Quiz(
+            question: "What do kidneys do in the urinary system?",
+            questionImage: "assets/images/quiz/mod2/kidney.png",
+            choices: {
+              "A": "Help digest food",
+              "B": "Control muscle movements",
+              "C": "Filter liquid waste from the blood",
+              "D": "Pump blood throughout the body",
+            },
+            correctAnswer: "C",
+          ),
+        ]),
       ], bookContent: [
         Book(
           content: "system_plants_mod1.pdf",
@@ -1382,115 +1499,94 @@ class UnitsController {
             },
           },
         ),
-      ], quizzes: [
-        Quiz(
-          question: "What are the two main systems of plants?",
-          choices: {
-            "A": "Root system and shoot system",
-            "B": "Root system and leaf system",
-            "C": "Leaf system and stem system",
-            "D": "Stem system and flower system",
-          },
-          correctAnswer: "A",
-        ),
-        Quiz(
-          question: "What is the primary function of roots in a plant?",
-          choices: {
-            "A": "To transport nutrients to the leaves",
-            "B": "To absorb water and nutrients from the soil",
-            "C": "To store carbon dioxide for respiration",
-            "D": "To produce food through photosynthesis",
-          },
-          correctAnswer: "B",
-        ),
-        Quiz(
-          question:
-              "What type of root system has many thin, branching roots that spread out horizontally?",
-          choices: {
-            "A": "Adventitious root system",
-            "B": "Taproot system",
-            "C": "Aerial root system",
-            "D": "Fibrous root system",
-          },
-          correctAnswer: "D",
-        ),
-        Quiz(
-          question: "What adaptation helps cacti survive in dry environments?",
-          choices: {
-            "A": "Stems that can store water",
-            "B": "Small leaves",
-            "C": "Deep root systems",
-            "D": "Thick waxy skin",
-          },
-          correctAnswer: "A",
-        ),
-        Quiz(
-          question: "How do secondary roots benefit the plant?",
-          choices: {
-            "A": "They primarily store food for the plant's growth.",
-            "B": "They perform photosynthesis like leaves.",
-            "C": "They help anchor the plant and absorb nutrients.",
-            "D": "They reduce competition with other plants.",
-          },
-          correctAnswer: "C",
-        ),
-        Quiz(
-          question: "What is the main function of the skeletal system?",
-          choices: {
-            "A": "To digest food",
-            "B": "To pump blood",
-            "C": "To help us breathe",
-            "D": "To support and shape the body",
-          },
-          correctAnswer: "D",
-        ),
-        Quiz(
-          question: "Which organ protects the brain?",
-          choices: {
-            "A": {"text": "Heart", "image": "assets/images/quiz/mod2/heart.png"},
-            "B": {"text": "Lungs", "image": "assets/images/quiz/mod2/lungs.png"},
-            "C": {"text": "Ribs", "image": "assets/images/quiz/mod2/ribs.png"},
-            "D": {"text": "Skull", "image": "assets/images/quiz/mod2/skull.png"},
-          },
-          correctAnswer: "D",
-        ),
-        Quiz(
-          question: "What type of muscles can we control?",
-          choices: {
-            "A": "Cardiac Muscles",
-            "B": "Involuntary Muscles",
-            "C": "Skeletal Muscles",
-            "D": "Smooth Muscles",
-          },
-          correctAnswer: "C",
-        ),
-        Quiz(
-          question: "What is the role of the small intestine in digestion?",
-          choices: {
-            "A": "To mix food with saliva",
-            "B": "To break down food with teeth",
-            "C": "To store waste until it leaves the body",
-            "D": "To absorb nutrients into the bloodstream",
-          },
-          correctAnswer: "D",
-        ),
-        Quiz(
-          question: "What do kidneys do in the urinary system?",
-          questionImage: "assets/images/quiz/mod2/kidney.png",
-          choices: {
-            "A": "Help digest food",
-            "B": "Control muscle movements",
-            "C": "Filter liquid waste from the blood",
-            "D": "Pump blood throughout the body",
-          },
-          correctAnswer: "C",
-        ),
       ]),
       Units(
         title: "Plants and Animals and their Habitats",
         modules: 1,
         modulesList: [
-          Modules(moduleName: "Plants and Animals and their Habitats Module 1"),
+          Modules(
+              moduleName: "Plants and Animals and their Habitats Module 1",
+              quizzes: [
+                Quiz(
+                  question:
+                      "Which of the following BEST describes why habitats are important to animals and plants?",
+                  choices: {
+                    "A": "They provide a place to hide from predators.",
+                    "B":
+                        "They offer food, water, shelter, and space for survival.",
+                    "C": "They help animals find their way home.",
+                    "D": "They keep all living things in one place.",
+                  },
+                  correctAnswer: "B",
+                ),
+                Quiz(
+                  question: "Which of the following is an aerial animal?",
+                  choices: {
+                    "A": {
+                      "text": "DEER",
+                      "image": "assets/images/quiz/mod3/deer.png"
+                    },
+                    "B": {
+                      "text": "EAGLE",
+                      "image": "assets/images/quiz/mod3/eagle.png"
+                    },
+                    "C": {
+                      "text": "SHARK",
+                      "image": "assets/images/quiz/mod3/shark.png"
+                    },
+                    "D": {
+                      "text": "CROCODILE",
+                      "image": "assets/images/quiz/mod3/crocodile.png"
+                    },
+                  },
+                  correctAnswer: "B",
+                ),
+                Quiz(
+                  question:
+                      "The Philippine Crocodile is considered semi-aquatic. What does this mean?",
+                  choices: {
+                    "A": "It only lives in deep oceans.",
+                    "B": "It can survive both on land and in water.",
+                    "C": "It never leaves the water.",
+                    "D": "It only lives in the forest.",
+                  },
+                  correctAnswer: "B",
+                ),
+                Quiz(
+                  question:
+                      "What will MOST LIKELY happen if a terrestrial animal is placed in an aquatic habitat?",
+                  choices: {
+                    "A": "It will easily adapt and survive.",
+                    "B": "It will become an aquatic animal.",
+                    "C": "It may struggle to breathe and find food.",
+                    "D": "It will grow gills to help it breathe.",
+                  },
+                  correctAnswer: "C",
+                ),
+                Quiz(
+                  question:
+                      "Which of the following is an example of a terrestrial habitat?",
+                  choices: {
+                    "A": {
+                      "text": "OCEAN",
+                      "image": "assets/images/quiz/mod3/ocean.png"
+                    },
+                    "B": {
+                      "text": "RIVER",
+                      "image": "assets/images/quiz/mod3/river.png"
+                    },
+                    "C": {
+                      "text": "LAKE",
+                      "image": "assets/images/quiz/mod3/lake.png"
+                    },
+                    "D": {
+                      "text": "DESERT",
+                      "image": "assets/images/quiz/mod3/desert.png"
+                    },
+                  },
+                  correctAnswer: "D",
+                ),
+              ]),
         ],
         bookContent: [
           Book(
@@ -3065,64 +3161,84 @@ class UnitsController {
             },
           ),
         ],
-          quizzes: [
-            Quiz(
-              question: "Which of the following BEST describes why habitats are important to animals and plants?",
-              choices: {
-                "A": "They provide a place to hide from predators.",
-                "B": "They offer food, water, shelter, and space for survival.",
-                "C": "They help animals find their way home.",
-                "D": "They keep all living things in one place.",
-              },
-              correctAnswer: "B",
-            ),
-            Quiz(
-              question: "Which of the following is an aerial animal?",
-              choices: {
-                "A": {"text": "DEER", "image": "assets/images/quiz/mod3/deer.png"},
-                "B": {"text": "EAGLE", "image": "assets/images/quiz/mod3/eagle.png"},
-                "C": {"text": "SHARK", "image": "assets/images/quiz/mod3/shark.png"},
-                "D": {"text": "CROCODILE", "image": "assets/images/quiz/mod3/crocodile.png"},
-              },
-              correctAnswer: "B",
-            ),
-            Quiz(
-              question: "The Philippine Crocodile is considered semi-aquatic. What does this mean?",
-              choices: {
-                "A": "It only lives in deep oceans.",
-                "B": "It can survive both on land and in water.",
-                "C": "It never leaves the water.",
-                "D": "It only lives in the forest.",
-              },
-              correctAnswer: "B",
-            ),
-            Quiz(
-              question: "What will MOST LIKELY happen if a terrestrial animal is placed in an aquatic habitat?",
-              choices: {
-                "A": "It will easily adapt and survive.",
-                "B": "It will become an aquatic animal.",
-                "C": "It may struggle to breathe and find food.",
-                "D": "It will grow gills to help it breathe.",
-              },
-              correctAnswer: "C",
-            ),
-            Quiz(
-              question: "Which of the following is an example of a terrestrial habitat?",
-              choices: {
-                "A": {"text": "OCEAN", "image": "assets/images/quiz/mod3/ocean.png"},
-                "B": {"text": "RIVER", "image": "assets/images/quiz/mod3/river.png"},
-                "C": {"text": "LAKE", "image": "assets/images/quiz/mod3/lake.png"},
-                "D": {"text": "DESERT", "image": "assets/images/quiz/mod3/desert.png"},
-              },
-              correctAnswer: "D",
-            ),
-          ]
       ),
       Units(
         title: "Life Cycles of Animals",
         modules: 1,
         modulesList: [
-          Modules(moduleName: "Stages in the Life Cycle of Animals"),
+          Modules(
+            moduleName: "Stages in the Life Cycle of Animals",
+            quizzes: [
+              Quiz(
+                question:
+                    "What do you call the process that some animals, like insects, go through as they grow and change after they are born or hatched?",
+                choices: {
+                  "A": "Growth",
+                  "B": "Molting",
+                  "C": "Development",
+                  "D": "Metamorphosis",
+                },
+                correctAnswer: "D",
+              ),
+              Quiz(
+                question:
+                    "The image below shows which stage of a butterfly’s life cycle?",
+                questionImage: "assets/images/quiz/mod4/pupa.png",
+                choices: {
+                  "A": "Egg",
+                  "B": "Pupa",
+                  "C": "Larva",
+                  "D": "Adult",
+                },
+                correctAnswer: "B",
+              ),
+              Quiz(
+                question:
+                    "Which of the following images represents the nymph stage in a grasshopper’s life cycle?",
+                choices: {
+                  "A": {
+                    "text": "",
+                    "image": "assets/images/quiz/mod4/ques3_a.png"
+                  },
+                  "B": {
+                    "text": "",
+                    "image": "assets/images/quiz/mod4/ques3_b.png"
+                  },
+                  "C": {
+                    "text": "",
+                    "image": "assets/images/quiz/mod4/ques3_c.png"
+                  },
+                  "D": {
+                    "text": "",
+                    "image": "assets/images/quiz/mod4/ques3_d.png"
+                  },
+                },
+                correctAnswer: "C",
+              ),
+              Quiz(
+                question:
+                    "The life cycle of a grasshopper involves changes in its form. What type of metamorphosis does a grasshopper go through?",
+                choices: {
+                  "A": "Partial Metamorphosis",
+                  "B": "Simple Metamorphosis",
+                  "C": "Complete Metamorphosis",
+                  "D": "Incomplete Metamorphosis",
+                },
+                correctAnswer: "D",
+              ),
+              Quiz(
+                question:
+                    "It is a stage in the human life cycle where the babies grow quickly, learn to crawl, walk, and start talking.",
+                choices: {
+                  "A": "Birth",
+                  "B": "Infancy",
+                  "C": "Childhood",
+                  "D": "Adolescence",
+                },
+                correctAnswer: "B",
+              ),
+            ],
+          ),
         ],
         bookContent: [
           Book(
@@ -3700,70 +3816,83 @@ class UnitsController {
             },
           ),
         ],
-        quizzes: [
-          Quiz(
-            question:
-            "What do you call the process that some animals, like insects, go through as they grow and change after they are born or hatched?",
-            choices: {
-              "A": "Growth",
-              "B": "Molting",
-              "C": "Development",
-              "D": "Metamorphosis",
-            },
-            correctAnswer: "D",
-          ),
-          Quiz(
-            question:
-            "The image below shows which stage of a butterfly’s life cycle?",
-            questionImage: "assets/images/quiz/mod4/pupa.png",
-            choices: {
-              "A": "Egg",
-              "B": "Pupa",
-              "C": "Larva",
-              "D": "Adult",
-            },
-            correctAnswer: "B",
-          ),
-          Quiz(
-            question:
-            "Which of the following images represents the nymph stage in a grasshopper’s life cycle?",
-            choices: {
-              "A": {"text": "", "image": "assets/images/quiz/mod4/ques3_a.png"},
-              "B": {"text": "", "image": "assets/images/quiz/mod4/ques3_b.png"},
-              "C": {"text": "", "image": "assets/images/quiz/mod4/ques3_c.png"},
-              "D": {"text": "", "image": "assets/images/quiz/mod4/ques3_d.png"},
-            },
-            correctAnswer: "C",
-          ),
-          Quiz(
-            question:
-            "The life cycle of a grasshopper involves changes in its form. What type of metamorphosis does a grasshopper go through?",
-            choices: {
-              "A": "Partial Metamorphosis",
-              "B": "Simple Metamorphosis",
-              "C": "Complete Metamorphosis",
-              "D": "Incomplete Metamorphosis",
-            },
-            correctAnswer: "D",
-          ),
-          Quiz(
-            question:
-            "It is a stage in the human life cycle where the babies grow quickly, learn to crawl, walk, and start talking.",
-            choices: {
-              "A": "Birth",
-              "B": "Infancy",
-              "C": "Childhood",
-              "D": "Adolescence",
-            },
-            correctAnswer: "B",
-          ),
-        ],
       ),
       Units(
         title: "Animals and the Food They Eat",
         modules: 1,
         modulesList: [
-          Modules(moduleName: "Animals and the Food They Eat Module 1"),
+          Modules(
+            moduleName: "Animals and the Food They Eat Module 1",
+            quizzes: [
+              Quiz(
+                question: "Where are carnivores on the food chain?",
+                questionImage: "assets/images/quiz/mod5/ques1.png",
+                choices: {
+                  "A": "At the Top",
+                  "B": "At the Bottom",
+                  "C": "At the Middle",
+                  "D": "At the side",
+                },
+                correctAnswer: "A",
+              ),
+              Quiz(
+                question:
+                    "___________ is an organism that only eats plants for energy.",
+                questionImage: "assets/images/quiz/mod5/ques2.png",
+                choices: {
+                  "A": "Herbivores",
+                  "B": "Carnivores",
+                  "C": "Omnivores",
+                  "D": "Producers",
+                },
+                correctAnswer: "A",
+              ),
+              Quiz(
+                question: "Which of these animals is a carnivore?",
+                choices: {
+                  "A": "Lion",
+                  "B": "Cow",
+                  "C": "Rabbit",
+                  "D": "Deer",
+                },
+                correctAnswer: "A",
+              ),
+              Quiz(
+                question: "I like to eat meat. Who am I?",
+                choices: {
+                  "A": {
+                    "text": "",
+                    "image": "assets/images/quiz/mod5/ques4_a.png"
+                  },
+                  "B": {
+                    "text": "",
+                    "image": "assets/images/quiz/mod5/ques4_b.png"
+                  },
+                  "C": {
+                    "text": "",
+                    "image": "assets/images/quiz/mod5/ques4_c.png"
+                  },
+                  "D": {
+                    "text": "",
+                    "image": "assets/images/quiz/mod5/ques4_d.png"
+                  },
+                },
+                correctAnswer: "D",
+              ),
+              Quiz(
+                question:
+                    "The tiger is a big cat. It is a carnivore. Carnivores eat _____.",
+                questionImage: "assets/images/quiz/mod5/ques5.png",
+                choices: {
+                  "A": "Fresh Vegetables",
+                  "B": "Green Vegetables",
+                  "C": "Other Animals/ Meat",
+                  "D": "Only Fish",
+                },
+                correctAnswer: "C",
+              ),
+            ],
+          ),
         ],
         bookContent: [
           Book(
@@ -4829,68 +4958,118 @@ class UnitsController {
             },
           ),
         ],
-        quizzes: [
-          Quiz(
-            question: "Where are carnivores on the food chain?",
-            questionImage: "assets/images/quiz/mod5/ques1.png",
-            choices: {
-              "A": "At the Top",
-              "B": "At the Bottom",
-              "C": "At the Middle",
-              "D": "At the side",
-            },
-            correctAnswer: "A",
-          ),
-          Quiz(
-            question: "___________ is an organism that only eats plants for energy.",
-            questionImage: "assets/images/quiz/mod5/ques2.png",
-            choices: {
-              "A": "Herbivores",
-              "B": "Carnivores",
-              "C": "Omnivores",
-              "D": "Producers",
-            },
-            correctAnswer: "A",
-          ),
-          Quiz(
-            question: "Which of these animals is a carnivore?",
-            choices: {
-              "A": "Lion",
-              "B": "Cow",
-              "C": "Rabbit",
-              "D": "Deer",
-            },
-            correctAnswer: "A",
-          ),
-          Quiz(
-            question:
-            "I like to eat meat. Who am I?",
-            choices: {
-              "A": {"text": "", "image": "assets/images/quiz/mod5/ques4_a.png"},
-              "B": {"text": "", "image": "assets/images/quiz/mod5/ques4_b.png"},
-              "C": {"text": "", "image": "assets/images/quiz/mod5/ques4_c.png"},
-              "D": {"text": "", "image": "assets/images/quiz/mod5/ques4_d.png"},
-            },
-            correctAnswer: "D",
-          ),
-          Quiz(
-            question: "The tiger is a big cat. It is a carnivore. Carnivores eat _____.",
-            questionImage: "assets/images/quiz/mod5/ques5.png",
-            choices: {
-              "A": "Fresh Vegetables",
-              "B": "Green Vegetables",
-              "C": "Other Animals/ Meat",
-              "D": "Only Fish",
-            },
-            correctAnswer: "C",
-          ),
-        ],
       ),
       Units(
         title: "Food Chains",
         modules: 1,
         modulesList: [
-          Modules(moduleName: "Food chains"),
+          Modules(
+            moduleName: "Food chains",
+            quizzes: [
+              Quiz(
+                question: "I like to eat corn. Who am I?",
+                choices: {
+                  "A": {
+                    "text": "",
+                    "image": "assets/images/quiz/mod6/ques1_a.png"
+                  },
+                  "B": {
+                    "text": "",
+                    "image": "assets/images/quiz/mod6/ques1_b.png"
+                  },
+                  "C": {
+                    "text": "",
+                    "image": "assets/images/quiz/mod6/ques1_c.png"
+                  },
+                  "D": {
+                    "text": "",
+                    "image": "assets/images/quiz/mod6/ques1_d.png"
+                  },
+                },
+                correctAnswer: "A",
+              ),
+              Quiz(
+                question:
+                    "The food chain is a feeding process that starts with producers and concludes with the largest consumer. Which of the following is NOT the correct order.",
+                choices: {
+                  "A": {
+                    "text": "",
+                    "image": "assets/images/quiz/mod6/ques2_a.png"
+                  },
+                  "B": {
+                    "text": "",
+                    "image": "assets/images/quiz/mod6/ques2_b.png"
+                  },
+                  "C": {
+                    "text": "",
+                    "image": "assets/images/quiz/mod6/ques2_c.png"
+                  },
+                  "D": {
+                    "text": "",
+                    "image": "assets/images/quiz/mod6/ques2_d.png"
+                  },
+                },
+                correctAnswer: "D",
+              ),
+              Quiz(
+                question:
+                    "In the trophic levels of food chains. Who are the secondary consumers?",
+                choices: {
+                  "A": {
+                    "text": "",
+                    "image": "assets/images/quiz/mod6/ques3_a.png"
+                  },
+                  "B": {
+                    "text": "",
+                    "image": "assets/images/quiz/mod6/ques3_b.png"
+                  },
+                  "C": {
+                    "text": "",
+                    "image": "assets/images/quiz/mod6/ques3_c.png"
+                  },
+                  "D": {
+                    "text": "",
+                    "image": "assets/images/quiz/mod6/ques3_d.png"
+                  },
+                },
+                correctAnswer: "D",
+              ),
+              Quiz(
+                question:
+                    "Organisms grow larger at higher trophic levels, but their fewer numbers result in less ______.",
+                choices: {
+                  "A": "Biomass",
+                  "B": "Energy",
+                  "C": "A and B",
+                  "D": "Neither of the above",
+                },
+                correctAnswer: "A",
+              ),
+              Quiz(
+                question:
+                    "Organisms such as detritivores and saprotrophs replenish the ecosystem and consume the majority of the leftover energy. Which of the following are the detritivores?",
+                choices: {
+                  "A": {
+                    "text": "",
+                    "image": "assets/images/quiz/mod6/ques5_a.png"
+                  },
+                  "B": {
+                    "text": "",
+                    "image": "assets/images/quiz/mod6/ques5_b.png"
+                  },
+                  "C": {
+                    "text": "",
+                    "image": "assets/images/quiz/mod6/ques5_c.png"
+                  },
+                  "D": {
+                    "text": "",
+                    "image": "assets/images/quiz/mod6/ques5_d.png"
+                  },
+                },
+                correctAnswer: "D",
+              ),
+            ],
+          ),
         ],
         bookContent: [
           Book(
@@ -5366,63 +5545,6 @@ class UnitsController {
                     imageExample: 'assets/images/module_5/Mass.jpg')
               }
             },
-          ),
-        ],
-        quizzes: [
-          Quiz(
-            question:
-            "I like to eat corn. Who am I?",
-            choices: {
-              "A": {"text": "", "image": "assets/images/quiz/mod6/ques1_a.png"},
-              "B": {"text": "", "image": "assets/images/quiz/mod6/ques1_b.png"},
-              "C": {"text": "", "image": "assets/images/quiz/mod6/ques1_c.png"},
-              "D": {"text": "", "image": "assets/images/quiz/mod6/ques1_d.png"},
-            },
-            correctAnswer: "A",
-          ),
-          Quiz(
-            question:
-            "The food chain is a feeding process that starts with producers and concludes with the largest consumer. Which of the following is NOT the correct order.",
-            choices: {
-              "A": {"text": "", "image": "assets/images/quiz/mod6/ques2_a.png"},
-              "B": {"text": "", "image": "assets/images/quiz/mod6/ques2_b.png"},
-              "C": {"text": "", "image": "assets/images/quiz/mod6/ques2_c.png"},
-              "D": {"text": "", "image": "assets/images/quiz/mod6/ques2_d.png"},
-            },
-            correctAnswer: "D",
-          ),
-          Quiz(
-            question:
-            "In the trophic levels of food chains. Who are the secondary consumers?",
-            choices: {
-              "A": {"text": "", "image": "assets/images/quiz/mod6/ques3_a.png"},
-              "B": {"text": "", "image": "assets/images/quiz/mod6/ques3_b.png"},
-              "C": {"text": "", "image": "assets/images/quiz/mod6/ques3_c.png"},
-              "D": {"text": "", "image": "assets/images/quiz/mod6/ques3_d.png"},
-            },
-            correctAnswer: "D",
-          ),
-          Quiz(
-            question:
-            "Organisms grow larger at higher trophic levels, but their fewer numbers result in less ______.",
-            choices: {
-              "A": "Biomass",
-              "B": "Energy",
-              "C": "A and B",
-              "D": "Neither of the above",
-            },
-            correctAnswer: "A",
-          ),
-          Quiz(
-            question:
-            "Organisms such as detritivores and saprotrophs replenish the ecosystem and consume the majority of the leftover energy. Which of the following are the detritivores?",
-            choices: {
-              "A": {"text": "", "image": "assets/images/quiz/mod6/ques5_a.png"},
-              "B": {"text": "", "image": "assets/images/quiz/mod6/ques5_b.png"},
-              "C": {"text": "", "image": "assets/images/quiz/mod6/ques5_c.png"},
-              "D": {"text": "", "image": "assets/images/quiz/mod6/ques5_d.png"},
-            },
-            correctAnswer: "D",
           ),
         ],
       ),

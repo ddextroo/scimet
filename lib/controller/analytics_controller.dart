@@ -33,9 +33,9 @@ class AnalyticsController {
 
   Future<void> saveQuizResults({
     required String userId,
-    required String unitTitle,
-    required double score,
-    required double highestScore,
+    required String moduleName, // Changed from unitTitle
+    required String score,
+    required String highestScore,
     required List<Map<String, dynamic>> quizItems,
   }) async {
     final timestamp = DateTime.now();
@@ -44,35 +44,38 @@ class AnalyticsController {
       'score': score,
       'highestScore': highestScore,
       'quizItems': quizItems,
-      'unitTitle': unitTitle,
+      'moduleName': moduleName, // Changed from unitTitle
     };
 
-    await _firestore
+    // Update Firestore structure to use modules instead of units
+    final moduleRef = _firestore
         .collection('quizAnalytics')
         .doc(userId)
-        .collection('units')
-        .doc(unitTitle)
-        .set({
+        .collection('modules')
+        .doc(moduleName);
+
+    await moduleRef.set({
       'highestScore': highestScore,
       'lastAttempt': timestamp,
       'totalAttempts': FieldValue.increment(1),
     }, SetOptions(merge: true));
 
-    await _firestore
-        .collection('quizAnalytics')
-        .doc(userId)
-        .collection('units')
-        .doc(unitTitle)
-        .collection('attempts')
-        .add(quizData);
+    await moduleRef.collection('attempts').add(quizData);
+
+    // Optional: Maintain root document
+    final userDocRef = _firestore.collection('quizAnalytics').doc(userId);
+    final userDoc = await userDocRef.get();
+    if (!userDoc.exists) {
+      await userDocRef.set({'createdAt': timestamp});
+    }
   }
 
-  Future<Map<String, dynamic>> getQuizAnalytics(String userId, String unitTitle) async {
+  Future<Map<String, dynamic>> getQuizAnalytics(String userId, String moduleName) async {
     final doc = await _firestore
         .collection('quizAnalytics')
         .doc(userId)
-        .collection('units')
-        .doc(unitTitle)
+        .collection('modules')
+        .doc(moduleName)
         .get();
 
     return doc.data() ?? {};
